@@ -124,7 +124,6 @@ const enviaFormulario = () => {
     });
 };
 </script>
-
 <template>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
