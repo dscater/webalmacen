@@ -48,11 +48,6 @@ Route::get('/', function () {
 Route::get("configuracions/getConfiguracion", [ConfiguracionController::class, 'getConfiguracion'])->name("configuracions.getConfiguracion");
 
 Route::middleware('auth')->group(function () {
-    // BORRAR
-    Route::get('/vuetify', function () {
-        return Inertia::render('Vuetify/Index');
-    })->name("vuetify");
-
     // INICIO
     Route::get('/inicio', function () {
         return Inertia::render('Home');
