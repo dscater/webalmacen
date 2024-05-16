@@ -1,14 +1,14 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
-import { useObras } from "@/composables/obras/useObras";
+import { useIngresos } from "@/composables/ingresos/useIngresos";
 import { useUsuarios } from "@/composables/usuarios/useUsuarios";
 import { useCategorias } from "@/composables/categorias/useCategorias";
 import { useMenu } from "@/composables/useMenu";
 import { watch, ref, reactive, computed, onMounted } from "vue";
 
 const { mobile, cambiarUrl } = useMenu();
-const { oObra, limpiarObra } = useObras();
-let form = useForm(oObra);
+const { oIngreso, limpiarIngreso } = useIngresos();
+let form = useForm(oIngreso);
 
 const { flash, auth } = usePage().props;
 const user = ref(auth.user);
@@ -20,14 +20,14 @@ const listUsuariosEncargado = ref([]);
 const listCategorias = ref([]);
 
 const tituloDialog = computed(() => {
-    return oObra.id == 0 ? `Agregar Obra` : `Editar Obra`;
+    return oIngreso.id == 0 ? `Agregar Ingreso` : `Editar Ingreso`;
 });
 
 const enviarFormulario = () => {
     let url =
         form["_method"] == "POST"
-            ? route("obras.store")
-            : route("obras.update", form.id);
+            ? route("ingresos.store")
+            : route("ingresos.update", form.id);
 
     form.post(url, {
         preserveScroll: true,
@@ -40,8 +40,8 @@ const enviarFormulario = () => {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            limpiarObra();
-            cambiarUrl(route("obras.index"));
+            limpiarIngreso();
+            cambiarUrl(route("ingresos.index"));
         },
         onError: (err) => {
             Swal.fire({
@@ -116,7 +116,7 @@ const cargaMapaGoogle = async (lat, lng, drag = false, dir = "") => {
 
     // evento click sobre el marcador
     infoWindow.close();
-    infoWindow.setContent(form.nombre ? form.nombre : "Ubicación Obra");
+    infoWindow.setContent(form.nombre ? form.nombre : "Ubicación Ingreso");
     AME.addListener("click", () => {
         infoWindow.open(AME.map, AME);
     });
@@ -151,7 +151,7 @@ onMounted(() => {
                 <v-btn
                     icon="mdi-arrow-left"
                     class="mr-2"
-                    @click="cambiarUrl(route('obras.index'))"
+                    @click="cambiarUrl(route('ingresos.index'))"
                 ></v-btn>
                 <v-btn icon="mdi-content-save" color="primary"></v-btn>
             </template>
@@ -159,20 +159,20 @@ onMounted(() => {
                 <v-btn
                     prepend-icon="mdi-arrow-left"
                     class="mr-2"
-                    @click="cambiarUrl(route('obras.index'))"
+                    @click="cambiarUrl(route('ingresos.index'))"
                 >
                     Volver</v-btn
                 >
                 <v-btn
                     :prepend-icon="
-                        oObra.id != 0 ? 'mdi-sync' : 'mdi-content-save'
+                        oIngreso.id != 0 ? 'mdi-sync' : 'mdi-content-save'
                     "
                     color="primary"
                     @click="enviarFormulario"
                 >
                     <span
                         v-text="
-                            oObra.id != 0 ? 'Actualizar Obra' : 'Guardar Obra'
+                            oIngreso.id != 0 ? 'Actualizar Ingreso' : 'Guardar Ingreso'
                         "
                     ></span
                 ></v-btn>
@@ -206,7 +206,7 @@ onMounted(() => {
                                                 : ''
                                         "
                                         variant="outlined"
-                                        label="Nombre de la Obra*"
+                                        label="Nombre de la Ingreso*"
                                         rows="1"
                                         auto-grow
                                         density="compact"
@@ -245,29 +245,29 @@ onMounted(() => {
                                 <v-col cols="12" sm="12" md="12" xl="6">
                                     <v-select
                                         :hide-details="
-                                            form.errors?.encargado_obra_id
+                                            form.errors?.encargado_ingreso_id
                                                 ? false
                                                 : true
                                         "
                                         :error="
-                                            form.errors?.encargado_obra_id
+                                            form.errors?.encargado_ingreso_id
                                                 ? true
                                                 : false
                                         "
                                         :error-messages="
-                                            form.errors?.encargado_obra_id
-                                                ? form.errors?.encargado_obra_id
+                                            form.errors?.encargado_ingreso_id
+                                                ? form.errors?.encargado_ingreso_id
                                                 : ''
                                         "
                                         clearable
                                         variant="outlined"
-                                        label="Seleccionar Encargado de Obra*"
+                                        label="Seleccionar Encargado de Ingreso*"
                                         :items="listUsuariosEncargado"
                                         item-value="id"
                                         item-title="full_name"
                                         required
                                         density="compact"
-                                        v-model="form.encargado_obra_id"
+                                        v-model="form.encargado_ingreso_id"
                                     ></v-select>
                                 </v-col>
                                 <v-col cols="12" sm="12" md="12" xl="6">
@@ -382,7 +382,7 @@ onMounted(() => {
         <v-col cols="12" sm="12" md="6" xl="6">
             <v-card>
                 <v-card-title class="bg-primary pa-5">
-                    <span class="text-h5">Ubicación de la Obra</span>
+                    <span class="text-h5">Ubicación de la Ingreso</span>
                 </v-card-title>
                 <v-card-text>
                     <v-row class="py-3">

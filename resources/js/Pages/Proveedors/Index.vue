@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Categorías",
+        title: "Proveedores",
         disabled: false,
         url: "",
         name_url: "",
@@ -18,7 +18,7 @@ const breadbrums = [
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
 import { Head } from "@inertiajs/vue3";
-import { useCategorias } from "@/composables/categorias/useCategorias";
+import { useProveedors } from "@/composables/proveedors/useProveedors";
 import { ref, onMounted } from "vue";
 import { useMenu } from "@/composables/useMenu";
 import Formulario from "./Formulario.vue";
@@ -31,10 +31,10 @@ onMounted(() => {
     }, 300);
 });
 
-const { getCategoriasApi, setCategoria, limpiarCategoria, deleteCategoria } =
-    useCategorias();
-const responseCategorias = ref([]);
-const listCategorias = ref([]);
+const { getProveedorsApi, setProveedor, limpiarProveedor, deleteProveedor } =
+    useProveedors();
+const responseProveedors = ref([]);
+const listProveedors = ref([]);
 const itemsPerPage = ref(5);
 const headers = ref([
     {
@@ -44,20 +44,37 @@ const headers = ref([
         sortable: false,
     },
     {
-        title: "Nombre de Categoria",
-        key: "nombre",
+        title: "Razón Social",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Nit",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Dirección",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Nombre Contacto",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Teléfono/Celuar",
         align: "start",
         sortable: false,
     },
     {
         title: "Descripción",
-        key: "descripcion",
         align: "start",
         sortable: false,
     },
     {
         title: "Fecha de Registro",
-        key: "fecha_registro",
         align: "start",
         sortable: false,
     },
@@ -87,19 +104,19 @@ const loadItems = async ({ page, itemsPerPage, sortBy }) => {
 
     clearInterval(setTimeOutLoadData);
     setTimeOutLoadData = setTimeout(async () => {
-        responseCategorias.value = await getCategoriasApi(options.value);
-        listCategorias.value = responseCategorias.value.data;
-        totalItems.value = parseInt(responseCategorias.value.total);
+        responseProveedors.value = await getProveedorsApi(options.value);
+        listProveedors.value = responseProveedors.value.data;
+        totalItems.value = parseInt(responseProveedors.value.total);
         loading.value = false;
     }, 300);
 };
-const recargaCategorias = async () => {
+const recargaProveedors = async () => {
     loading.value = true;
-    listCategorias.value = [];
+    listProveedors.value = [];
     options.value.search = search.value;
-    responseCategorias.value = await getCategoriasApi(options.value);
-    listCategorias.value = responseCategorias.value.data;
-    totalItems.value = parseInt(responseCategorias.value.total);
+    responseProveedors.value = await getProveedorsApi(options.value);
+    listProveedors.value = responseProveedors.value.data;
+    totalItems.value = parseInt(responseProveedors.value.total);
     setTimeout(() => {
         loading.value = false;
         open_dialog.value = false;
@@ -109,19 +126,19 @@ const accion_dialog = ref(0);
 const open_dialog = ref(false);
 
 const agregarRegistro = () => {
-    limpiarCategoria();
+    limpiarProveedor();
     accion_dialog.value = 0;
     open_dialog.value = true;
 };
-const editarCategoria = (item) => {
-    setCategoria(item);
+const editarProveedor = (item) => {
+    setProveedor(item);
     accion_dialog.value = 1;
     open_dialog.value = true;
 };
-const eliminarCategoria = (item) => {
+const eliminarProveedor = (item) => {
     Swal.fire({
         title: "¿Quierés eliminar este registro?",
-        html: `<strong>${item.nombre}</strong>`,
+        html: `<strong>${item.razon_social}</strong>`,
         showCancelButton: true,
         confirmButtonColor: "#B61431",
         confirmButtonText: "Si, eliminar",
@@ -130,16 +147,16 @@ const eliminarCategoria = (item) => {
     }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            let respuesta = await deleteCategoria(item.id);
+            let respuesta = await deleteProveedor(item.id);
             if (respuesta && respuesta.sw) {
-                recargaCategorias();
+                recargaProveedors();
             }
         }
     });
 };
 </script>
 <template>
-    <Head title="Categorías"></Head>
+    <Head title="Proveedores"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
@@ -158,7 +175,7 @@ const eliminarCategoria = (item) => {
                 <v-card flat>
                     <v-card-title>
                         <v-row class="bg-primary d-flex align-center pa-3">
-                            <v-col cols="12" sm="6" md="4"> Categorías </v-col>
+                            <v-col cols="12" sm="6" md="4"> Proveedores </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
@@ -177,7 +194,7 @@ const eliminarCategoria = (item) => {
                             :headers="!mobile ? headers : []"
                             :class="[mobile ? 'mobile' : '']"
                             :items-length="totalItems"
-                            :items="listCategorias"
+                            :items="listProveedors"
                             :loading="loading"
                             :search="search"
                             @update:options="loadItems"
@@ -200,7 +217,19 @@ const eliminarCategoria = (item) => {
                             <template v-slot:item="{ item }">
                                 <tr v-if="!mobile">
                                     <td>{{ item.id }}</td>
-                                    <td>{{ item.nombre }}</td>
+                                    <td>{{ item.razon_social }}</td>
+                                    <td>
+                                        {{ item.nit }}
+                                    </td>
+                                    <td>
+                                        {{ item.dir }}
+                                    </td>
+                                    <td>
+                                        {{ item.nombre_contacto }}
+                                    </td>
+                                    <td>
+                                        {{ item.fono }}
+                                    </td>
                                     <td>
                                         {{ item.descripcion }}
                                     </td>
@@ -210,14 +239,14 @@ const eliminarCategoria = (item) => {
                                             color="yellow"
                                             size="small"
                                             class="pa-1 ma-1"
-                                            @click="editarCategoria(item)"
+                                            @click="editarProveedor(item)"
                                             icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
                                             color="error"
                                             size="small"
                                             class="pa-1 ma-1"
-                                            @click="eliminarCategoria(item)"
+                                            @click="eliminarProveedor(item)"
                                             icon="mdi-trash-can"
                                         ></v-btn>
                                     </td>
@@ -233,9 +262,33 @@ const eliminarCategoria = (item) => {
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Nombre de Categoria:"
+                                                data-label="Razón social:"
                                             >
-                                                {{ item.nombre }}
+                                                {{ item.razon_social }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Nit:"
+                                            >
+                                                {{ item.nit }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Dirección:"
+                                            >
+                                                {{ item.dir }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Nombre Contacto:"
+                                            >
+                                                {{ item.nombre_contacto }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Teléfono/Celular:"
+                                            >
+                                                {{ item.fono }}
                                             </li>
                                             <li
                                                 class="flex-item"
@@ -260,7 +313,7 @@ const eliminarCategoria = (item) => {
                                                     size="small"
                                                     class="pa-1 ma-1"
                                                     @click="
-                                                        editarCategoria(item)
+                                                        editarProveedor(item)
                                                     "
                                                     icon="mdi-pencil"
                                                 ></v-btn>
@@ -269,7 +322,7 @@ const eliminarCategoria = (item) => {
                                                     size="small"
                                                     class="pa-1 ma-1"
                                                     @click="
-                                                        eliminarCategoria(item)
+                                                        eliminarProveedor(item)
                                                     "
                                                     icon="mdi-trash-can"
                                                 ></v-btn>
@@ -286,7 +339,7 @@ const eliminarCategoria = (item) => {
         <Formulario
             :open_dialog="open_dialog"
             :accion_dialog="accion_dialog"
-            @envio-formulario="recargaCategorias"
+            @envio-formulario="recargaProveedors"
             @cerrar-dialog="open_dialog = false"
         ></Formulario>
     </v-container>

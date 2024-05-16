@@ -2,22 +2,25 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
-const oCategoria = ref({
+const oProducto = ref({
     id: 0,
     nombre: "",
     descripcion: "",
-    fecha_registro: "",
+    categoria_id: "",
+    tipo_producto_id: "",
+    stock_minimo: "",
+    imagen: "",
     _method: "POST",
 });
 
-export const useCategorias = () => {
+export const useProductos = () => {
     const { flash } = usePage().props;
-    const getCategorias = async () => {
+    const getProductos = async () => {
         try {
-            const response = await axios.get(route("categorias.listado"), {
+            const response = await axios.get(route("productos.listado"), {
                 headers: { Accept: "application/json" },
             });
-            return response.data.categorias;
+            return response.data.productos;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -36,15 +39,15 @@ export const useCategorias = () => {
         }
     };
 
-    const getCategoriasApi = async (data) => {
+    const getProductosApi = async (data) => {
         try {
             const response = await axios.get(
-                route("categorias.paginado", data),
+                route("productos.paginado", data),
                 {
                     headers: { Accept: "application/json" },
                 }
             );
-            return response.data.categorias;
+            return response.data.productos;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -62,9 +65,9 @@ export const useCategorias = () => {
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
-    const saveCategoria = async (data) => {
+    const saveProducto = async (data) => {
         try {
-            const response = await axios.post(route("categorias.store", data), {
+            const response = await axios.post(route("productos.store", data), {
                 headers: { Accept: "application/json" },
             });
             Swal.fire({
@@ -94,10 +97,10 @@ export const useCategorias = () => {
         }
     };
 
-    const deleteCategoria = async (id) => {
+    const deleteProducto = async (id) => {
         try {
             const response = await axios.delete(
-                route("categorias.destroy", id),
+                route("productos.destroy", id),
                 {
                     headers: { Accept: "application/json" },
                 }
@@ -128,35 +131,41 @@ export const useCategorias = () => {
         }
     };
 
-    const setCategoria = (item = null) => {
+    const setProducto = (item = null) => {
         if (item) {
-            oCategoria.value.id = item.id;
-            oCategoria.value.nombre = item.nombre;
-            oCategoria.value.descripcion = item.descripcion;
-            oCategoria.value.fecha_registro = item.fecha_registro;
-            oCategoria.value._method = "PUT";
-            return oCategoria;
+            oProducto.value.id = item.id;
+            oProducto.value.nombre = item.nombre;
+            oProducto.value.descripcion = item.descripcion;
+            oProducto.value.categoria_id = item.categoria_id;
+            oProducto.value.tipo_producto_id = item.tipo_producto_id;
+            oProducto.value.stock_minimo = item.stock_minimo;
+            oProducto.value.imagen = item.imagen;
+            oProducto.value._method = "PUT";
+            return oProducto;
         }
         return false;
     };
 
-    const limpiarCategoria = () => {
-        oCategoria.value.id = 0;
-        oCategoria.value.nombre = "";
-        oCategoria.value.descripcion = "";
-        oCategoria.value.fecha_registro = "";
-        oCategoria.value._method = "POST";
+    const limpiarProducto = () => {
+        oProducto.value.id = 0;
+        oProducto.value.nombre = "";
+        oProducto.value.descripcion = "";
+        oProducto.value.categoria_id = null;
+        oProducto.value.tipo_producto_id = null;
+        oProducto.value.stock_minimo = "";
+        oProducto.value.imagen = "";
+        oProducto.value._method = "POST";
     };
 
     onMounted(() => {});
 
     return {
-        oCategoria,
-        getCategorias,
-        getCategoriasApi,
-        saveCategoria,
-        deleteCategoria,
-        setCategoria,
-        limpiarCategoria,
+        oProducto,
+        getProductos,
+        getProductosApi,
+        saveProducto,
+        deleteProducto,
+        setProducto,
+        limpiarProducto,
     };
 };

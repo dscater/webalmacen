@@ -1,6 +1,6 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
-import { useCategorias } from "@/composables/categorias/useCategorias";
+import { useTipoProductos } from "@/composables/tipo_productos/useTipoProductos";
 import { watch, ref, computed, defineEmits } from "vue";
 const props = defineProps({
     open_dialog: {
@@ -13,16 +13,16 @@ const props = defineProps({
     },
 });
 
-const { oCategoria, limpiarCategoria } = useCategorias();
+const { oTipoProducto, limpiarTipoProducto } = useTipoProductos();
 const accion = ref(props.accion_dialog);
 const dialog = ref(props.open_dialog);
-let form = useForm(oCategoria.value);
+let form = useForm(oTipoProducto.value);
 watch(
     () => props.open_dialog,
     (newValue) => {
         dialog.value = newValue;
         if (dialog.value) {
-            form = useForm(oCategoria.value);
+            form = useForm(oTipoProducto.value);
         }
     }
 );
@@ -42,8 +42,8 @@ const tituloDialog = computed(() => {
 const enviarFormulario = () => {
     let url =
         form["_method"] == "POST"
-            ? route("categorias.store")
-            : route("categorias.update", form.id);
+            ? route("tipo_productos.store")
+            : route("tipo_productos.update", form.id);
 
     form.post(url, {
         preserveScroll: true,
@@ -56,7 +56,7 @@ const enviarFormulario = () => {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            limpiarCategoria();
+            limpiarTipoProducto();
             emits("envio-formulario");
         },
         onError: (err) => {
@@ -123,10 +123,9 @@ const cerrarDialog = () => {
                                                 ? form.errors?.nombre
                                                 : ''
                                         "
-                                        
                                         variant="underlined"
                                         color="primary"
-                                        label="Nombre de Categoria*"
+                                        label="Nombre de Tipo de Producto*"
                                         required
                                         density="compact"
                                         v-model="form.nombre"
@@ -150,7 +149,6 @@ const cerrarDialog = () => {
                                                 : ''
                                         "
                                         density="compact"
-                                        
                                         variant="underlined"
                                         color="primary"
                                         label="Descripción"

@@ -2,7 +2,7 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
-const oCategoria = ref({
+const oTipoProducto = ref({
     id: 0,
     nombre: "",
     descripcion: "",
@@ -10,14 +10,14 @@ const oCategoria = ref({
     _method: "POST",
 });
 
-export const useCategorias = () => {
+export const useTipoProductos = () => {
     const { flash } = usePage().props;
-    const getCategorias = async () => {
+    const getTipoProductos = async () => {
         try {
-            const response = await axios.get(route("categorias.listado"), {
+            const response = await axios.get(route("tipo_productos.listado"), {
                 headers: { Accept: "application/json" },
             });
-            return response.data.categorias;
+            return response.data.tipo_productos;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -36,15 +36,15 @@ export const useCategorias = () => {
         }
     };
 
-    const getCategoriasApi = async (data) => {
+    const getTipoProductosApi = async (data) => {
         try {
             const response = await axios.get(
-                route("categorias.paginado", data),
+                route("tipo_productos.paginado", data),
                 {
                     headers: { Accept: "application/json" },
                 }
             );
-            return response.data.categorias;
+            return response.data.tipo_productos;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -62,9 +62,9 @@ export const useCategorias = () => {
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
-    const saveCategoria = async (data) => {
+    const saveTipoProducto = async (data) => {
         try {
-            const response = await axios.post(route("categorias.store", data), {
+            const response = await axios.post(route("tipo_productos.store", data), {
                 headers: { Accept: "application/json" },
             });
             Swal.fire({
@@ -94,10 +94,10 @@ export const useCategorias = () => {
         }
     };
 
-    const deleteCategoria = async (id) => {
+    const deleteTipoProducto = async (id) => {
         try {
             const response = await axios.delete(
-                route("categorias.destroy", id),
+                route("tipo_productos.destroy", id),
                 {
                     headers: { Accept: "application/json" },
                 }
@@ -128,35 +128,35 @@ export const useCategorias = () => {
         }
     };
 
-    const setCategoria = (item = null) => {
+    const setTipoProducto = (item = null) => {
         if (item) {
-            oCategoria.value.id = item.id;
-            oCategoria.value.nombre = item.nombre;
-            oCategoria.value.descripcion = item.descripcion;
-            oCategoria.value.fecha_registro = item.fecha_registro;
-            oCategoria.value._method = "PUT";
-            return oCategoria;
+            oTipoProducto.value.id = item.id;
+            oTipoProducto.value.nombre = item.nombre;
+            oTipoProducto.value.descripcion = item.descripcion;
+            oTipoProducto.value.fecha_registro = item.fecha_registro;
+            oTipoProducto.value._method = "PUT";
+            return oTipoProducto;
         }
         return false;
     };
 
-    const limpiarCategoria = () => {
-        oCategoria.value.id = 0;
-        oCategoria.value.nombre = "";
-        oCategoria.value.descripcion = "";
-        oCategoria.value.fecha_registro = "";
-        oCategoria.value._method = "POST";
+    const limpiarTipoProducto = () => {
+        oTipoProducto.value.id = 0;
+        oTipoProducto.value.nombre = "";
+        oTipoProducto.value.descripcion = "";
+        oTipoProducto.value.fecha_registro = "";
+        oTipoProducto.value._method = "POST";
     };
 
     onMounted(() => {});
 
     return {
-        oCategoria,
-        getCategorias,
-        getCategoriasApi,
-        saveCategoria,
-        deleteCategoria,
-        setCategoria,
-        limpiarCategoria,
+        oTipoProducto,
+        getTipoProductos,
+        getTipoProductosApi,
+        saveTipoProducto,
+        deleteTipoProducto,
+        setTipoProducto,
+        limpiarTipoProducto,
     };
 };

@@ -9,8 +9,11 @@ use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\ObraController;
 use App\Http\Controllers\OperarioController;
 use App\Http\Controllers\PresupuestoController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\TipoProductoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Foundation\Application;
@@ -80,6 +83,33 @@ Route::middleware('auth')->group(function () {
         ["index", "store"]
     );
 
+    // PROVEEDORS
+    Route::get("/proveedors/paginado", [ProveedorController::class, 'paginado'])->name("proveedors.paginado");
+    Route::get("/proveedors/listado", [ProveedorController::class, 'listado'])->name("proveedors.listado");
+    Route::resource("proveedors", ProveedorController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
+    // CATEGORIAS
+    Route::get("/categorias/paginado", [CategoriaController::class, 'paginado'])->name("categorias.paginado");
+    Route::get("/categorias/listado", [CategoriaController::class, 'listado'])->name("categorias.listado");
+    Route::resource("categorias", CategoriaController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
+    // TIPO PRODUCTOS
+    Route::get("/tipo_productos/paginado", [TipoProductoController::class, 'paginado'])->name("tipo_productos.paginado");
+    Route::get("/tipo_productos/listado", [TipoProductoController::class, 'listado'])->name("tipo_productos.listado");
+    Route::resource("tipo_productos", TipoProductoController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
+    // PRODUCTOS
+    Route::get("/productos/paginado", [ProductoController::class, 'paginado'])->name("productos.paginado");
+    Route::get("/productos/listado", [ProductoController::class, 'listado'])->name("productos.listado");
+    Route::resource("productos", ProductoController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
 
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");

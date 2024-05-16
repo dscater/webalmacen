@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string("codigo")->unique();
+            $table->bigInteger("nro")->unique();
             $table->string("nombre", 255);
             $table->string("descripcion", 255)->nullable();
             $table->unsignedBigInteger("categoria_id");
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->double("stock_actual", 8, 2)->default(0);
             $table->string("imagen", 255)->nullable();
             $table->date("fecha_registro")->nullable();
+            $table->integer("status")->default(1);
             $table->timestamps();
 
             $table->foreign("categoria_id")->on("categorias")->references("id");

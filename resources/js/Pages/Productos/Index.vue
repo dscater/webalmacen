@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Categorías",
+        title: "Productos",
         disabled: false,
         url: "",
         name_url: "",
@@ -18,7 +18,7 @@ const breadbrums = [
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
 import { Head } from "@inertiajs/vue3";
-import { useCategorias } from "@/composables/categorias/useCategorias";
+import { useProductos } from "@/composables/productos/useProductos";
 import { ref, onMounted } from "vue";
 import { useMenu } from "@/composables/useMenu";
 import Formulario from "./Formulario.vue";
@@ -31,21 +31,19 @@ onMounted(() => {
     }, 300);
 });
 
-const { getCategoriasApi, setCategoria, limpiarCategoria, deleteCategoria } =
-    useCategorias();
-const responseCategorias = ref([]);
-const listCategorias = ref([]);
+const { getProductosApi, setProducto, limpiarProducto, deleteProducto } =
+    useProductos();
+const responseProductos = ref([]);
+const listProductos = ref([]);
 const itemsPerPage = ref(5);
 const headers = ref([
     {
-        title: "Id",
+        title: "Código",
         align: "start",
-        key: "id",
         sortable: false,
     },
     {
-        title: "Nombre de Categoria",
-        key: "nombre",
+        title: "Nombre de Producto",
         align: "start",
         sortable: false,
     },
@@ -56,8 +54,31 @@ const headers = ref([
         sortable: false,
     },
     {
+        title: "Categoría",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Tipo de Producto",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Stock Mínimo",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Stock Actual",
+        align: "start",
+        sortable: false,
+    },{
+        title: "Imagen",
+        align: "start",
+        sortable: false,
+    },
+    {
         title: "Fecha de Registro",
-        key: "fecha_registro",
         align: "start",
         sortable: false,
     },
@@ -87,19 +108,19 @@ const loadItems = async ({ page, itemsPerPage, sortBy }) => {
 
     clearInterval(setTimeOutLoadData);
     setTimeOutLoadData = setTimeout(async () => {
-        responseCategorias.value = await getCategoriasApi(options.value);
-        listCategorias.value = responseCategorias.value.data;
-        totalItems.value = parseInt(responseCategorias.value.total);
+        responseProductos.value = await getProductosApi(options.value);
+        listProductos.value = responseProductos.value.data;
+        totalItems.value = parseInt(responseProductos.value.total);
         loading.value = false;
     }, 300);
 };
-const recargaCategorias = async () => {
+const recargaProductos = async () => {
     loading.value = true;
-    listCategorias.value = [];
+    listProductos.value = [];
     options.value.search = search.value;
-    responseCategorias.value = await getCategoriasApi(options.value);
-    listCategorias.value = responseCategorias.value.data;
-    totalItems.value = parseInt(responseCategorias.value.total);
+    responseProductos.value = await getProductosApi(options.value);
+    listProductos.value = responseProductos.value.data;
+    totalItems.value = parseInt(responseProductos.value.total);
     setTimeout(() => {
         loading.value = false;
         open_dialog.value = false;
@@ -109,16 +130,16 @@ const accion_dialog = ref(0);
 const open_dialog = ref(false);
 
 const agregarRegistro = () => {
-    limpiarCategoria();
+    limpiarProducto();
     accion_dialog.value = 0;
     open_dialog.value = true;
 };
-const editarCategoria = (item) => {
-    setCategoria(item);
+const editarProducto = (item) => {
+    setProducto(item);
     accion_dialog.value = 1;
     open_dialog.value = true;
 };
-const eliminarCategoria = (item) => {
+const eliminarProducto = (item) => {
     Swal.fire({
         title: "¿Quierés eliminar este registro?",
         html: `<strong>${item.nombre}</strong>`,
@@ -130,16 +151,16 @@ const eliminarCategoria = (item) => {
     }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            let respuesta = await deleteCategoria(item.id);
+            let respuesta = await deleteProducto(item.id);
             if (respuesta && respuesta.sw) {
-                recargaCategorias();
+                recargaProductos();
             }
         }
     });
 };
 </script>
 <template>
-    <Head title="Categorías"></Head>
+    <Head title="Productos"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
@@ -158,7 +179,7 @@ const eliminarCategoria = (item) => {
                 <v-card flat>
                     <v-card-title>
                         <v-row class="bg-primary d-flex align-center pa-3">
-                            <v-col cols="12" sm="6" md="4"> Categorías </v-col>
+                            <v-col cols="12" sm="6" md="4"> Productos </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
@@ -177,7 +198,7 @@ const eliminarCategoria = (item) => {
                             :headers="!mobile ? headers : []"
                             :class="[mobile ? 'mobile' : '']"
                             :items-length="totalItems"
-                            :items="listCategorias"
+                            :items="listProductos"
                             :loading="loading"
                             :search="search"
                             @update:options="loadItems"
@@ -199,10 +220,30 @@ const eliminarCategoria = (item) => {
                         >
                             <template v-slot:item="{ item }">
                                 <tr v-if="!mobile">
-                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.codigo }}</td>
                                     <td>{{ item.nombre }}</td>
                                     <td>
                                         {{ item.descripcion }}
+                                    </td>
+                                    <td>
+                                        {{ item.categoria.nombre }}
+                                    </td>
+                                    <td>
+                                        {{ item.tipo_producto.nombre }}
+                                    </td>
+                                    <td>
+                                        {{ item.stock_minimo }}
+                                    </td>
+                                    <td>
+                                        {{ item.stock_actual }}
+                                    </td>
+                                    <td>
+                                        <img
+                                            :src="item.url_imagen"
+                                            alt="Imagen"
+                                            width="90px"
+                                            v-if="item.url_imagen"
+                                        />
                                     </td>
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
@@ -210,14 +251,14 @@ const eliminarCategoria = (item) => {
                                             color="yellow"
                                             size="small"
                                             class="pa-1 ma-1"
-                                            @click="editarCategoria(item)"
+                                            @click="editarProducto(item)"
                                             icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
                                             color="error"
                                             size="small"
                                             class="pa-1 ma-1"
-                                            @click="eliminarCategoria(item)"
+                                            @click="eliminarProducto(item)"
                                             icon="mdi-trash-can"
                                         ></v-btn>
                                     </td>
@@ -227,13 +268,13 @@ const eliminarCategoria = (item) => {
                                         <ul class="flex-content">
                                             <li
                                                 class="flex-item"
-                                                data-label="Id"
+                                                data-label="Código"
                                             >
-                                                {{ item.id }}
+                                                {{ item.codigo }}
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Nombre de Categoria:"
+                                                data-label="Nombre de Producto:"
                                             >
                                                 {{ item.nombre }}
                                             </li>
@@ -242,6 +283,41 @@ const eliminarCategoria = (item) => {
                                                 data-label="Descripción:"
                                             >
                                                 {{ item.descripcion }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Categoría:"
+                                            >
+                                                {{ item.categoria.nombre }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Tipo de Producto:"
+                                            >
+                                                {{ item.tipo_producto.nombre }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Stock Mínimo:"
+                                            >
+                                                {{ item.stock_minimo }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Stock Actual:"
+                                            >
+                                                {{ item.stock_actual }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Imagen:"
+                                            >
+                                                <img
+                                                    :src="item.url_imagen"
+                                                    alt="Imagen"
+                                                    width="90px"
+                                                    v-if="item.url_imagen"
+                                                />
                                             </li>
                                             <li
                                                 class="flex-item"
@@ -260,7 +336,7 @@ const eliminarCategoria = (item) => {
                                                     size="small"
                                                     class="pa-1 ma-1"
                                                     @click="
-                                                        editarCategoria(item)
+                                                        editarProducto(item)
                                                     "
                                                     icon="mdi-pencil"
                                                 ></v-btn>
@@ -269,7 +345,7 @@ const eliminarCategoria = (item) => {
                                                     size="small"
                                                     class="pa-1 ma-1"
                                                     @click="
-                                                        eliminarCategoria(item)
+                                                        eliminarProducto(item)
                                                     "
                                                     icon="mdi-trash-can"
                                                 ></v-btn>
@@ -286,7 +362,7 @@ const eliminarCategoria = (item) => {
         <Formulario
             :open_dialog="open_dialog"
             :accion_dialog="accion_dialog"
-            @envio-formulario="recargaCategorias"
+            @envio-formulario="recargaProductos"
             @cerrar-dialog="open_dialog = false"
         ></Formulario>
     </v-container>

@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Obras",
+        title: "Ingresos",
         disabled: false,
         url: "",
         name_url: "",
@@ -19,7 +19,7 @@ import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
 import { useMenu } from "@/composables/useMenu";
 import { Head, usePage } from "@inertiajs/vue3";
-import { useObras } from "@/composables/obras/useObras";
+import { useIngresos } from "@/composables/ingresos/useIngresos";
 import { ref, onMounted } from "vue";
 const { mobile, identificaDispositivo, cambiarUrl } = useMenu();
 const { setLoading } = useApp();
@@ -31,9 +31,9 @@ onMounted(() => {
     }, 300);
 });
 
-const { getObrasApi, deleteObra } = useObras();
-const responseObras = ref([]);
-const listObras = ref([]);
+const { getIngresosApi, deleteIngreso } = useIngresos();
+const responseIngresos = ref([]);
+const listIngresos = ref([]);
 const itemsPerPage = ref(5);
 const headers = ref([
     {
@@ -42,12 +42,12 @@ const headers = ref([
         sortable: false,
     },
     {
-        title: "Nombre de la Obra",
+        title: "Nombre de la Ingreso",
         align: "start",
         sortable: false,
     },
     { title: "Gerente Regional", align: "start", sortable: false },
-    { title: "Encargado de Obra", align: "start", sortable: false },
+    { title: "Encargado de Ingreso", align: "start", sortable: false },
     { title: "Fecha Plazo de Entrega", align: "start", sortable: false },
     { title: "Fecha Plazo de Ejecución", align: "start", sortable: false },
     { title: "Descripción", align: "start", sortable: false },
@@ -79,29 +79,29 @@ const loadItems = async ({ page, itemsPerPage, sortBy }) => {
 
     clearInterval(setTimeOutLoadData);
     setTimeOutLoadData = setTimeout(async () => {
-        responseObras.value = await getObrasApi(options.value);
-        listObras.value = responseObras.value.data;
-        totalItems.value = parseInt(responseObras.value.total);
+        responseIngresos.value = await getIngresosApi(options.value);
+        listIngresos.value = responseIngresos.value.data;
+        totalItems.value = parseInt(responseIngresos.value.total);
         loading.value = false;
     }, 300);
 };
-const recargaObras = async () => {
+const recargaIngresos = async () => {
     loading.value = true;
-    listObras.value = [];
+    listIngresos.value = [];
     options.value.search = search.value;
-    responseObras.value = await getObrasApi(options.value);
-    listObras.value = responseObras.value.data;
-    totalItems.value = parseInt(responseObras.value.total);
+    responseIngresos.value = await getIngresosApi(options.value);
+    listIngresos.value = responseIngresos.value.data;
+    totalItems.value = parseInt(responseIngresos.value.total);
     setTimeout(() => {
         loading.value = false;
     }, 300);
 };
 
-const editarObra = (item) => {
-    cambiarUrl(route("obras.edit", item.id));
+const editarIngreso = (item) => {
+    cambiarUrl(route("ingresos.edit", item.id));
 };
 
-const eliminarObra = (item) => {
+const eliminarIngreso = (item) => {
     Swal.fire({
         title: "¿Quierés eliminar este registro?",
         html: `<strong>${item.nombre}</strong>`,
@@ -113,9 +113,9 @@ const eliminarObra = (item) => {
     }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            let respuesta = await deleteObra(item.id);
+            let respuesta = await deleteIngreso(item.id);
             if (respuesta && respuesta.sw) {
-                recargaObras();
+                recargaIngresos();
             }
         }
     });
@@ -123,16 +123,16 @@ const eliminarObra = (item) => {
 const verUbicación = async (item) => {};
 </script>
 <template>
-    <Head title="Obras"></Head>
+    <Head title="Ingresos"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
             <v-col cols="12" class="d-flex justify-end">
                 <v-btn
-                    v-if="props.auth.user.permisos.includes('obras.create')"
+                    v-if="props.auth.user.permisos.includes('ingresos.create')"
                     color="primary"
                     prepend-icon="mdi-plus"
-                    @click="cambiarUrl(route('obras.create'))"
+                    @click="cambiarUrl(route('ingresos.create'))"
                 >
                     Agregar</v-btn
                 >
@@ -143,7 +143,7 @@ const verUbicación = async (item) => {};
                 <v-card flat>
                     <v-card-title>
                         <v-row class="bg-primary d-flex align-center pa-3">
-                            <v-col cols="12" sm="6" md="4"> Obras </v-col>
+                            <v-col cols="12" sm="6" md="4"> Ingresos </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
@@ -162,7 +162,7 @@ const verUbicación = async (item) => {};
                             :headers="!mobile ? headers : []"
                             :class="[mobile ? 'mobile' : '']"
                             :items-length="totalItems"
-                            :items="listObras"
+                            :items="listIngresos"
                             :loading="loading"
                             :search="search"
                             @update:options="loadItems"
@@ -195,7 +195,7 @@ const verUbicación = async (item) => {};
                                             }}
                                         </td>
                                         <td>
-                                            {{ item.encargado_obra.full_name }}
+                                            {{ item.encargado_ingreso.full_name }}
                                         </td>
                                         <td>{{ item.fecha_pent_t }}</td>
                                         <td>{{ item.fecha_peje_t }}</td>
@@ -222,25 +222,25 @@ const verUbicación = async (item) => {};
                                             <v-btn
                                                 v-if="
                                                     props.auth.user.permisos.includes(
-                                                        'obras.edit'
+                                                        'ingresos.edit'
                                                     )
                                                 "
                                                 color="yellow"
                                                 size="small"
                                                 class="pa-1 ma-1"
-                                                @click="editarObra(item)"
+                                                @click="editarIngreso(item)"
                                                 icon="mdi-pencil"
                                             ></v-btn>
                                             <v-btn
                                                 v-if="
                                                     props.auth.user.permisos.includes(
-                                                        'obras.destroy'
+                                                        'ingresos.destroy'
                                                     )
                                                 "
                                                 color="error"
                                                 size="small"
                                                 class="pa-1 ma-1"
-                                                @click="eliminarObra(item)"
+                                                @click="eliminarIngreso(item)"
                                                 icon="mdi-trash-can"
                                             ></v-btn>
                                         </td>
@@ -283,7 +283,7 @@ const verUbicación = async (item) => {};
                                                 </li>
                                                 <li
                                                     class="flex-item"
-                                                    data-label="Nombre de Obra"
+                                                    data-label="Nombre de Ingreso"
                                                 >
                                                     {{ item.nombre }}
                                                 </li>
@@ -298,10 +298,10 @@ const verUbicación = async (item) => {};
                                                 </li>
                                                 <li
                                                     class="flex-item"
-                                                    data-label="Encargado de Obra"
+                                                    data-label="Encargado de Ingreso"
                                                 >
                                                     {{
-                                                        item.encargado_obra
+                                                        item.encargado_ingreso
                                                             .full_name
                                                     }}
                                                 </li>
@@ -353,28 +353,28 @@ const verUbicación = async (item) => {};
                                                     <v-btn
                                                         v-if="
                                                             props.auth.user.permisos.includes(
-                                                                'obras.edit'
+                                                                'ingresos.edit'
                                                             )
                                                         "
                                                         color="yellow"
                                                         size="small"
                                                         class="pa-1 ma-1"
                                                         @click="
-                                                            editarObra(item)
+                                                            editarIngreso(item)
                                                         "
                                                         icon="mdi-pencil"
                                                     ></v-btn>
                                                     <v-btn
                                                         v-if="
                                                             props.auth.user.permisos.includes(
-                                                                'obras.destroy'
+                                                                'ingresos.destroy'
                                                             )
                                                         "
                                                         color="error"
                                                         size="small"
                                                         class="pa-1 ma-1"
                                                         @click="
-                                                            eliminarObra(item)
+                                                            eliminarIngreso(item)
                                                         "
                                                         icon="mdi-trash-can"
                                                     ></v-btn>

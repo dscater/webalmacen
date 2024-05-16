@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 15-05-2024 a las 21:58:39
+-- Tiempo de generación: 16-05-2024 a las 16:52:03
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -35,6 +35,14 @@ CREATE TABLE `categorias` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'CATEGORIA #1', 'DESC. CAT. 1', '2024-05-16', '2024-05-16 15:55:33', '2024-05-16 15:55:33'),
+(2, 'CATEGORIA #2', '', '2024-05-16', '2024-05-16 15:55:38', '2024-05-16 15:55:38');
 
 -- --------------------------------------------------------
 
@@ -90,7 +98,33 @@ CREATE TABLE `historial_accions` (
 --
 
 INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `datos_original`, `datos_nuevo`, `modulo`, `fecha`, `hora`, `created_at`, `updated_at`) VALUES
-(1, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-05-09 13:06:14<br/>', NULL, 'USUARIOS', '2024-05-09', '13:06:14', '2024-05-09 17:06:14', '2024-05-09 17:06:14');
+(1, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-05-09 13:06:14<br/>', NULL, 'USUARIOS', '2024-05-09', '13:06:14', '2024-05-09 17:06:14', '2024-05-09 17:06:14'),
+(2, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PROVEEDOR', 'id: 1<br/>razon_social: PROVEEDOR #1 S.A.<br/>nit: 111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESCRIPCION PROVEEDOR 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:47:54<br/>updated_at: 2024-05-16 11:47:54<br/>', NULL, 'PROVEEDORES', '2024-05-16', '11:47:54', '2024-05-16 15:47:54', '2024-05-16 15:47:54'),
+(3, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PROVEEDOR', 'id: 1<br/>razon_social: PROVEEDOR #1 S.A.<br/>nit: 111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESCRIPCION PROVEEDOR 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:47:54<br/>updated_at: 2024-05-16 11:47:54<br/>', 'id: 1<br/>razon_social: PROVEEDOR #1 S.A.<br/>nit: 111111<br/>dir: LOS OLIVOSA<br/>nombre_contacto: JUAN PERESA<br/>fono: 77777777A<br/>descripcion: DESCRIPCION PROVEEDOR 1A<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:47:54<br/>updated_at: 2024-05-16 11:48:46<br/>', 'PROVEEDORES', '2024-05-16', '11:48:46', '2024-05-16 15:48:46', '2024-05-16 15:48:46'),
+(4, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PROVEEDOR', 'id: 1<br/>razon_social: PROVEEDOR #1 S.A.<br/>nit: 111111<br/>dir: LOS OLIVOSA<br/>nombre_contacto: JUAN PERESA<br/>fono: 77777777A<br/>descripcion: DESCRIPCION PROVEEDOR 1A<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:47:54<br/>updated_at: 2024-05-16 11:48:46<br/>', 'id: 1<br/>razon_social: PROVEEDOR #1 S.A.<br/>nit: 111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESCRIPCION PROVEEDOR 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:47:54<br/>updated_at: 2024-05-16 11:48:54<br/>', 'PROVEEDORES', '2024-05-16', '11:48:54', '2024-05-16 15:48:54', '2024-05-16 15:48:54'),
+(5, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN PROVEEDOR', 'id: 1<br/>razon_social: PROVEEDOR #1 S.A.<br/>nit: 111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESCRIPCION PROVEEDOR 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:47:54<br/>updated_at: 2024-05-16 11:48:54<br/>', NULL, 'PROVEEDORES', '2024-05-16', '11:49:09', '2024-05-16 15:49:09', '2024-05-16 15:49:09'),
+(6, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PROVEEDOR', 'id: 1<br/>razon_social: PROVEEDOR #1 S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR #1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-05-16 11:49:45<br/>', NULL, 'PROVEEDORES', '2024-05-16', '11:49:45', '2024-05-16 15:49:45', '2024-05-16 15:49:45'),
+(7, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PROVEEDOR', 'id: 2<br/>razon_social: PROVEEDOR #2 S.R.L.<br/>nit: 123123123123<br/>dir: <br/>nombre_contacto: <br/>fono: <br/>descripcion: <br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:57<br/>updated_at: 2024-05-16 11:49:57<br/>', NULL, 'PROVEEDORES', '2024-05-16', '11:49:57', '2024-05-16 15:49:57', '2024-05-16 15:49:57'),
+(8, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:04<br/>updated_at: 2024-05-16 11:55:04<br/>', NULL, 'CATEGORIAS', '2024-05-16', '11:55:04', '2024-05-16 15:55:04', '2024-05-16 15:55:04'),
+(9, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:04<br/>updated_at: 2024-05-16 11:55:04<br/>', 'id: 1<br/>nombre: CATEGORIA #1S<br/>descripcion: DESC. CAT. 1S<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:04<br/>updated_at: 2024-05-16 11:55:09<br/>', 'CATEGORIAS', '2024-05-16', '11:55:09', '2024-05-16 15:55:09', '2024-05-16 15:55:09'),
+(10, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1S<br/>descripcion: DESC. CAT. 1S<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:04<br/>updated_at: 2024-05-16 11:55:09<br/>', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:04<br/>updated_at: 2024-05-16 11:55:13<br/>', 'CATEGORIAS', '2024-05-16', '11:55:13', '2024-05-16 15:55:13', '2024-05-16 15:55:13'),
+(11, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:04<br/>updated_at: 2024-05-16 11:55:13<br/>', NULL, 'CATEGORIAS', '2024-05-16', '11:55:20', '2024-05-16 15:55:20', '2024-05-16 15:55:20'),
+(12, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:33<br/>updated_at: 2024-05-16 11:55:33<br/>', NULL, 'CATEGORIAS', '2024-05-16', '11:55:33', '2024-05-16 15:55:33', '2024-05-16 15:55:33'),
+(13, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>nombre: CATEGORIA #2<br/>descripcion: <br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:38<br/>updated_at: 2024-05-16 11:55:38<br/>', NULL, 'CATEGORIAS', '2024-05-16', '11:55:38', '2024-05-16 15:55:38', '2024-05-16 15:55:38'),
+(14, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN TIPO DE PRODUCTO', 'id: 1<br/>nombre: TIPO PRODUCTO #1<br/>descripcion: DESC. TIPO 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 12:00:18<br/>updated_at: 2024-05-16 12:00:18<br/>', NULL, 'TIPO DE PRODUCTOS', '2024-05-16', '12:00:18', '2024-05-16 16:00:18', '2024-05-16 16:00:18'),
+(15, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN TIPO DE PRODUCTO', 'id: 1<br/>nombre: TIPO PRODUCTO #1<br/>descripcion: DESC. TIPO 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 12:00:18<br/>updated_at: 2024-05-16 12:00:18<br/>', 'id: 1<br/>nombre: TIPO PRODUCTO #1A<br/>descripcion: DESC. TIPO 1A<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 12:00:18<br/>updated_at: 2024-05-16 12:00:22<br/>', 'TIPO DE PRODUCTOS', '2024-05-16', '12:00:22', '2024-05-16 16:00:22', '2024-05-16 16:00:22'),
+(16, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN TIPO DE PRODUCTO', 'id: 1<br/>nombre: TIPO PRODUCTO #1A<br/>descripcion: DESC. TIPO 1A<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 12:00:18<br/>updated_at: 2024-05-16 12:00:22<br/>', NULL, 'TIPO DE PRODUCTOS', '2024-05-16', '12:00:26', '2024-05-16 16:00:26', '2024-05-16 16:00:26'),
+(17, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN TIPO DE PRODUCTO', 'id: 1<br/>nombre: TIPO PRODUCTO #1<br/>descripcion: DESC. TIPO 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 12:00:44<br/>updated_at: 2024-05-16 12:00:44<br/>', NULL, 'TIPO DE PRODUCTOS', '2024-05-16', '12:00:44', '2024-05-16 16:00:44', '2024-05-16 16:00:44'),
+(18, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN TIPO DE PRODUCTO', 'id: 2<br/>nombre: TIPO PRODUCTO #2<br/>descripcion: <br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 12:00:50<br/>updated_at: 2024-05-16 12:00:50<br/>', NULL, 'TIPO DE PRODUCTOS', '2024-05-16', '12:00:50', '2024-05-16 16:00:50', '2024-05-16 16:00:50'),
+(19, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PROD #1<br/>descripcion: PROD 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: <br/>imagen: 1715878006_1.png<br/>fecha_registro: 2024-05-16<br/>status: <br/>created_at: 2024-05-16 12:46:46<br/>updated_at: 2024-05-16 12:46:46<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:46:46', '2024-05-16 16:46:46', '2024-05-16 16:46:46'),
+(20, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PROD #1<br/>descripcion: PROD 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: 0<br/>imagen: 1715878006_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:46:46<br/>updated_at: 2024-05-16 12:46:46<br/>', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PROD #1<br/>descripcion: PROD 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: 0<br/>imagen: 1715878114_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:46:46<br/>updated_at: 2024-05-16 12:48:34<br/>', 'CATEGORIAS', '2024-05-16', '12:48:34', '2024-05-16 16:48:34', '2024-05-16 16:48:34'),
+(21, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PROD #1<br/>descripcion: PROD 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: 0<br/>imagen: 1715878114_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:46:46<br/>updated_at: 2024-05-16 12:48:34<br/>', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PROD #1A<br/>descripcion: PROD 1A<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 2<br/>stock_actual: 0<br/>imagen: 1715878114_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:46:46<br/>updated_at: 2024-05-16 12:48:46<br/>', 'CATEGORIAS', '2024-05-16', '12:48:46', '2024-05-16 16:48:46', '2024-05-16 16:48:46'),
+(22, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PROD #1A<br/>descripcion: PROD 1A<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 2<br/>stock_actual: 0<br/>imagen: 1715878114_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:46:46<br/>updated_at: 2024-05-16 12:48:46<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:48:55', '2024-05-16 16:48:55', '2024-05-16 16:48:55'),
+(23, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: ASD<br/>descripcion: ASD<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 2<br/>stock_actual: <br/>imagen: 1715878191_1.png<br/>fecha_registro: 2024-05-16<br/>status: <br/>created_at: 2024-05-16 12:49:51<br/>updated_at: 2024-05-16 12:49:51<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:49:51', '2024-05-16 16:49:51', '2024-05-16 16:49:51'),
+(24, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: ASD<br/>descripcion: ASD<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 2<br/>stock_actual: 0<br/>imagen: 1715878191_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:49:51<br/>updated_at: 2024-05-16 12:49:51<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:49:54', '2024-05-16 16:49:54', '2024-05-16 16:49:54'),
+(25, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>codigo: P.1<br/>nro: 1<br/>nombre: ASD<br/>descripcion: <br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 0<br/>stock_actual: <br/>imagen: 1715878290_2.jpg<br/>fecha_registro: 2024-05-16<br/>status: <br/>created_at: 2024-05-16 12:51:30<br/>updated_at: 2024-05-16 12:51:30<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:51:30', '2024-05-16 16:51:30', '2024-05-16 16:51:30'),
+(26, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 2<br/>codigo: P.1<br/>nro: 1<br/>nombre: ASD<br/>descripcion: <br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 0<br/>stock_actual: 0<br/>imagen: 1715878290_2.jpg<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:30<br/>updated_at: 2024-05-16 12:51:30<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:51:33', '2024-05-16 16:51:33', '2024-05-16 16:51:33'),
+(27, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: <br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: <br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-16 12:51:56<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:51:56', '2024-05-16 16:51:56', '2024-05-16 16:51:56');
 
 -- --------------------------------------------------------
 
@@ -247,6 +281,7 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `productos` (
   `id` bigint UNSIGNED NOT NULL,
   `codigo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nro` bigint NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `categoria_id` bigint UNSIGNED NOT NULL,
@@ -255,9 +290,17 @@ CREATE TABLE `productos` (
   `stock_actual` double(8,2) NOT NULL DEFAULT '0.00',
   `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_registro` date DEFAULT NULL,
+  `status` int NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `codigo`, `nro`, `nombre`, `descripcion`, `categoria_id`, `tipo_producto_id`, `stock_minimo`, `stock_actual`, `imagen`, `fecha_registro`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'P.1', 1, 'PRODUCTO #1', 'DESC. PROD. 1', 1, 1, 5.00, 0.00, '1715878316_1.png', '2024-05-16', 1, '2024-05-16 16:51:56', '2024-05-16 16:51:56');
 
 -- --------------------------------------------------------
 
@@ -277,6 +320,14 @@ CREATE TABLE `proveedors` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `proveedors`
+--
+
+INSERT INTO `proveedors` (`id`, `razon_social`, `nit`, `dir`, `nombre_contacto`, `fono`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'PROVEEDOR #1 S.A.', '1111111', 'LOS OLIVOS', 'JUAN PERES', '77777777', 'DESC. PROVEEDOR #1', '2024-05-16', '2024-05-16 15:49:45', '2024-05-16 15:49:45'),
+(2, 'PROVEEDOR #2 S.R.L.', '123123123123', '', '', '', '', '2024-05-16', '2024-05-16 15:49:57', '2024-05-16 15:49:57');
 
 -- --------------------------------------------------------
 
@@ -339,6 +390,14 @@ CREATE TABLE `tipo_productos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_productos`
+--
+
+INSERT INTO `tipo_productos` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'TIPO PRODUCTO #1', 'DESC. TIPO 1', '2024-05-16', '2024-05-16 16:00:44', '2024-05-16 16:00:44'),
+(2, 'TIPO PRODUCTO #2', '', '2024-05-16', '2024-05-16 16:00:50', '2024-05-16 16:00:50');
 
 -- --------------------------------------------------------
 
@@ -525,7 +584,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracions`
@@ -537,7 +596,7 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `ingresos`
@@ -585,13 +644,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedors`
 --
 ALTER TABLE `proveedors`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `salidas`
@@ -615,7 +674,7 @@ ALTER TABLE `tipo_ingresos`
 -- AUTO_INCREMENT de la tabla `tipo_productos`
 --
 ALTER TABLE `tipo_productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_salidas`

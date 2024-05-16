@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Categorías",
+        title: "Tipo de Productos",
         disabled: false,
         url: "",
         name_url: "",
@@ -18,7 +18,7 @@ const breadbrums = [
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
 import { Head } from "@inertiajs/vue3";
-import { useCategorias } from "@/composables/categorias/useCategorias";
+import { useTipoProductos } from "@/composables/tipo_productos/useTipoProductos";
 import { ref, onMounted } from "vue";
 import { useMenu } from "@/composables/useMenu";
 import Formulario from "./Formulario.vue";
@@ -31,10 +31,14 @@ onMounted(() => {
     }, 300);
 });
 
-const { getCategoriasApi, setCategoria, limpiarCategoria, deleteCategoria } =
-    useCategorias();
-const responseCategorias = ref([]);
-const listCategorias = ref([]);
+const {
+    getTipoProductosApi,
+    setTipoProducto,
+    limpiarTipoProducto,
+    deleteTipoProducto,
+} = useTipoProductos();
+const responseTipoProductos = ref([]);
+const listTipoProductos = ref([]);
 const itemsPerPage = ref(5);
 const headers = ref([
     {
@@ -44,7 +48,7 @@ const headers = ref([
         sortable: false,
     },
     {
-        title: "Nombre de Categoria",
+        title: "Nombre de TipoProducto",
         key: "nombre",
         align: "start",
         sortable: false,
@@ -87,19 +91,19 @@ const loadItems = async ({ page, itemsPerPage, sortBy }) => {
 
     clearInterval(setTimeOutLoadData);
     setTimeOutLoadData = setTimeout(async () => {
-        responseCategorias.value = await getCategoriasApi(options.value);
-        listCategorias.value = responseCategorias.value.data;
-        totalItems.value = parseInt(responseCategorias.value.total);
+        responseTipoProductos.value = await getTipoProductosApi(options.value);
+        listTipoProductos.value = responseTipoProductos.value.data;
+        totalItems.value = parseInt(responseTipoProductos.value.total);
         loading.value = false;
     }, 300);
 };
-const recargaCategorias = async () => {
+const recargaTipoProductos = async () => {
     loading.value = true;
-    listCategorias.value = [];
+    listTipoProductos.value = [];
     options.value.search = search.value;
-    responseCategorias.value = await getCategoriasApi(options.value);
-    listCategorias.value = responseCategorias.value.data;
-    totalItems.value = parseInt(responseCategorias.value.total);
+    responseTipoProductos.value = await getTipoProductosApi(options.value);
+    listTipoProductos.value = responseTipoProductos.value.data;
+    totalItems.value = parseInt(responseTipoProductos.value.total);
     setTimeout(() => {
         loading.value = false;
         open_dialog.value = false;
@@ -109,16 +113,16 @@ const accion_dialog = ref(0);
 const open_dialog = ref(false);
 
 const agregarRegistro = () => {
-    limpiarCategoria();
+    limpiarTipoProducto();
     accion_dialog.value = 0;
     open_dialog.value = true;
 };
-const editarCategoria = (item) => {
-    setCategoria(item);
+const editarTipoProducto = (item) => {
+    setTipoProducto(item);
     accion_dialog.value = 1;
     open_dialog.value = true;
 };
-const eliminarCategoria = (item) => {
+const eliminarTipoProducto = (item) => {
     Swal.fire({
         title: "¿Quierés eliminar este registro?",
         html: `<strong>${item.nombre}</strong>`,
@@ -130,16 +134,16 @@ const eliminarCategoria = (item) => {
     }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            let respuesta = await deleteCategoria(item.id);
+            let respuesta = await deleteTipoProducto(item.id);
             if (respuesta && respuesta.sw) {
-                recargaCategorias();
+                recargaTipoProductos();
             }
         }
     });
 };
 </script>
 <template>
-    <Head title="Categorías"></Head>
+    <Head title="Tipo de Productos"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
@@ -158,7 +162,7 @@ const eliminarCategoria = (item) => {
                 <v-card flat>
                     <v-card-title>
                         <v-row class="bg-primary d-flex align-center pa-3">
-                            <v-col cols="12" sm="6" md="4"> Categorías </v-col>
+                            <v-col cols="12" sm="6" md="4"> Tipo de Productos </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
@@ -177,7 +181,7 @@ const eliminarCategoria = (item) => {
                             :headers="!mobile ? headers : []"
                             :class="[mobile ? 'mobile' : '']"
                             :items-length="totalItems"
-                            :items="listCategorias"
+                            :items="listTipoProductos"
                             :loading="loading"
                             :search="search"
                             @update:options="loadItems"
@@ -210,14 +214,14 @@ const eliminarCategoria = (item) => {
                                             color="yellow"
                                             size="small"
                                             class="pa-1 ma-1"
-                                            @click="editarCategoria(item)"
+                                            @click="editarTipoProducto(item)"
                                             icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
                                             color="error"
                                             size="small"
                                             class="pa-1 ma-1"
-                                            @click="eliminarCategoria(item)"
+                                            @click="eliminarTipoProducto(item)"
                                             icon="mdi-trash-can"
                                         ></v-btn>
                                     </td>
@@ -233,7 +237,7 @@ const eliminarCategoria = (item) => {
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Nombre de Categoria:"
+                                                data-label="Nombre de TipoProducto:"
                                             >
                                                 {{ item.nombre }}
                                             </li>
@@ -260,7 +264,7 @@ const eliminarCategoria = (item) => {
                                                     size="small"
                                                     class="pa-1 ma-1"
                                                     @click="
-                                                        editarCategoria(item)
+                                                        editarTipoProducto(item)
                                                     "
                                                     icon="mdi-pencil"
                                                 ></v-btn>
@@ -269,7 +273,9 @@ const eliminarCategoria = (item) => {
                                                     size="small"
                                                     class="pa-1 ma-1"
                                                     @click="
-                                                        eliminarCategoria(item)
+                                                        eliminarTipoProducto(
+                                                            item
+                                                        )
                                                     "
                                                     icon="mdi-trash-can"
                                                 ></v-btn>
@@ -286,7 +292,7 @@ const eliminarCategoria = (item) => {
         <Formulario
             :open_dialog="open_dialog"
             :accion_dialog="accion_dialog"
-            @envio-formulario="recargaCategorias"
+            @envio-formulario="recargaTipoProductos"
             @cerrar-dialog="open_dialog = false"
         ></Formulario>
     </v-container>
