@@ -16,11 +16,13 @@ class ProductoController extends Controller
 {
     public $validacion = [
         "nombre" => "required|min:2",
+        "precio" => "required",
     ];
 
     public $mensajes = [
         "nombre.required" => "Este campo es obligatorio",
         "nombre.min" => "Debes ingresar al menos :min caracteres",
+        "precio.required" => "Este campo es obligatorio",
     ];
 
     public function index()
@@ -80,9 +82,9 @@ class ProductoController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' REGISTRO UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' REGISTRO UN PRODUCTO',
                 'datos_original' => $datos_original,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'PRODUCTOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
@@ -123,10 +125,10 @@ class ProductoController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' MODIFICÓ UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' MODIFICÓ UN PRODUCTO',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'PRODUCTOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
@@ -148,12 +150,12 @@ class ProductoController extends Controller
             $usos2 = SalidaDetalle::where("producto_id", $producto->id)->get();
             // if (count($usos1) > 0) {
             //     throw ValidationException::withMessages([
-            //         'error' =>  "No es posible eliminar esta categoría porque esta siendo utilizada por otros registros",
+            // 'error' =>  "No es posible eliminar este registro porque esta siendo utilizado por otros registros",
             //     ]);
             // }
             // if (count($usos2) > 0) {
             //     throw ValidationException::withMessages([
-            //         'error' =>  "No es posible eliminar esta categoría porque esta siendo utilizada por otros registros",
+            // 'error' =>  "No es posible eliminar este registro porque esta siendo utilizado por otros registros",
             //     ]);
             // }
 
@@ -177,9 +179,9 @@ class ProductoController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'ELIMINACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' ELIMINÓ UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' ELIMINÓ UN PRODUCTO',
                 'datos_original' => $datos_original,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'PRODUCTOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);

@@ -2,26 +2,22 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
-const oProducto = ref({
+const oTipoSalida = ref({
     id: 0,
     nombre: "",
     descripcion: "",
-    categoria_id: "",
-    tipo_producto_id: "",
-    stock_minimo: "",
-    precio: "",
-    imagen: "",
+    fecha_registro: "",
     _method: "POST",
 });
 
-export const useProductos = () => {
+export const useTipoSalidas = () => {
     const { flash } = usePage().props;
-    const getProductos = async () => {
+    const getTipoSalidas = async () => {
         try {
-            const response = await axios.get(route("productos.listado"), {
+            const response = await axios.get(route("tipo_salidas.listado"), {
                 headers: { Accept: "application/json" },
             });
-            return response.data.productos;
+            return response.data.tipo_salidas;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -40,15 +36,15 @@ export const useProductos = () => {
         }
     };
 
-    const getProductosApi = async (data) => {
+    const getTipoSalidasApi = async (data) => {
         try {
             const response = await axios.get(
-                route("productos.paginado", data),
+                route("tipo_salidas.paginado", data),
                 {
                     headers: { Accept: "application/json" },
                 }
             );
-            return response.data.productos;
+            return response.data.tipo_salidas;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -66,11 +62,14 @@ export const useProductos = () => {
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
-    const saveProducto = async (data) => {
+    const saveTipoSalida = async (data) => {
         try {
-            const response = await axios.post(route("productos.store", data), {
-                headers: { Accept: "application/json" },
-            });
+            const response = await axios.post(
+                route("tipo_salidas.store", data),
+                {
+                    headers: { Accept: "application/json" },
+                }
+            );
             Swal.fire({
                 icon: "success",
                 title: "Correcto",
@@ -98,10 +97,10 @@ export const useProductos = () => {
         }
     };
 
-    const deleteProducto = async (id) => {
+    const deleteTipoSalida = async (id) => {
         try {
             const response = await axios.delete(
-                route("productos.destroy", id),
+                route("tipo_salidas.destroy", id),
                 {
                     headers: { Accept: "application/json" },
                 }
@@ -132,43 +131,35 @@ export const useProductos = () => {
         }
     };
 
-    const setProducto = (item = null) => {
+    const setTipoSalida = (item = null) => {
         if (item) {
-            oProducto.value.id = item.id;
-            oProducto.value.nombre = item.nombre;
-            oProducto.value.descripcion = item.descripcion;
-            oProducto.value.categoria_id = item.categoria_id;
-            oProducto.value.tipo_producto_id = item.tipo_producto_id;
-            oProducto.value.stock_minimo = item.stock_minimo;
-            oProducto.value.precio = item.precio;
-            oProducto.value.imagen = item.imagen;
-            oProducto.value._method = "PUT";
-            return oProducto;
+            oTipoSalida.value.id = item.id;
+            oTipoSalida.value.nombre = item.nombre;
+            oTipoSalida.value.descripcion = item.descripcion;
+            oTipoSalida.value.fecha_registro = item.fecha_registro;
+            oTipoSalida.value._method = "PUT";
+            return oTipoSalida;
         }
         return false;
     };
 
-    const limpiarProducto = () => {
-        oProducto.value.id = 0;
-        oProducto.value.nombre = "";
-        oProducto.value.descripcion = "";
-        oProducto.value.categoria_id = null;
-        oProducto.value.tipo_producto_id = null;
-        oProducto.value.stock_minimo = "";
-        oProducto.value.precio = "";
-        oProducto.value.imagen = "";
-        oProducto.value._method = "POST";
+    const limpiarTipoSalida = () => {
+        oTipoSalida.value.id = 0;
+        oTipoSalida.value.nombre = "";
+        oTipoSalida.value.descripcion = "";
+        oTipoSalida.value.fecha_registro = "";
+        oTipoSalida.value._method = "POST";
     };
 
     onMounted(() => {});
 
     return {
-        oProducto,
-        getProductos,
-        getProductosApi,
-        saveProducto,
-        deleteProducto,
-        setProducto,
-        limpiarProducto,
+        oTipoSalida,
+        getTipoSalidas,
+        getTipoSalidasApi,
+        saveTipoSalida,
+        deleteTipoSalida,
+        setTipoSalida,
+        limpiarTipoSalida,
     };
 };

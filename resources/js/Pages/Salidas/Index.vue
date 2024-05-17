@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Ingresos",
+        title: "Salidas",
         disabled: false,
         url: "",
         name_url: "",
@@ -19,7 +19,7 @@ import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
 import { useMenu } from "@/composables/useMenu";
 import { Head, usePage } from "@inertiajs/vue3";
-import { useIngresos } from "@/composables/ingresos/useIngresos";
+import { useSalidas } from "@/composables/salidas/useSalidas";
 import { ref, onMounted } from "vue";
 const { mobile, identificaDispositivo, cambiarUrl } = useMenu();
 const { setLoading } = useApp();
@@ -31,9 +31,9 @@ onMounted(() => {
     }, 300);
 });
 
-const { getIngresosApi, deleteIngreso } = useIngresos();
-const responseIngresos = ref([]);
-const listIngresos = ref([]);
+const { getSalidasApi, deleteSalida } = useSalidas();
+const responseSalidas = ref([]);
+const listSalidas = ref([]);
 const itemsPerPage = ref(5);
 const headers = ref([
     {
@@ -41,16 +41,10 @@ const headers = ref([
         align: "start",
         sortable: false,
     },
-    {
-        title: "Proveedor",
-        align: "start",
-        sortable: false,
-    },
-    { title: "Tipo de Ingreso", align: "start", sortable: false },
-    { title: "Precio", align: "start", sortable: false },
-    { title: "Nro. Factura", align: "start", sortable: false },
+    { title: "Tipo de Salida", align: "start", sortable: false },
+    { title: "Unidad Solicitante", align: "start", sortable: false },
     { title: "Descripción", align: "start", sortable: false },
-    { title: "Fecha de Ingreso", align: "start", sortable: false },
+    { title: "Fecha de Salida", align: "start", sortable: false },
     { title: "Fecha de Registro", align: "start", sortable: false },
     { title: "Más", align: "start", sortable: false },
     { title: "Acción", align: "end", sortable: false },
@@ -79,33 +73,33 @@ const loadItems = async ({ page, itemsPerPage, sortBy }) => {
 
     clearInterval(setTimeOutLoadData);
     setTimeOutLoadData = setTimeout(async () => {
-        responseIngresos.value = await getIngresosApi(options.value);
-        listIngresos.value = responseIngresos.value.data;
-        totalItems.value = parseInt(responseIngresos.value.total);
+        responseSalidas.value = await getSalidasApi(options.value);
+        listSalidas.value = responseSalidas.value.data;
+        totalItems.value = parseInt(responseSalidas.value.total);
         loading.value = false;
     }, 300);
 };
-const recargaIngresos = async () => {
+const recargaSalidas = async () => {
     loading.value = true;
-    listIngresos.value = [];
+    listSalidas.value = [];
     options.value.search = search.value;
-    responseIngresos.value = await getIngresosApi(options.value);
-    listIngresos.value = responseIngresos.value.data;
-    totalItems.value = parseInt(responseIngresos.value.total);
+    responseSalidas.value = await getSalidasApi(options.value);
+    listSalidas.value = responseSalidas.value.data;
+    totalItems.value = parseInt(responseSalidas.value.total);
     setTimeout(() => {
         loading.value = false;
     }, 300);
 };
 
-const editarIngreso = (item) => {
-    cambiarUrl(route("ingresos.edit", item.id));
+const editarSalida = (item) => {
+    cambiarUrl(route("salidas.edit", item.id));
 };
 
-const verIngreso = (item) => {
-    cambiarUrl(route("ingresos.show", item.id));
+const verSalida = (item) => {
+    cambiarUrl(route("salidas.show", item.id));
 };
 
-const eliminarIngreso = (item) => {
+const eliminarSalida = (item) => {
     Swal.fire({
         title: "¿Quierés eliminar este registro?",
         html: `<strong>${item.nombre}</strong>`,
@@ -117,9 +111,9 @@ const eliminarIngreso = (item) => {
     }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            let respuesta = await deleteIngreso(item.id);
+            let respuesta = await deleteSalida(item.id);
             if (respuesta && respuesta.sw) {
-                recargaIngresos();
+                recargaSalidas();
             }
         }
     });
@@ -127,16 +121,16 @@ const eliminarIngreso = (item) => {
 const verUbicación = async (item) => {};
 </script>
 <template>
-    <Head title="Ingresos"></Head>
+    <Head title="Salidas"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
             <v-col cols="12" class="d-flex justify-end">
                 <v-btn
-                    v-if="props.auth.user.permisos.includes('ingresos.create')"
+                    v-if="props.auth.user.permisos.includes('salidas.create')"
                     color="primary"
                     prepend-icon="mdi-plus"
-                    @click="cambiarUrl(route('ingresos.create'))"
+                    @click="cambiarUrl(route('salidas.create'))"
                 >
                     Agregar</v-btn
                 >
@@ -147,7 +141,7 @@ const verUbicación = async (item) => {};
                 <v-card flat>
                     <v-card-title>
                         <v-row class="bg-primary d-flex align-center pa-3">
-                            <v-col cols="12" sm="6" md="4"> Ingresos </v-col>
+                            <v-col cols="12" sm="6" md="4"> Salidas </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
@@ -166,7 +160,7 @@ const verUbicación = async (item) => {};
                             :headers="!mobile ? headers : []"
                             :class="[mobile ? 'mobile' : '']"
                             :items-length="totalItems"
-                            :items="listIngresos"
+                            :items="listSalidas"
                             :loading="loading"
                             :search="search"
                             @update:options="loadItems"
@@ -190,14 +184,10 @@ const verUbicación = async (item) => {};
                                 <template v-if="!mobile">
                                     <tr>
                                         <td>{{ item.id }}</td>
-                                        <td>
-                                            {{ item.proveedor.razon_social }}
-                                        </td>
-                                        <td>{{ item.tipo_ingreso.nombre }}</td>
-                                        <td>{{ item.precio }}</td>
-                                        <td>{{ item.nro_factura }}</td>
+                                        <td>{{ item.tipo_salida.nombre }}</td>
+                                        <td>{{ item.unidad_solicitante }}</td>
                                         <td>{{ item.descripcion }}</td>
-                                        <td>{{ item.fecha_ingreso_t }}</td>
+                                        <td>{{ item.fecha_salida_t }}</td>
                                         <td>{{ item.fecha_registro_t }}</td>
                                         <td>
                                             <v-btn
@@ -214,31 +204,31 @@ const verUbicación = async (item) => {};
                                                 color="primary"
                                                 size="small"
                                                 class="pa-1 ma-1"
-                                                @click="verIngreso(item)"
+                                                @click="verSalida(item)"
                                                 icon="mdi-eye-circle"
                                             ></v-btn>
                                             <!-- <v-btn
                                                 v-if="
                                                     props.auth.user.permisos.includes(
-                                                        'ingresos.edit'
+                                                        'salidas.edit'
                                                     )
                                                 "
                                                 color="yellow"
                                                 size="small"
                                                 class="pa-1 ma-1"
-                                                @click="editarIngreso(item)"
+                                                @click="editarSalida(item)"
                                                 icon="mdi-pencil"
                                             ></v-btn>
                                             <v-btn
                                                 v-if="
                                                     props.auth.user.permisos.includes(
-                                                        'ingresos.destroy'
+                                                        'salidas.destroy'
                                                     )
                                                 "
                                                 color="error"
                                                 size="small"
                                                 class="pa-1 ma-1"
-                                                @click="eliminarIngreso(item)"
+                                                @click="eliminarSalida(item)"
                                                 icon="mdi-trash-can"
                                             ></v-btn> -->
                                         </td>
@@ -269,7 +259,7 @@ const verUbicación = async (item) => {};
                                                             <tr
                                                                 v-for="(
                                                                     item, index
-                                                                ) in item.ingreso_detalles"
+                                                                ) in item.salida_detalles"
                                                             >
                                                                 <td>
                                                                     {{
@@ -309,32 +299,17 @@ const verUbicación = async (item) => {};
                                                 </li>
                                                 <li
                                                     class="flex-item"
-                                                    data-label="Proveedor:"
+                                                    data-label="Tipo de Salida:"
                                                 >
                                                     {{
-                                                        item.proveedor
-                                                            .razon_social
+                                                        item.tipo_salida.nombre
                                                     }}
                                                 </li>
                                                 <li
                                                     class="flex-item"
-                                                    data-label="Tipo de Ingreso:"
+                                                    data-label="Unidad Solicitante:"
                                                 >
-                                                    {{
-                                                        item.tipo_ingreso.nombre
-                                                    }}
-                                                </li>
-                                                <li
-                                                    class="flex-item"
-                                                    data-label="Precio:"
-                                                >
-                                                    {{ item.precio }}
-                                                </li>
-                                                <li
-                                                    class="flex-item"
-                                                    data-label="Nro. Factura:"
-                                                >
-                                                    {{ item.nro_factura }}
+                                                    {{ item.unidad_solicitante }}
                                                 </li>
                                                 <li
                                                     class="flex-item"
@@ -344,9 +319,9 @@ const verUbicación = async (item) => {};
                                                 </li>
                                                 <li
                                                     class="flex-item"
-                                                    data-label="Fecha de Ingreso:"
+                                                    data-label="Fecha de Salida:"
                                                 >
-                                                    {{ item.fecha_ingreso_t }}
+                                                    {{ item.fecha_salida_t }}
                                                 </li>
                                                 <li
                                                     class="flex-item"
@@ -372,7 +347,7 @@ const verUbicación = async (item) => {};
                                                 <template v-if="item.mas">
                                                     <li
                                                         class="flex-item"
-                                                        data-label="Ingreso Productos:"
+                                                        data-label="Salida Productos:"
                                                     >
                                                         <v-table
                                                             class="border tabla_info"
@@ -382,7 +357,7 @@ const verUbicación = async (item) => {};
                                                                     v-for="(
                                                                         item,
                                                                         index
-                                                                    ) in item.ingreso_detalles"
+                                                                    ) in item.salida_detalles"
                                                                 >
                                                                     <td>
                                                                         N°:
@@ -421,35 +396,35 @@ const verUbicación = async (item) => {};
                                                         size="small"
                                                         class="pa-1 ma-1"
                                                         @click="
-                                                            verIngreso(item)
+                                                            verSalida(item)
                                                         "
                                                         icon="mdi-eye-circle"
                                                     ></v-btn>
                                                     <!-- <v-btn
                                                         v-if="
                                                             props.auth.user.permisos.includes(
-                                                                'ingresos.edit'
+                                                                'salidas.edit'
                                                             )
                                                         "
                                                         color="yellow"
                                                         size="small"
                                                         class="pa-1 ma-1"
                                                         @click="
-                                                            editarIngreso(item)
+                                                            editarSalida(item)
                                                         "
                                                         icon="mdi-pencil"
                                                     ></v-btn>
                                                     <v-btn
                                                         v-if="
                                                             props.auth.user.permisos.includes(
-                                                                'ingresos.destroy'
+                                                                'salidas.destroy'
                                                             )
                                                         "
                                                         color="error"
                                                         size="small"
                                                         class="pa-1 ma-1"
                                                         @click="
-                                                            eliminarIngreso(
+                                                            eliminarSalida(
                                                                 item
                                                             )
                                                         "

@@ -1,27 +1,28 @@
+import { useForm } from "@inertiajs/vue3";
 import axios from "axios";
-import { onMounted, ref } from "vue";
+import { onMounted, reactive } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
-const oProducto = ref({
+const oSalida = reactive({
     id: 0,
-    nombre: "",
+    tipo_salida_id: null,
     descripcion: "",
-    categoria_id: "",
-    tipo_producto_id: "",
-    stock_minimo: "",
-    precio: "",
-    imagen: "",
+    unidad_solicitante: "",
+    fecha_salida: "",
+    salida_detalles: reactive([]),
+    eliminados: reactive([]),
     _method: "POST",
 });
 
-export const useProductos = () => {
+export const useSalidas = () => {
     const { flash } = usePage().props;
-    const getProductos = async () => {
+    const getSalidas = async (data) => {
         try {
-            const response = await axios.get(route("productos.listado"), {
+            const response = await axios.get(route("salidas.listado"), {
                 headers: { Accept: "application/json" },
+                params: data,
             });
-            return response.data.productos;
+            return response.data.salidas;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -40,45 +41,12 @@ export const useProductos = () => {
         }
     };
 
-    const getProductosApi = async (data) => {
+    const getSalidasApi = async (data) => {
         try {
-            const response = await axios.get(
-                route("productos.paginado", data),
-                {
-                    headers: { Accept: "application/json" },
-                }
-            );
-            return response.data.productos;
-        } catch (err) {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: `${
-                    flash.error
-                        ? flash.error
-                        : err.response?.data
-                        ? err.response?.data?.message
-                        : "Hay errores en el formulario"
-                }`,
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: `Aceptar`,
-            });
-            throw err; // Puedes manejar el error según tus necesidades
-        }
-    };
-    const saveProducto = async (data) => {
-        try {
-            const response = await axios.post(route("productos.store", data), {
+            const response = await axios.get(route("salidas.paginado", data), {
                 headers: { Accept: "application/json" },
             });
-            Swal.fire({
-                icon: "success",
-                title: "Correcto",
-                text: `${flash.bien ? flash.bien : "Proceso realizado"}`,
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: `Aceptar`,
-            });
-            return response.data;
+            return response.data.salidas;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -93,19 +61,14 @@ export const useProductos = () => {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            console.error("Error:", err);
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
-
-    const deleteProducto = async (id) => {
+    const saveSalida = async (data) => {
         try {
-            const response = await axios.delete(
-                route("productos.destroy", id),
-                {
-                    headers: { Accept: "application/json" },
-                }
-            );
+            const response = await axios.post(route("salidas.store", data), {
+                headers: { Accept: "application/json" },
+            });
             Swal.fire({
                 icon: "success",
                 title: "Correcto",
@@ -132,43 +95,81 @@ export const useProductos = () => {
         }
     };
 
-    const setProducto = (item = null) => {
+    const deleteSalida = async (id) => {
+        try {
+            const response = await axios.delete(route("salidas.destroy", id), {
+                headers: { Accept: "application/json" },
+            });
+            Swal.fire({
+                icon: "success",
+                title: "Correcto",
+                text: `${flash.bien ? flash.bien : "Proceso realizado"}`,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: `Aceptar`,
+            });
+            return response.data;
+        } catch (err) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: `${
+                    flash.error
+                        ? flash.error
+                        : err.response?.data
+                        ? err.response?.data?.message
+                        : "Hay errores en el formulario"
+                }`,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: `Aceptar`,
+            });
+            throw err; // Puedes manejar el error según tus necesidades
+        }
+    };
+
+    const setSalida = (
+        item = null,
+        proveedor = false,
+        tipo_salida = false
+    ) => {
         if (item) {
-            oProducto.value.id = item.id;
-            oProducto.value.nombre = item.nombre;
-            oProducto.value.descripcion = item.descripcion;
-            oProducto.value.categoria_id = item.categoria_id;
-            oProducto.value.tipo_producto_id = item.tipo_producto_id;
-            oProducto.value.stock_minimo = item.stock_minimo;
-            oProducto.value.precio = item.precio;
-            oProducto.value.imagen = item.imagen;
-            oProducto.value._method = "PUT";
-            return oProducto;
+            oSalida.id = item.id;
+            oSalida.proveedor_id = item.proveedor_id;
+            oSalida.tipo_salida_id = item.tipo_salida_id;
+            if (tipo_salida) {
+                oSalida.tipo_salida = item.tipo_salida;
+                oSalida.fecha_salida_t = item.fecha_salida_t;
+            }
+            oSalida.descripcion = item.descripcion;
+            oSalida.unidad_solicitante = item.unidad_solicitante;
+            oSalida.fecha_salida = item.fecha_salida;
+            oSalida.salida_detalles = reactive([...item.salida_detalles]);
+            oSalida.eliminados = reactive([]);
+            oSalida._method = "PUT";
+            return oSalida;
         }
         return false;
     };
 
-    const limpiarProducto = () => {
-        oProducto.value.id = 0;
-        oProducto.value.nombre = "";
-        oProducto.value.descripcion = "";
-        oProducto.value.categoria_id = null;
-        oProducto.value.tipo_producto_id = null;
-        oProducto.value.stock_minimo = "";
-        oProducto.value.precio = "";
-        oProducto.value.imagen = "";
-        oProducto.value._method = "POST";
+    const limpiarSalida = () => {
+        oSalida.id = 0;
+        oSalida.tipo_salida_id = null;
+        oSalida.descripcion = "";
+        oSalida.unidad_solicitante = "";
+        oSalida.fecha_salida = "";
+        oSalida.salida_detalles = reactive([]);
+        oSalida.eliminados = reactive([]);
+        oSalida._method = "POST";
     };
 
     onMounted(() => {});
 
     return {
-        oProducto,
-        getProductos,
-        getProductosApi,
-        saveProducto,
-        deleteProducto,
-        setProducto,
-        limpiarProducto,
+        oSalida,
+        getSalidas,
+        getSalidasApi,
+        saveSalida,
+        deleteSalida,
+        setSalida,
+        limpiarSalida,
     };
 };

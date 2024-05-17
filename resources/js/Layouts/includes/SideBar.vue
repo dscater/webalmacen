@@ -144,7 +144,7 @@ const scrollActive = () => {
                     oUser.permisos.includes('tipo_productos.index') ||
                     oUser.permisos.includes('productos.geolocalizacion') ||
                     oUser.permisos.includes('tipo_ingresos.index') ||
-                    oUser.permisos.includes('ingreso_productos.index') ||
+                    oUser.permisos.includes('ingresos.index') ||
                     oUser.permisos.includes('tipo_salidas.index') ||
                     oUser.permisos.includes('salidas_productos.index') ||
                     oUser.permisos.includes('notificacions.index')
@@ -257,13 +257,17 @@ const scrollActive = () => {
             </v-list-item>
             <v-list-item
                 :class="[
-                    route_current == 'ingreso_productos.index' ? 'active' : '',
+                    route_current == 'ingresos.index' ||
+                    route_current == 'ingresos.create' ||
+                    route_current == 'ingresos.edit'
+                        ? 'active'
+                        : '',
                     drawer ? 'px-3' : '',
                 ]"
                 class="mx-3"
-                v-if="oUser.permisos.includes('ingreso_productos.index')"
+                v-if="oUser.permisos.includes('ingresos.index')"
                 prepend-icon="mdi-clipboard-arrow-left"
-                @click="cambiarUrl(route('ingreso_productos.index'))"
+                @click="cambiarUrl(route('ingresos.index'))"
                 link
             >
                 <v-list-item-title>Ingreso de Productos</v-list-item-title>
@@ -297,13 +301,17 @@ const scrollActive = () => {
             </v-list-item>
             <v-list-item
                 :class="[
-                    route_current == 'salida_productos.index' ? 'active' : '',
+                    route_current == 'salidas.index' ||
+                    route_current == 'salidas.create' ||
+                    route_current == 'salidas.edit'
+                        ? 'active'
+                        : '',
                     drawer ? 'px-3' : '',
                 ]"
                 class="mx-3"
-                v-if="oUser.permisos.includes('salida_productos.index')"
+                v-if="oUser.permisos.includes('salidas.index')"
                 prepend-icon="mdi-clipboard-arrow-right"
-                @click="cambiarUrl(route('salida_productos.index'))"
+                @click="cambiarUrl(route('salidas.index'))"
                 link
             >
                 <v-list-item-title>Salida de Productos</v-list-item-title>

@@ -1,36 +1,33 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
-import { useIngresos } from "@/composables/ingresos/useIngresos";
-import { useProveedors } from "@/composables/proveedors/useProveedors";
-import { useTipoIngresos } from "@/composables/tipo_ingresos/useTipoIngresos";
+import { useSalidas } from "@/composables/salidas/useSalidas";
+import { useTipoSalidas } from "@/composables/tipo_salidas/useTipoSalidas";
 import { useProductos } from "@/composables/productos/useProductos";
 import { useMenu } from "@/composables/useMenu";
 import { watch, ref, reactive, computed, onMounted } from "vue";
 
 const { mobile, cambiarUrl } = useMenu();
-const { oIngreso, limpiarIngreso } = useIngresos();
-let form = useForm(oIngreso);
+const { oSalida, limpiarSalida } = useSalidas();
+let form = useForm(oSalida);
 
 const { flash, auth } = usePage().props;
 const user = ref(auth.user);
-const { getProveedors } = useProveedors();
-const { getTipoIngresos } = useTipoIngresos();
+const { getTipoSalidas } = useTipoSalidas();
 const { getProductos } = useProductos();
 
-const listProveedors = ref([]);
-const listTipoIngresos = ref([]);
+const listTipoSalidas = ref([]);
 const listProductos = ref([]);
 const producto_id = ref(null);
 const cantidad = ref(0);
 const tituloDialog = computed(() => {
-    return oIngreso.id == 0 ? `Registrar Ingreso` : `Editar Ingreso`;
+    return oSalida.id == 0 ? `Registrar Salida` : `Editar Salida`;
 });
 
 const enviarFormulario = () => {
     let url =
         form["_method"] == "POST"
-            ? route("ingresos.store")
-            : route("ingresos.update", form.id);
+            ? route("salidas.store")
+            : route("salidas.update", form.id);
 
     form.post(url, {
         preserveScroll: true,
@@ -43,8 +40,8 @@ const enviarFormulario = () => {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            limpiarIngreso();
-            cambiarUrl(route("ingresos.index"));
+            limpiarSalida();
+            cambiarUrl(route("salidas.index"));
         },
         onError: (err) => {
             Swal.fire({
@@ -65,16 +62,15 @@ const enviarFormulario = () => {
 };
 
 const cargarListas = async () => {
-    listProveedors.value = await getProveedors();
-    listTipoIngresos.value = await getTipoIngresos();
+    listTipoSalidas.value = await getTipoSalidas();
     listProductos.value = await getProductos();
 };
 
-const agregarIngresoDetalle = () => {
+const agregarSalidaDetalle = () => {
     if (producto_id.value != "" && cantidad.value != "" && cantidad.value > 0) {
-        form.ingreso_detalles.push({
+        form.salida_detalles.push({
             id: 0,
-            ingreso_id: 0,
+            salida_id: 0,
             producto_id: producto_id.value,
             producto: getProducto(producto_id.value),
             cantidad: cantidad.value,
@@ -93,11 +89,11 @@ const agregarIngresoDetalle = () => {
     }
 };
 
-const quitarIngresoDetalle = (index, id) => {
+const quitarSalidaDetalle = (index, id) => {
     if (id != 0) {
         form.eliminados.push(id);
     }
-    form.ingreso_detalles.splice(index, 1);
+    form.salida_detalles.splice(index, 1);
 };
 
 const getProducto = (id) => {
@@ -120,7 +116,7 @@ onMounted(() => {
                 <v-btn
                     icon="mdi-arrow-left"
                     class="mr-2"
-                    @click="cambiarUrl(route('ingresos.index'))"
+                    @click="cambiarUrl(route('salidas.index'))"
                 ></v-btn>
                 <v-btn
                     icon="mdi-content-save"
@@ -132,22 +128,22 @@ onMounted(() => {
                 <v-btn
                     prepend-icon="mdi-arrow-left"
                     class="mr-2"
-                    @click="cambiarUrl(route('ingresos.index'))"
+                    @click="cambiarUrl(route('salidas.index'))"
                 >
                     Volver</v-btn
                 >
                 <v-btn
                     :prepend-icon="
-                        oIngreso.id != 0 ? 'mdi-sync' : 'mdi-content-save'
+                        oSalida.id != 0 ? 'mdi-sync' : 'mdi-content-save'
                     "
                     color="primary"
                     @click="enviarFormulario"
                 >
                     <span
                         v-text="
-                            oIngreso.id != 0
-                                ? 'Actualizar Ingreso'
-                                : 'Guardar Ingreso'
+                            oSalida.id != 0
+                                ? 'Actualizar Salida'
+                                : 'Guardar Salida'
                         "
                     ></span
                 ></v-btn>
@@ -170,18 +166,18 @@ onMounted(() => {
                                 <v-col cols="12" sm="12" md="12" xl="6">
                                     <v-autocomplete
                                         :hide-details="
-                                            form.errors?.proveedor_id
+                                            form.errors?.tipo_salida_id
                                                 ? false
                                                 : true
                                         "
                                         :error="
-                                            form.errors?.proveedor_id
+                                            form.errors?.tipo_salida_id
                                                 ? true
                                                 : false
                                         "
                                         :error-messages="
-                                            form.errors?.proveedor_id
-                                                ? form.errors?.proveedor_id
+                                            form.errors?.tipo_salida_id
+                                                ? form.errors?.tipo_salida_id
                                                 : ''
                                         "
                                         density="compact"
@@ -189,91 +185,38 @@ onMounted(() => {
                                         color="primary"
                                         no-data-text="Sin registros"
                                         clearable
-                                        :items="listProveedors"
-                                        item-value="id"
-                                        item-title="razon_social"
-                                        label="Seleccionar proveedor*"
-                                        v-model="form.proveedor_id"
-                                        required
-                                    ></v-autocomplete>
-                                </v-col>
-                                <v-col cols="12" sm="12" md="12" xl="6">
-                                    <v-autocomplete
-                                        :hide-details="
-                                            form.errors?.tipo_ingreso_id
-                                                ? false
-                                                : true
-                                        "
-                                        :error="
-                                            form.errors?.tipo_ingreso_id
-                                                ? true
-                                                : false
-                                        "
-                                        :error-messages="
-                                            form.errors?.tipo_ingreso_id
-                                                ? form.errors?.tipo_ingreso_id
-                                                : ''
-                                        "
-                                        density="compact"
-                                        variant="underlined"
-                                        color="primary"
-                                        no-data-text="Sin registros"
-                                        clearable
-                                        :items="listTipoIngresos"
+                                        :items="listTipoSalidas"
                                         item-value="id"
                                         item-title="nombre"
-                                        label="Seleccionar Tipo de Ingreso*"
-                                        v-model="form.tipo_ingreso_id"
+                                        label="Seleccionar Tipo de Salida*"
+                                        v-model="form.tipo_salida_id"
                                         required
                                     ></v-autocomplete>
                                 </v-col>
                                 <v-col cols="12" sm="12" md="12" xl="6">
                                     <v-text-field
                                         :hide-details="
-                                            form.errors?.precio ? false : true
-                                        "
-                                        :error="
-                                            form.errors?.precio ? true : false
-                                        "
-                                        :error-messages="
-                                            form.errors?.precio
-                                                ? form.errors?.precio
-                                                : ''
-                                        "
-                                        density="compact"
-                                        variant="underlined"
-                                        color="primary"
-                                        label="Precio"
-                                        type="number"
-                                        step="0.01"
-                                        min="0"
-                                        required
-                                        v-model="form.precio"
-                                    ></v-text-field>
-                                </v-col>
-                                <v-col cols="12" sm="12" md="12" xl="6">
-                                    <v-text-field
-                                        :hide-details="
-                                            form.errors?.nro_factura
+                                            form.errors?.unidad_solicitante
                                                 ? false
                                                 : true
                                         "
                                         :error="
-                                            form.errors?.nro_factura
+                                            form.errors?.unidad_solicitante
                                                 ? true
                                                 : false
                                         "
                                         :error-messages="
-                                            form.errors?.nro_factura
-                                                ? form.errors?.nro_factura
+                                            form.errors?.unidad_solicitante
+                                                ? form.errors
+                                                      ?.unidad_solicitante
                                                 : ''
                                         "
                                         density="compact"
                                         variant="underlined"
                                         color="primary"
-                                        label="Número de factura*"
+                                        label="Unidad Solicitante*"
                                         required
-                                        v-model="form.nro_factura"
+                                        v-model="form.unidad_solicitante"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="12" md="12" xl="6">
@@ -304,27 +247,27 @@ onMounted(() => {
                                 <v-col cols="12" sm="12" md="12" xl="6">
                                     <v-text-field
                                         :hide-details="
-                                            form.errors?.fecha_ingreso
+                                            form.errors?.fecha_salida
                                                 ? false
                                                 : true
                                         "
                                         :error="
-                                            form.errors?.fecha_ingreso
+                                            form.errors?.fecha_salida
                                                 ? true
                                                 : false
                                         "
                                         :error-messages="
-                                            form.errors?.fecha_ingreso
-                                                ? form.errors?.fecha_ingreso
+                                            form.errors?.fecha_salida
+                                                ? form.errors?.fecha_salida
                                                 : ''
                                         "
                                         density="compact"
                                         variant="underlined"
                                         color="primary"
                                         type="date"
-                                        label="Fecha de Ingreso*"
+                                        label="Fecha de Salida*"
                                         required
-                                        v-model="form.fecha_ingreso"
+                                        v-model="form.fecha_salida"
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -379,7 +322,7 @@ onMounted(() => {
                                 :disabled="
                                     !producto_id || !cantidad || cantidad < 0.01
                                 "
-                                @click="agregarIngresoDetalle"
+                                @click="agregarSalidaDetalle"
                                 >Agregar</v-btn
                             >
                             <span class="text-caption" v-if="!producto_id"
@@ -403,7 +346,7 @@ onMounted(() => {
                                     <tr
                                         v-for="(
                                             item, index
-                                        ) in form.ingreso_detalles"
+                                        ) in form.salida_detalles"
                                     >
                                         <td>{{ index + 1 }}</td>
                                         <td>
@@ -418,7 +361,7 @@ onMounted(() => {
                                                 icon="mdi-trash-can"
                                                 color="red-darken-3"
                                                 @click="
-                                                    quitarIngresoDetalle(
+                                                    quitarSalidaDetalle(
                                                         index,
                                                         item.id
                                                     )

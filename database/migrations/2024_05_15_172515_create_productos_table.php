@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger("tipo_producto_id");
             $table->double("stock_minimo", 8, 2);
             $table->double("stock_actual", 8, 2)->default(0);
+            $table->decimal("precio", 24, 2)->default(0);
             $table->string("imagen", 255)->nullable();
             $table->date("fecha_registro")->nullable();
             $table->integer("status")->default(1);

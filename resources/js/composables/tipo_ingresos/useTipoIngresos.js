@@ -2,26 +2,22 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
-const oProducto = ref({
+const oTipoIngreso = ref({
     id: 0,
     nombre: "",
     descripcion: "",
-    categoria_id: "",
-    tipo_producto_id: "",
-    stock_minimo: "",
-    precio: "",
-    imagen: "",
+    fecha_registro: "",
     _method: "POST",
 });
 
-export const useProductos = () => {
+export const useTipoIngresos = () => {
     const { flash } = usePage().props;
-    const getProductos = async () => {
+    const getTipoIngresos = async () => {
         try {
-            const response = await axios.get(route("productos.listado"), {
+            const response = await axios.get(route("tipo_ingresos.listado"), {
                 headers: { Accept: "application/json" },
             });
-            return response.data.productos;
+            return response.data.tipo_ingresos;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -40,15 +36,15 @@ export const useProductos = () => {
         }
     };
 
-    const getProductosApi = async (data) => {
+    const getTipoIngresosApi = async (data) => {
         try {
             const response = await axios.get(
-                route("productos.paginado", data),
+                route("tipo_ingresos.paginado", data),
                 {
                     headers: { Accept: "application/json" },
                 }
             );
-            return response.data.productos;
+            return response.data.tipo_ingresos;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -66,9 +62,9 @@ export const useProductos = () => {
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
-    const saveProducto = async (data) => {
+    const saveTipoIngreso = async (data) => {
         try {
-            const response = await axios.post(route("productos.store", data), {
+            const response = await axios.post(route("tipo_ingresos.store", data), {
                 headers: { Accept: "application/json" },
             });
             Swal.fire({
@@ -98,10 +94,10 @@ export const useProductos = () => {
         }
     };
 
-    const deleteProducto = async (id) => {
+    const deleteTipoIngreso = async (id) => {
         try {
             const response = await axios.delete(
-                route("productos.destroy", id),
+                route("tipo_ingresos.destroy", id),
                 {
                     headers: { Accept: "application/json" },
                 }
@@ -132,43 +128,35 @@ export const useProductos = () => {
         }
     };
 
-    const setProducto = (item = null) => {
+    const setTipoIngreso = (item = null) => {
         if (item) {
-            oProducto.value.id = item.id;
-            oProducto.value.nombre = item.nombre;
-            oProducto.value.descripcion = item.descripcion;
-            oProducto.value.categoria_id = item.categoria_id;
-            oProducto.value.tipo_producto_id = item.tipo_producto_id;
-            oProducto.value.stock_minimo = item.stock_minimo;
-            oProducto.value.precio = item.precio;
-            oProducto.value.imagen = item.imagen;
-            oProducto.value._method = "PUT";
-            return oProducto;
+            oTipoIngreso.value.id = item.id;
+            oTipoIngreso.value.nombre = item.nombre;
+            oTipoIngreso.value.descripcion = item.descripcion;
+            oTipoIngreso.value.fecha_registro = item.fecha_registro;
+            oTipoIngreso.value._method = "PUT";
+            return oTipoIngreso;
         }
         return false;
     };
 
-    const limpiarProducto = () => {
-        oProducto.value.id = 0;
-        oProducto.value.nombre = "";
-        oProducto.value.descripcion = "";
-        oProducto.value.categoria_id = null;
-        oProducto.value.tipo_producto_id = null;
-        oProducto.value.stock_minimo = "";
-        oProducto.value.precio = "";
-        oProducto.value.imagen = "";
-        oProducto.value._method = "POST";
+    const limpiarTipoIngreso = () => {
+        oTipoIngreso.value.id = 0;
+        oTipoIngreso.value.nombre = "";
+        oTipoIngreso.value.descripcion = "";
+        oTipoIngreso.value.fecha_registro = "";
+        oTipoIngreso.value._method = "POST";
     };
 
     onMounted(() => {});
 
     return {
-        oProducto,
-        getProductos,
-        getProductosApi,
-        saveProducto,
-        deleteProducto,
-        setProducto,
-        limpiarProducto,
+        oTipoIngreso,
+        getTipoIngresos,
+        getTipoIngresosApi,
+        saveTipoIngreso,
+        deleteTipoIngreso,
+        setTipoIngreso,
+        limpiarTipoIngreso,
     };
 };

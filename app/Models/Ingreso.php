@@ -19,6 +19,18 @@ class Ingreso extends Model
         "fecha_registro",
     ];
 
+    protected $appends = ["fecha_registro_t", "fecha_ingreso_t"];
+
+    public function getFechaRegistroTAttribute()
+    {
+        return date("d/m/Y", strtotime($this->fecha_registro));
+    }
+
+    public function getFechaIngresoTAttribute()
+    {
+        return date("d/m/Y", strtotime($this->fecha_ingreso));
+    }
+
     public function proveedor()
     {
         return $this->belongsTo(Proveedor::class, 'proveedor_id');
@@ -27,5 +39,10 @@ class Ingreso extends Model
     public function tipo_ingreso()
     {
         return $this->belongsTo(TipoIngreso::class, 'tipo_ingreso_id');
+    }
+
+    public function ingreso_detalles()
+    {
+        return $this->hasMany(IngresoDetalle::class, 'ingreso_id');
     }
 }

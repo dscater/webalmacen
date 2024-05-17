@@ -96,7 +96,6 @@ const cerrarDialog = () => {
     dialog.value = false;
 };
 
-
 const imagen = ref(null);
 function cargaArchivo(e, key) {
     form[key] = null;
@@ -149,6 +148,29 @@ onMounted(() => {});
                                         required
                                         density="compact"
                                         v-model="form.nombre"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="6" md="6">
+                                    <v-text-field
+                                        :hide-details="
+                                            form.errors?.precio ? false : true
+                                        "
+                                        :error="
+                                            form.errors?.precio ? true : false
+                                        "
+                                        :error-messages="
+                                            form.errors?.precio
+                                                ? form.errors?.precio
+                                                : ''
+                                        "
+                                        variant="underlined"
+                                        color="primary"
+                                        label="Precio*"
+                                        type="number"
+                                        step="0.01"
+                                        required
+                                        density="compact"
+                                        v-model="form.precio"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="6" md="6">

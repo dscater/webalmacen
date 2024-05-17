@@ -46,20 +46,20 @@ class UserController extends Controller
             "tipo_ingresos.edit",
             "tipo_ingresos.destroy",
 
-            "ingreso_productos.index",
-            "ingreso_productos.create",
-            "ingreso_productos.edit",
-            "ingreso_productos.destroy",
+            "ingresos.index",
+            "ingresos.create",
+            "ingresos.edit",
+            "ingresos.destroy",
 
             "tipo_salidas.index",
             "tipo_salidas.create",
             "tipo_salidas.edit",
             "tipo_salidas.destroy",
 
-            "salida_productos.index",
-            "salida_productos.create",
-            "salida_productos.edit",
-            "salida_productos.destroy",
+            "salidas.index",
+            "salidas.create",
+            "salidas.edit",
+            "salidas.destroy",
 
             "notificacions.index",
             "notificacions.create",

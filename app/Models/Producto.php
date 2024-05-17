@@ -18,6 +18,7 @@ class Producto extends Model
         "tipo_producto_id",
         "stock_minimo",
         "stock_actual",
+        "precio",
         "imagen",
         "fecha_registro",
         "status",
@@ -48,6 +49,19 @@ class Producto extends Model
             $nro = (int)$last->nro + 1;
         }
         return ["P." . $nro, $nro];
+    }
+
+    public static function incrementarStock($producto, $cantidad)
+    {
+        $producto->stock_actual = (float)$producto->stock_actual + $cantidad;
+        $producto->save();
+        return true;
+    }
+    public static function decrementarStock($producto, $cantidad)
+    {
+        $producto->stock_actual = (float)$producto->stock_actual - $cantidad;
+        $producto->save();
+        return true;
     }
 
     // relaciones

@@ -7,13 +7,13 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Ingresos",
+        title: "Salidas",
         disabled: false,
-        url: route("ingresos.index"),
-        name_url: "ingresos.index",
+        url: route("salidas.index"),
+        name_url: "salidas.index",
     },
     {
-        title: "Nuevo",
+        title: "Editar",
         disabled: false,
         url: "",
         name_url: "",
@@ -26,12 +26,19 @@ import { useApp } from "@/composables/useApp";
 import { Head } from "@inertiajs/vue3";
 import { onMounted } from "vue";
 import { useMenu } from "@/composables/useMenu";
-import { useIngresos } from "@/composables/ingresos/useIngresos";
+import { useSalidas } from "@/composables/salidas/useSalidas";
 import Formulario from "./parcials/Formulario.vue";
 const { mobile, identificaDispositivo } = useMenu();
 const { setLoading } = useApp();
-const { oIngreso, limpiarIngreso } = useIngresos();
-limpiarIngreso();
+const { oSalida, setSalida } = useSalidas();
+
+const props = defineProps({
+    salida: {
+        type: Object,
+    },
+});
+setSalida(props.salida);
+
 onMounted(() => {
     setTimeout(() => {
         setLoading(false);
@@ -39,7 +46,7 @@ onMounted(() => {
 });
 </script>
 <template>
-    <Head title="Ingresos"></Head>
+    <Head title="Salidas"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">

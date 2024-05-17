@@ -125,7 +125,7 @@ class TipoProductoController extends Controller
             $usos = Producto::where("tipo_producto_id", $tipo_producto->id)->get();
             if (count($usos) > 0) {
                 throw ValidationException::withMessages([
-                    'error' =>  "No es posible eliminar esta categoría porque esta siendo utilizada por otros registros",
+                    'error' =>  "No es posible eliminar este registro porque esta siendo utilizado por otros registros",
                 ]);
             }
 

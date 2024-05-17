@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Productos",
+        title: "Tipo de Salida",
         disabled: false,
         url: "",
         name_url: "",
@@ -18,7 +18,7 @@ const breadbrums = [
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
 import { Head } from "@inertiajs/vue3";
-import { useProductos } from "@/composables/productos/useProductos";
+import { useTipoSalidas } from "@/composables/tipo_salidas/useTipoSalidas";
 import { ref, onMounted } from "vue";
 import { useMenu } from "@/composables/useMenu";
 import Formulario from "./Formulario.vue";
@@ -31,19 +31,21 @@ onMounted(() => {
     }, 300);
 });
 
-const { getProductosApi, setProducto, limpiarProducto, deleteProducto } =
-    useProductos();
-const responseProductos = ref([]);
-const listProductos = ref([]);
+const { getTipoSalidasApi, setTipoSalida, limpiarTipoSalida, deleteTipoSalida } =
+    useTipoSalidas();
+const responseTipoSalidas = ref([]);
+const listTipoSalidas = ref([]);
 const itemsPerPage = ref(5);
 const headers = ref([
     {
-        title: "Código",
+        title: "Id",
         align: "start",
+        key: "id",
         sortable: false,
     },
     {
-        title: "Nombre de Producto",
+        title: "Nombre de Tipo de Salida",
+        key: "nombre",
         align: "start",
         sortable: false,
     },
@@ -54,36 +56,8 @@ const headers = ref([
         sortable: false,
     },
     {
-        title: "Categoría",
-        align: "start",
-        sortable: false,
-    },
-    {
-        title: "Tipo de Producto",
-        align: "start",
-        sortable: false,
-    },
-    {
-        title: "Precio",
-        align: "start",
-        sortable: false,
-    },
-    {
-        title: "Stock Mínimo",
-        align: "start",
-        sortable: false,
-    },
-    {
-        title: "Stock Actual",
-        align: "start",
-        sortable: false,
-    },{
-        title: "Imagen",
-        align: "start",
-        sortable: false,
-    },
-    {
         title: "Fecha de Registro",
+        key: "fecha_registro",
         align: "start",
         sortable: false,
     },
@@ -113,19 +87,19 @@ const loadItems = async ({ page, itemsPerPage, sortBy }) => {
 
     clearInterval(setTimeOutLoadData);
     setTimeOutLoadData = setTimeout(async () => {
-        responseProductos.value = await getProductosApi(options.value);
-        listProductos.value = responseProductos.value.data;
-        totalItems.value = parseInt(responseProductos.value.total);
+        responseTipoSalidas.value = await getTipoSalidasApi(options.value);
+        listTipoSalidas.value = responseTipoSalidas.value.data;
+        totalItems.value = parseInt(responseTipoSalidas.value.total);
         loading.value = false;
     }, 300);
 };
-const recargaProductos = async () => {
+const recargaTipoSalidas = async () => {
     loading.value = true;
-    listProductos.value = [];
+    listTipoSalidas.value = [];
     options.value.search = search.value;
-    responseProductos.value = await getProductosApi(options.value);
-    listProductos.value = responseProductos.value.data;
-    totalItems.value = parseInt(responseProductos.value.total);
+    responseTipoSalidas.value = await getTipoSalidasApi(options.value);
+    listTipoSalidas.value = responseTipoSalidas.value.data;
+    totalItems.value = parseInt(responseTipoSalidas.value.total);
     setTimeout(() => {
         loading.value = false;
         open_dialog.value = false;
@@ -135,16 +109,16 @@ const accion_dialog = ref(0);
 const open_dialog = ref(false);
 
 const agregarRegistro = () => {
-    limpiarProducto();
+    limpiarTipoSalida();
     accion_dialog.value = 0;
     open_dialog.value = true;
 };
-const editarProducto = (item) => {
-    setProducto(item);
+const editarTipoSalida = (item) => {
+    setTipoSalida(item);
     accion_dialog.value = 1;
     open_dialog.value = true;
 };
-const eliminarProducto = (item) => {
+const eliminarTipoSalida = (item) => {
     Swal.fire({
         title: "¿Quierés eliminar este registro?",
         html: `<strong>${item.nombre}</strong>`,
@@ -156,16 +130,16 @@ const eliminarProducto = (item) => {
     }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            let respuesta = await deleteProducto(item.id);
+            let respuesta = await deleteTipoSalida(item.id);
             if (respuesta && respuesta.sw) {
-                recargaProductos();
+                recargaTipoSalidas();
             }
         }
     });
 };
 </script>
 <template>
-    <Head title="Productos"></Head>
+    <Head title="Tipo de Salida"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
@@ -184,7 +158,7 @@ const eliminarProducto = (item) => {
                 <v-card flat>
                     <v-card-title>
                         <v-row class="bg-primary d-flex align-center pa-3">
-                            <v-col cols="12" sm="6" md="4"> Productos </v-col>
+                            <v-col cols="12" sm="6" md="4"> Tipo de Salida </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
@@ -203,7 +177,7 @@ const eliminarProducto = (item) => {
                             :headers="!mobile ? headers : []"
                             :class="[mobile ? 'mobile' : '']"
                             :items-length="totalItems"
-                            :items="listProductos"
+                            :items="listTipoSalidas"
                             :loading="loading"
                             :search="search"
                             @update:options="loadItems"
@@ -225,33 +199,10 @@ const eliminarProducto = (item) => {
                         >
                             <template v-slot:item="{ item }">
                                 <tr v-if="!mobile">
-                                    <td>{{ item.codigo }}</td>
+                                    <td>{{ item.id }}</td>
                                     <td>{{ item.nombre }}</td>
                                     <td>
                                         {{ item.descripcion }}
-                                    </td>
-                                    <td>
-                                        {{ item.categoria.nombre }}
-                                    </td>
-                                    <td>
-                                        {{ item.tipo_producto.nombre }}
-                                    </td>
-                                    <td>
-                                        {{ item.precio }}
-                                    </td>
-                                    <td>
-                                        {{ item.stock_minimo }}
-                                    </td>
-                                    <td>
-                                        {{ item.stock_actual }}
-                                    </td>
-                                    <td>
-                                        <img
-                                            :src="item.url_imagen"
-                                            alt="Imagen"
-                                            width="90px"
-                                            v-if="item.url_imagen"
-                                        />
                                     </td>
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
@@ -259,14 +210,14 @@ const eliminarProducto = (item) => {
                                             color="yellow"
                                             size="small"
                                             class="pa-1 ma-1"
-                                            @click="editarProducto(item)"
+                                            @click="editarTipoSalida(item)"
                                             icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
                                             color="error"
                                             size="small"
                                             class="pa-1 ma-1"
-                                            @click="eliminarProducto(item)"
+                                            @click="eliminarTipoSalida(item)"
                                             icon="mdi-trash-can"
                                         ></v-btn>
                                     </td>
@@ -276,13 +227,13 @@ const eliminarProducto = (item) => {
                                         <ul class="flex-content">
                                             <li
                                                 class="flex-item"
-                                                data-label="Código"
+                                                data-label="Id"
                                             >
-                                                {{ item.codigo }}
+                                                {{ item.id }}
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Nombre de Producto:"
+                                                data-label="Nombre de Tipo de Salida:"
                                             >
                                                 {{ item.nombre }}
                                             </li>
@@ -291,47 +242,6 @@ const eliminarProducto = (item) => {
                                                 data-label="Descripción:"
                                             >
                                                 {{ item.descripcion }}
-                                            </li>
-                                            <li
-                                                class="flex-item"
-                                                data-label="Categoría:"
-                                            >
-                                                {{ item.categoria.nombre }}
-                                            </li>
-                                            <li
-                                                class="flex-item"
-                                                data-label="Tipo de Producto:"
-                                            >
-                                                {{ item.tipo_producto.nombre }}
-                                            </li>
-                                            <li
-                                                class="flex-item"
-                                                data-label="Precio:"
-                                            >
-                                                {{ item.precio }}
-                                            </li>
-                                            <li
-                                                class="flex-item"
-                                                data-label="Stock Mínimo:"
-                                            >
-                                                {{ item.stock_minimo }}
-                                            </li>
-                                            <li
-                                                class="flex-item"
-                                                data-label="Stock Actual:"
-                                            >
-                                                {{ item.stock_actual }}
-                                            </li>
-                                            <li
-                                                class="flex-item"
-                                                data-label="Imagen:"
-                                            >
-                                                <img
-                                                    :src="item.url_imagen"
-                                                    alt="Imagen"
-                                                    width="90px"
-                                                    v-if="item.url_imagen"
-                                                />
                                             </li>
                                             <li
                                                 class="flex-item"
@@ -350,7 +260,7 @@ const eliminarProducto = (item) => {
                                                     size="small"
                                                     class="pa-1 ma-1"
                                                     @click="
-                                                        editarProducto(item)
+                                                        editarTipoSalida(item)
                                                     "
                                                     icon="mdi-pencil"
                                                 ></v-btn>
@@ -359,7 +269,7 @@ const eliminarProducto = (item) => {
                                                     size="small"
                                                     class="pa-1 ma-1"
                                                     @click="
-                                                        eliminarProducto(item)
+                                                        eliminarTipoSalida(item)
                                                     "
                                                     icon="mdi-trash-can"
                                                 ></v-btn>
@@ -376,7 +286,7 @@ const eliminarProducto = (item) => {
         <Formulario
             :open_dialog="open_dialog"
             :accion_dialog="accion_dialog"
-            @envio-formulario="recargaProductos"
+            @envio-formulario="recargaTipoSalidas"
             @cerrar-dialog="open_dialog = false"
         ></Formulario>
     </v-container>

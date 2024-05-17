@@ -5,16 +5,14 @@ import { usePage } from "@inertiajs/vue3";
 
 const oIngreso = reactive({
     id: 0,
-    nombre: "",
-    gerente_regional_id: "",
-    encargado_ingreso_id: "",
-    fecha_pent: "",
-    fecha_peje: "",
+    proveedor_id: null,
+    tipo_ingreso_id: null,
+    precio: "",
+    nro_factura: "",
     descripcion: "",
-    lat: "",
-    lng: "",
-    categoria_id: null,
-    fecha_registro: "",
+    fecha_ingreso: "",
+    ingreso_detalles: reactive([]),
+    eliminados: reactive([]),
     _method: "POST",
 });
 
@@ -130,19 +128,28 @@ export const useIngresos = () => {
         }
     };
 
-    const setIngreso = (item = null) => {
+    const setIngreso = (
+        item = null,
+        proveedor = false,
+        tipo_ingreso = false
+    ) => {
         if (item) {
             oIngreso.id = item.id;
-            oIngreso.nombre = item.nombre;
-            oIngreso.gerente_regional_id = item.gerente_regional_id;
-            oIngreso.encargado_ingreso_id = item.encargado_ingreso_id;
-            oIngreso.fecha_pent = item.fecha_pent;
-            oIngreso.fecha_peje = item.fecha_peje;
+            oIngreso.proveedor_id = item.proveedor_id;
+            if (proveedor) {
+                oIngreso.proveedor = item.proveedor;
+                oIngreso.fecha_ingreso_t = item.fecha_ingreso_t;
+            }
+            oIngreso.tipo_ingreso_id = item.tipo_ingreso_id;
+            if (tipo_ingreso) {
+                oIngreso.tipo_ingreso = item.tipo_ingreso;
+            }
+            oIngreso.precio = item.precio;
+            oIngreso.nro_factura = item.nro_factura;
             oIngreso.descripcion = item.descripcion;
-            oIngreso.lat = item.lat;
-            oIngreso.lng = item.lng;
-            oIngreso.categoria_id = item.categoria_id;
-            oIngreso.fecha_registro = item.fecha_registro;
+            oIngreso.fecha_ingreso = item.fecha_ingreso;
+            oIngreso.ingreso_detalles = reactive([...item.ingreso_detalles]);
+            oIngreso.eliminados = reactive([]);
             oIngreso._method = "PUT";
             return oIngreso;
         }
@@ -151,16 +158,14 @@ export const useIngresos = () => {
 
     const limpiarIngreso = () => {
         oIngreso.id = 0;
-        oIngreso.nombre = "";
-        oIngreso.gerente_regional_id = "";
-        oIngreso.encargado_ingreso_id = "";
-        oIngreso.fecha_pent = "";
-        oIngreso.fecha_peje = "";
+        oIngreso.proveedor_id = null;
+        oIngreso.tipo_ingreso_id = null;
+        oIngreso.precio = "";
+        oIngreso.nro_factura = "";
         oIngreso.descripcion = "";
-        oIngreso.lat = "";
-        oIngreso.lng = "";
-        oIngreso.categoria_id = null;
-        oIngreso.fecha_registro = "";
+        oIngreso.fecha_ingreso = "";
+        oIngreso.ingreso_detalles = reactive([]);
+        oIngreso.eliminados = reactive([]);
         oIngreso._method = "POST";
     };
 

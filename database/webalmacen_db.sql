@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-05-2024 a las 16:52:03
+-- Tiempo de generación: 17-05-2024 a las 19:50:27
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -124,7 +124,23 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (24, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: ASD<br/>descripcion: ASD<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 2<br/>stock_actual: 0<br/>imagen: 1715878191_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:49:51<br/>updated_at: 2024-05-16 12:49:51<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:49:54', '2024-05-16 16:49:54', '2024-05-16 16:49:54'),
 (25, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>codigo: P.1<br/>nro: 1<br/>nombre: ASD<br/>descripcion: <br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 0<br/>stock_actual: <br/>imagen: 1715878290_2.jpg<br/>fecha_registro: 2024-05-16<br/>status: <br/>created_at: 2024-05-16 12:51:30<br/>updated_at: 2024-05-16 12:51:30<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:51:30', '2024-05-16 16:51:30', '2024-05-16 16:51:30'),
 (26, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 2<br/>codigo: P.1<br/>nro: 1<br/>nombre: ASD<br/>descripcion: <br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 0<br/>stock_actual: 0<br/>imagen: 1715878290_2.jpg<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:30<br/>updated_at: 2024-05-16 12:51:30<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:51:33', '2024-05-16 16:51:33', '2024-05-16 16:51:33'),
-(27, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: <br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: <br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-16 12:51:56<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:51:56', '2024-05-16 16:51:56', '2024-05-16 16:51:56');
+(27, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: <br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: <br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-16 12:51:56<br/>', NULL, 'CATEGORIAS', '2024-05-16', '12:51:56', '2024-05-16 16:51:56', '2024-05-16 16:51:56'),
+(28, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: TIPO INGRESO #1<br/>descripcion: TIPO INGRESO 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:26:30<br/>updated_at: 2024-05-17 11:26:30<br/>', NULL, 'CATEGORIAS', '2024-05-17', '11:26:30', '2024-05-17 15:26:30', '2024-05-17 15:26:30'),
+(29, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: TIPO INGRESO #1<br/>descripcion: TIPO INGRESO 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:26:30<br/>updated_at: 2024-05-17 11:26:30<br/>', 'id: 1<br/>nombre: TIPO INGRESO #1A<br/>descripcion: TIPO INGRESO 1A<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:26:30<br/>updated_at: 2024-05-17 11:26:35<br/>', 'CATEGORIAS', '2024-05-17', '11:26:35', '2024-05-17 15:26:35', '2024-05-17 15:26:35'),
+(30, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>nombre: TIPO INGRESO #1A<br/>descripcion: TIPO INGRESO 1A<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:26:30<br/>updated_at: 2024-05-17 11:26:35<br/>', NULL, 'CATEGORIAS', '2024-05-17', '11:26:39', '2024-05-17 15:26:39', '2024-05-17 15:26:39'),
+(31, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: TIPO INGRESO #1<br/>descripcion: TIPO 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:26:57<br/>updated_at: 2024-05-17 11:26:57<br/>', NULL, 'CATEGORIAS', '2024-05-17', '11:26:57', '2024-05-17 15:26:57', '2024-05-17 15:26:57'),
+(32, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>nombre: TIPO INGRESO #2<br/>descripcion: <br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:27:03<br/>updated_at: 2024-05-17 11:27:03<br/>', NULL, 'CATEGORIAS', '2024-05-17', '11:27:03', '2024-05-17 15:27:03', '2024-05-17 15:27:03'),
+(33, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: TIPO INGRESO #1<br/>descripcion: TIPO 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:26:57<br/>updated_at: 2024-05-17 11:26:57<br/>', 'id: 1<br/>nombre: TIPO INGRESO #1<br/>descripcion: TIPO DE INGRESO 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:26:57<br/>updated_at: 2024-05-17 11:27:14<br/>', 'CATEGORIAS', '2024-05-17', '11:27:14', '2024-05-17 15:27:14', '2024-05-17 15:27:14'),
+(34, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRODUCTO', 'id: 2<br/>codigo: P.2<br/>nro: 2<br/>nombre: PRODUCTO #2<br/>descripcion: DESCRIPCION<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 3<br/>stock_actual: <br/>imagen: <br/>fecha_registro: 2024-05-17<br/>status: <br/>created_at: 2024-05-17 12:51:36<br/>updated_at: 2024-05-17 12:51:36<br/>', NULL, 'PRODUCTOS', '2024-05-17', '12:51:36', '2024-05-17 16:51:36', '2024-05-17 16:51:36'),
+(35, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: 0<br/>precio: 0.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-16 12:51:56<br/>', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: 0<br/>precio: 20<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-17 13:03:11<br/>', 'PRODUCTOS', '2024-05-17', '13:03:11', '2024-05-17 17:03:11', '2024-05-17 17:03:11'),
+(36, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>codigo: P.2<br/>nro: 2<br/>nombre: PRODUCTO #2<br/>descripcion: DESCRIPCION<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 3<br/>stock_actual: 0<br/>precio: 0.00<br/>imagen: <br/>fecha_registro: 2024-05-17<br/>status: 1<br/>created_at: 2024-05-17 12:51:36<br/>updated_at: 2024-05-17 12:51:36<br/>', 'id: 2<br/>codigo: P.2<br/>nro: 2<br/>nombre: PRODUCTO #2<br/>descripcion: DESCRIPCION<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 3<br/>stock_actual: 0<br/>precio: 40<br/>imagen: <br/>fecha_registro: 2024-05-17<br/>status: 1<br/>created_at: 2024-05-17 12:51:36<br/>updated_at: 2024-05-17 13:03:53<br/>', 'PRODUCTOS', '2024-05-17', '13:03:53', '2024-05-17 17:03:53', '2024-05-17 17:03:53'),
+(37, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN INGRESO DE PRODUCTO', 'id: 1<br/>proveedor_id: 1<br/>tipo_ingreso_id: 1<br/>precio: 2000<br/>nro_factura: 1111111<br/>descripcion: INGRESO INICIAL<br/>fecha_ingreso: 2024-05-17<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 14:25:29<br/>updated_at: 2024-05-17 14:25:29<br/>', NULL, 'INGRESO DE PRODUCTOS', '2024-05-17', '14:25:29', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(38, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: TIPO SALIDA #1<br/>descripcion: DESC TIPO 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:06:44<br/>updated_at: 2024-05-17 15:06:44<br/>', NULL, 'CATEGORIAS', '2024-05-17', '15:06:44', '2024-05-17 19:06:44', '2024-05-17 19:06:44'),
+(39, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: TIPO SALIDA #1<br/>descripcion: DESC TIPO 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:06:44<br/>updated_at: 2024-05-17 15:06:44<br/>', 'id: 1<br/>nombre: TIPO SALIDA #1A<br/>descripcion: DESC TIPO 1A<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:06:44<br/>updated_at: 2024-05-17 15:06:50<br/>', 'CATEGORIAS', '2024-05-17', '15:06:50', '2024-05-17 19:06:50', '2024-05-17 19:06:50'),
+(40, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>nombre: TIPO SALIDA #1A<br/>descripcion: DESC TIPO 1A<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:06:44<br/>updated_at: 2024-05-17 15:06:50<br/>', NULL, 'CATEGORIAS', '2024-05-17', '15:07:04', '2024-05-17 19:07:04', '2024-05-17 19:07:04'),
+(41, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: TIPO DE SALIDA #1<br/>descripcion: DESC. TIPO SALIDA 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:07:29<br/>updated_at: 2024-05-17 15:07:29<br/>', NULL, 'CATEGORIAS', '2024-05-17', '15:07:29', '2024-05-17 19:07:29', '2024-05-17 19:07:29'),
+(42, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>nombre: TIPO DE SALIDA #2<br/>descripcion: <br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:07:38<br/>updated_at: 2024-05-17 15:07:38<br/>', NULL, 'CATEGORIAS', '2024-05-17', '15:07:38', '2024-05-17 19:07:38', '2024-05-17 19:07:38'),
+(43, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SALIDA DE PRODUCTO', 'id: 3<br/>tipo_salida_id: 1<br/>unidad_solicitante: LA PAZ<br/>descripcion: PRUEBA SALIDA 1<br/>fecha_salida: 2024-05-17<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:47:59<br/>updated_at: 2024-05-17 15:47:59<br/>', NULL, 'SALIDA DE PRODUCTOS', '2024-05-17', '15:47:59', '2024-05-17 19:47:59', '2024-05-17 19:47:59');
 
 -- --------------------------------------------------------
 
@@ -145,6 +161,13 @@ CREATE TABLE `ingresos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `ingresos`
+--
+
+INSERT INTO `ingresos` (`id`, `proveedor_id`, `tipo_ingreso_id`, `precio`, `nro_factura`, `descripcion`, `fecha_ingreso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2000.00, '1111111', 'INGRESO INICIAL', '2024-05-17', '2024-05-17', '2024-05-17 18:25:29', '2024-05-17 18:25:29');
+
 -- --------------------------------------------------------
 
 --
@@ -159,6 +182,14 @@ CREATE TABLE `ingreso_detalles` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `ingreso_detalles`
+--
+
+INSERT INTO `ingreso_detalles` (`id`, `ingreso_id`, `producto_id`, `cantidad`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 100.00, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(2, 1, 2, 150.00, '2024-05-17 18:25:29', '2024-05-17 18:25:29');
 
 -- --------------------------------------------------------
 
@@ -185,6 +216,16 @@ CREATE TABLE `kardex_productos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `kardex_productos`
+--
+
+INSERT INTO `kardex_productos` (`id`, `tipo_registro`, `registro_id`, `producto_id`, `detalle`, `precio`, `tipo_is`, `cantidad_ingreso`, `cantidad_salida`, `cantidad_saldo`, `cu`, `monto_ingreso`, `monto_salida`, `monto_saldo`, `fecha`, `created_at`, `updated_at`) VALUES
+(1, 'INGRESO', 1, 1, 'INGRESO INICIAL', 20.00, 'INGRESO', 100, NULL, 100, 20.00, 2000.00, NULL, 2000.00, '2024-05-17', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(2, 'INGRESO', 2, 2, 'INGRESO INICIAL', 40.00, 'INGRESO', 150, NULL, 150, 40.00, 6000.00, NULL, 6000.00, '2024-05-17', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(5, 'SALIDA', 4, 1, 'PRUEBA SALIDA 1', 20.00, 'EGRESO', NULL, 5, 95, 20.00, NULL, 100.00, 1900.00, '2024-05-17', '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(6, 'SALIDA', 5, 2, 'PRUEBA SALIDA 1', 40.00, 'EGRESO', NULL, 3, 147, 40.00, NULL, 120.00, 5880.00, '2024-05-17', '2024-05-17 19:47:59', '2024-05-17 19:47:59');
 
 -- --------------------------------------------------------
 
@@ -239,6 +280,16 @@ CREATE TABLE `notificacions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `notificacions`
+--
+
+INSERT INTO `notificacions` (`id`, `evento`, `modulo`, `registro_id`, `descripcion`, `fecha`, `hora`, `created_at`, `updated_at`) VALUES
+(1, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 1, 'INGRESO DEL PRODUCTO PRODUCTO #1', '2024-05-17', '14:25:00', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(2, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 2, 'INGRESO DEL PRODUCTO PRODUCTO #2', '2024-05-17', '14:25:00', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(5, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 4, 'SALIDA DEL PRODUCTO PRODUCTO #1', '2024-05-17', '15:47:00', '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(6, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 5, 'SALIDA DEL PRODUCTO PRODUCTO #2', '2024-05-17', '15:47:00', '2024-05-17 19:47:59', '2024-05-17 19:47:59');
+
 -- --------------------------------------------------------
 
 --
@@ -249,9 +300,20 @@ CREATE TABLE `notificacion_users` (
   `id` bigint UNSIGNED NOT NULL,
   `notificacion_id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
+  `visto` int NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `notificacion_users`
+--
+
+INSERT INTO `notificacion_users` (`id`, `notificacion_id`, `user_id`, `visto`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 0, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(2, 2, 2, 0, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(5, 5, 2, 0, '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(6, 6, 2, 0, '2024-05-17 19:47:59', '2024-05-17 19:47:59');
 
 -- --------------------------------------------------------
 
@@ -288,6 +350,7 @@ CREATE TABLE `productos` (
   `tipo_producto_id` bigint UNSIGNED NOT NULL,
   `stock_minimo` double(8,2) NOT NULL,
   `stock_actual` double(8,2) NOT NULL DEFAULT '0.00',
+  `precio` decimal(24,2) NOT NULL,
   `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_registro` date DEFAULT NULL,
   `status` int NOT NULL DEFAULT '1',
@@ -299,8 +362,9 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `codigo`, `nro`, `nombre`, `descripcion`, `categoria_id`, `tipo_producto_id`, `stock_minimo`, `stock_actual`, `imagen`, `fecha_registro`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'P.1', 1, 'PRODUCTO #1', 'DESC. PROD. 1', 1, 1, 5.00, 0.00, '1715878316_1.png', '2024-05-16', 1, '2024-05-16 16:51:56', '2024-05-16 16:51:56');
+INSERT INTO `productos` (`id`, `codigo`, `nro`, `nombre`, `descripcion`, `categoria_id`, `tipo_producto_id`, `stock_minimo`, `stock_actual`, `precio`, `imagen`, `fecha_registro`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'P.1', 1, 'PRODUCTO #1', 'DESC. PROD. 1', 1, 1, 5.00, 95.00, 20.00, '1715878316_1.png', '2024-05-16', 1, '2024-05-16 16:51:56', '2024-05-17 19:47:59'),
+(2, 'P.2', 2, 'PRODUCTO #2', 'DESCRIPCION', 2, 2, 3.00, 147.00, 40.00, NULL, '2024-05-17', 1, '2024-05-17 16:51:36', '2024-05-17 19:47:59');
 
 -- --------------------------------------------------------
 
@@ -346,6 +410,13 @@ CREATE TABLE `salidas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `salidas`
+--
+
+INSERT INTO `salidas` (`id`, `tipo_salida_id`, `unidad_solicitante`, `descripcion`, `fecha_salida`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(3, 1, 'LA PAZ', 'PRUEBA SALIDA 1', '2024-05-17', '2024-05-17', '2024-05-17 19:47:59', '2024-05-17 19:47:59');
+
 -- --------------------------------------------------------
 
 --
@@ -361,6 +432,14 @@ CREATE TABLE `salida_detalles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `salida_detalles`
+--
+
+INSERT INTO `salida_detalles` (`id`, `salida_id`, `producto_id`, `cantidad`, `created_at`, `updated_at`) VALUES
+(4, 3, 1, 5.00, '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(5, 3, 2, 3.00, '2024-05-17 19:47:59', '2024-05-17 19:47:59');
+
 -- --------------------------------------------------------
 
 --
@@ -375,6 +454,14 @@ CREATE TABLE `tipo_ingresos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_ingresos`
+--
+
+INSERT INTO `tipo_ingresos` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'TIPO INGRESO #1', 'TIPO DE INGRESO 1', '2024-05-17', '2024-05-17 15:26:57', '2024-05-17 15:27:14'),
+(2, 'TIPO INGRESO #2', '', '2024-05-17', '2024-05-17 15:27:03', '2024-05-17 15:27:03');
 
 -- --------------------------------------------------------
 
@@ -413,6 +500,14 @@ CREATE TABLE `tipo_salidas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_salidas`
+--
+
+INSERT INTO `tipo_salidas` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'TIPO DE SALIDA #1', 'DESC. TIPO SALIDA 1', '2024-05-17', '2024-05-17 19:07:29', '2024-05-17 19:07:29'),
+(2, 'TIPO DE SALIDA #2', '', '2024-05-17', '2024-05-17 19:07:38', '2024-05-17 19:07:38');
 
 -- --------------------------------------------------------
 
@@ -596,25 +691,25 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `ingresos`
 --
 ALTER TABLE `ingresos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso_detalles`
 --
 ALTER TABLE `ingreso_detalles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `kardex_productos`
 --
 ALTER TABLE `kardex_productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -626,13 +721,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `notificacions`
 --
 ALTER TABLE `notificacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `notificacion_users`
 --
 ALTER TABLE `notificacion_users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -644,7 +739,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedors`
@@ -656,19 +751,19 @@ ALTER TABLE `proveedors`
 -- AUTO_INCREMENT de la tabla `salidas`
 --
 ALTER TABLE `salidas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `salida_detalles`
 --
 ALTER TABLE `salida_detalles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_ingresos`
 --
 ALTER TABLE `tipo_ingresos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_productos`
@@ -680,7 +775,7 @@ ALTER TABLE `tipo_productos`
 -- AUTO_INCREMENT de la tabla `tipo_salidas`
 --
 ALTER TABLE `tipo_salidas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
