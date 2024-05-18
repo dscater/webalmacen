@@ -23,6 +23,11 @@ const user_logeado = ref({
 
 const submenus = {
     "reportes.usuarios": "Reportes",
+    "reportes.productos": "Reportes",
+    "reportes.ingreso_productos": "Reportes",
+    "reportes.salida_productos": "Reportes",
+    "reportes.inventario_productos": "Reportes",
+    "reportes.kardex_productos": "Reportes",
 };
 
 const route_current = ref("");
@@ -385,10 +390,11 @@ const scrollActive = () => {
                 class="mx-3"
                 v-if="
                     oUser.permisos.includes('reportes.usuarios') ||
-                    oUser.permisos.includes('reportes.presupuestos') ||
-                    oUser.permisos.includes('reportes.operarios') ||
-                    oUser.permisos.includes('reportes.obras') ||
-                    oUser.permisos.includes('reportes.avance_obras')
+                    oUser.permisos.includes('reportes.productos') ||
+                    oUser.permisos.includes('reportes.ingreso_productos') ||
+                    oUser.permisos.includes('reportes.salida_productos') ||
+                    oUser.permisos.includes('reportes.inventario_productos') ||
+                    oUser.permisos.includes('reportes.kardex_productos')
                 "
             >
                 <template v-slot:activator="{ props }">
@@ -398,10 +404,11 @@ const scrollActive = () => {
                         title="Reportes"
                         :class="[
                             route_current == 'reporutes.usuarios' ||
-                            route_current == 'reportes.presupuestos' ||
-                            route_current == 'reportes.operarios' ||
-                            route_current == 'reportes.obras' ||
-                            route_current == 'reportes.avance_obras'
+                            route_current == 'reportes.productos' ||
+                            route_current == 'reportes.ingreso_productos' ||
+                            route_current == 'reportes.salida_productos' ||
+                            route_current == 'reportes.inventario_productos' ||
+                            route_current == 'reportes.kardex_productos'
                                 ? 'active'
                                 : '',
                         ]"
@@ -435,15 +442,15 @@ const scrollActive = () => {
                     ></v-list-item
                 >
                 <v-list-item
-                    v-if="oUser.permisos.includes('reportes.presupuestos')"
+                    v-if="oUser.permisos.includes('reportes.productos')"
                     prepend-icon="mdi-chevron-right"
-                    title="Presupuestos"
+                    title="Lista de Productos"
                     :class="[
-                        route_current == 'reportes.presupuestos'
+                        route_current == 'reportes.productos'
                             ? 'active'
                             : '',
                     ]"
-                    @click="cambiarUrl(route('reportes.presupuestos'))"
+                    @click="cambiarUrl(route('reportes.productos'))"
                     link
                 >
                     <v-tooltip
@@ -451,18 +458,18 @@ const scrollActive = () => {
                         color="white"
                         activator="parent"
                         location="end"
-                        >Presupuestos</v-tooltip
+                        >Lista de Productos</v-tooltip
                     ></v-list-item
                 >
                 <v-list-item
-                    v-if="oUser.permisos.includes('reportes.operarios')"
+                    v-if="oUser.permisos.includes('reportes.ingreso_productos')"
                     prepend-icon="mdi-chevron-right"
-                    title="Operarios"
+                    title="Ingreso de Productos"
                     :class="[
-                        route_current == 'reportes.operarios' ? 'active' : '',
+                        route_current == 'reportes.ingreso_productos' ? 'active' : '',
                         drawer ? 'px-3' : '',
                     ]"
-                    @click="cambiarUrl(route('reportes.operarios'))"
+                    @click="cambiarUrl(route('reportes.ingreso_productos'))"
                     link
                 >
                     <v-tooltip
@@ -470,18 +477,18 @@ const scrollActive = () => {
                         color="white"
                         activator="parent"
                         location="end"
-                        >Operarios/Personal</v-tooltip
+                        >Ingreso de Productos</v-tooltip
                     ></v-list-item
                 >
                 <v-list-item
-                    v-if="oUser.permisos.includes('reportes.obras')"
+                    v-if="oUser.permisos.includes('reportes.salida_productos')"
                     prepend-icon="mdi-chevron-right"
-                    title="Obras"
+                    title="Salida de Productos"
                     :class="[
-                        route_current == 'reportes.obras' ? 'active' : '',
+                        route_current == 'reportes.salida_productos' ? 'active' : '',
                         drawer ? 'px-3' : '',
                     ]"
-                    @click="cambiarUrl(route('reportes.obras'))"
+                    @click="cambiarUrl(route('reportes.salida_productos'))"
                     link
                 >
                     <v-tooltip
@@ -489,19 +496,19 @@ const scrollActive = () => {
                         color="white"
                         activator="parent"
                         location="end"
-                        >Obras</v-tooltip
+                        >Salida de Productos</v-tooltip
                     ></v-list-item
                 >
                 <v-list-item
-                    v-if="oUser.permisos.includes('reportes.avance_obras')"
+                    v-if="oUser.permisos.includes('reportes.inventario_productos')"
                     prepend-icon="mdi-chevron-right"
-                    title="Avance de Obras"
+                    title="Inventario de Productos"
                     :class="[
-                        route_current == 'reportes.avance_obras'
+                        route_current == 'reportes.inventario_productos'
                             ? 'active'
                             : '',
                     ]"
-                    @click="cambiarUrl(route('reportes.avance_obras'))"
+                    @click="cambiarUrl(route('reportes.inventario_productos'))"
                     link
                 >
                     <v-tooltip
@@ -509,7 +516,27 @@ const scrollActive = () => {
                         color="white"
                         activator="parent"
                         location="end"
-                        >Avance de Obras</v-tooltip
+                        >Inventario de Productos</v-tooltip
+                    ></v-list-item
+                >
+                <v-list-item
+                    v-if="oUser.permisos.includes('reportes.kardex_productos')"
+                    prepend-icon="mdi-chevron-right"
+                    title="Kardex de Productos"
+                    :class="[
+                        route_current == 'reportes.kardex_productos'
+                            ? 'active'
+                            : '',
+                    ]"
+                    @click="cambiarUrl(route('reportes.kardex_productos'))"
+                    link
+                >
+                    <v-tooltip
+                        v-if="rail && !mobile"
+                        color="white"
+                        activator="parent"
+                        location="end"
+                        >Kardex de Productos</v-tooltip
                     ></v-list-item
                 >
             </v-list-group>

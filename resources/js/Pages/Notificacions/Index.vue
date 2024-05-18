@@ -41,7 +41,17 @@ const listNotificacions = ref([]);
 const itemsPerPage = ref(5);
 const headers = ref([
     {
-        title: "Obra",
+        title: "Evento",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Producto",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Cantidad",
         align: "start",
         sortable: false,
     },
@@ -51,7 +61,12 @@ const headers = ref([
         sortable: false,
     },
     {
-        title: "Fecha de Registro",
+        title: "Tipo Ingreso/Salida",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Fecha y Hora",
         align: "start",
         sortable: false,
     },
@@ -104,7 +119,7 @@ const verNotificacion = (item) => {
                             <v-col cols="12" sm="6" md="4">
                                 Notificaciones
                             </v-col>
-                            <v-col cols="12" sm="6" md="4" offset-md="4">
+                            <!-- <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
                                     label="Buscar"
@@ -113,7 +128,7 @@ const verNotificacion = (item) => {
                                     clearable
                                     hide-details
                                 ></v-text-field>
-                            </v-col>
+                            </v-col> -->
                         </v-row>
                     </v-card-title>
                     <v-card-text>
@@ -145,16 +160,49 @@ const verNotificacion = (item) => {
                             <template v-slot:item="{ item }">
                                 <tr v-if="!mobile">
                                     <td>
-                                        {{
-                                            item.notificacion.avance_obra.obra
-                                                .nombre
-                                        }}
+                                        {{ item.evento }}
                                     </td>
                                     <td>
-                                        {{ item.notificacion.descripcion }}
+                                        <span v-if="item.ingreso_detalle">
+                                            {{
+                                                item.ingreso_detalle.producto
+                                                    .nombre
+                                            }}
+                                        </span>
+                                        <span v-if="item.salida_detalle">
+                                            {{
+                                                item.salida_detalle.producto
+                                                    .nombre
+                                            }}
+                                        </span>
                                     </td>
                                     <td>
-                                        {{ item.notificacion.fecha_registro_t }}
+                                        <span v-if="item.ingreso_detalle">
+                                            {{ item.ingreso_detalle.cantidad }}
+                                        </span>
+                                        <span v-if="item.salida_detalle">
+                                            {{ item.salida_detalle.cantidad }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{ item.descripcion }}
+                                    </td>
+                                    <td>
+                                        <span v-if="item.ingreso_detalle">
+                                            {{
+                                                item.ingreso_detalle.ingreso
+                                                    .tipo_ingreso.nombre
+                                            }}
+                                        </span>
+                                        <span v-if="item.salida_detalle">
+                                            {{
+                                                item.salida_detalle.salida
+                                                    .tipo_salida.nombre
+                                            }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{ item.fecha_hora_t }}
                                     </td>
                                     <td class="text-right">
                                         <v-btn
@@ -171,29 +219,88 @@ const verNotificacion = (item) => {
                                         <ul class="flex-content">
                                             <li
                                                 class="flex-item"
-                                                data-label="Obra:"
+                                                data-label="Evento:"
                                             >
-                                                {{
-                                                    item.notificacion
-                                                        .avance_obra.obra.nombre
-                                                }}
+                                                {{ item.evento }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Producto:"
+                                            >
+                                                <span
+                                                    v-if="item.ingreso_detalle"
+                                                >
+                                                    {{
+                                                        item.ingreso_detalle
+                                                            .producto.nombre
+                                                    }}
+                                                </span>
+                                                <span
+                                                    v-if="item.salida_detalle"
+                                                >
+                                                    {{
+                                                        item.salida_detalle
+                                                            .producto.nombre
+                                                    }}
+                                                </span>
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Cantidad:"
+                                            >
+                                                <span
+                                                    v-if="item.ingreso_detalle"
+                                                >
+                                                    {{
+                                                        item.ingreso_detalle
+                                                            .cantidad
+                                                    }}
+                                                </span>
+                                                <span
+                                                    v-if="item.salida_detalle"
+                                                >
+                                                    {{
+                                                        item.salida_detalle
+                                                            .cantidad
+                                                    }}
+                                                </span>
                                             </li>
                                             <li
                                                 class="flex-item"
                                                 data-label="Descripción:"
                                             >
-                                                {{
-                                                    item.notificacion
-                                                        .descripcion
-                                                }}
+                                                {{ item.descripcion }}
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Fecha de Registro:"
+                                                data-label="Tipo Ingreso/Salida:"
+                                            >
+                                                <span
+                                                    v-if="item.ingreso_detalle"
+                                                >
+                                                    {{
+                                                        item.ingreso_detalle
+                                                            .ingreso
+                                                            .tipo_ingreso.nombre
+                                                    }}
+                                                </span>
+                                                <span
+                                                    v-if="item.salida_detalle"
+                                                >
+                                                    {{
+                                                        item.salida_detalle
+                                                            .salida.tipo_salida
+                                                            .nombre
+                                                    }}
+                                                </span>
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Fecha y Hora:"
                                             >
                                                 {{
                                                     item.notificacion
-                                                        .fecha_registro_t
+                                                        .fecha_hora_t
                                                 }}
                                             </li>
                                         </ul>

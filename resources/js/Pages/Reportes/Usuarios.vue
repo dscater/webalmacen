@@ -42,10 +42,9 @@ const txtBtn = computed(() => {
 
 const listTipos = ref([
     { value: "TODOS", label: "TODOS" },
-    { value: "GERENTE GENERAL", label: "GERENTE GENERAL" },
-    { value: "GERENTE REGIONAL", label: "GERENTE REGIONAL" },
-    { value: "ADMINISTRADOR DE PERSONAL", label: "ADMINISTRADOR DE PERSONAL" },
-    { value: "ENCARGADO DE OBRA", label: "ENCARGADO DE OBRA" },
+    { value: "ADMINISTRADOR", label: "ADMINISTRADOR" },
+    { value: "SUPERVISOR DE ALMACEN", label: "SUPERVISOR DE ALMACEN" },
+    { value: "ALMACENERO", label: "ALMACENERO" },
 ]);
 
 const generarReporte = () => {

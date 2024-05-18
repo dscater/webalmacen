@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Usuarios</title>
+    <title>Ingreso Productos</title>
     <style type="text/css">
         * {
             font-family: sans-serif;
@@ -155,24 +155,20 @@
         <h2 class="titulo">
             {{ $configuracion->first()->razon_social }}
         </h2>
-        <h4 class="texto">LISTA DE USUARIOS</h4>
+        <h4 class="texto">INGRESO DE PRODUCTOS</h4>
         <h4 class="fecha">Expedido: {{ date('d-m-Y') }}</h4>
     </div>
     <table border="1">
         <thead class="bg-principal">
             <tr>
                 <th width="3%">N°</th>
-                <th width="5%">FOTO</th>
-                <th>USUARIO</th>
-                <th>PATERNO</th>
-                <th>MATERNO</th>
-                <th>NOMBRE(S)</th>
-                <th>C.I.</th>
-                <th>DIRECCIÓN</th>
-                <th>CORREO</th>
-                <th>TELÉFONO/CELULAR</th>
-                <th>TIPO</th>
-                <th>ACCESO</th>
+                <th>PROVEEDOR</th>
+                <th>TIPO DE INGRESO</th>
+                <th>PRECIO</th>
+                <th>NRO. FACTURA</th>
+                <th>DESCRIPCIÓN</th>
+                <th>PRODUCTO - CANTIDAD</th>
+                <th>FECHA DE INGRESO</th>
                 <th width="9%">FECHA DE REGISTRO</th>
             </tr>
         </thead>
@@ -180,27 +176,23 @@
             @php
                 $cont = 1;
             @endphp
-            @foreach ($usuarios as $user)
+            @foreach ($ingreso_productos as $ingreso)
                 <tr>
                     <td class="centreado">{{ $cont++ }}</td>
-                    <td class="img_celda centreado">
-                        @if ($user->url_foto)
-                            <img src="{{ $user->url_foto }}" alt="Foto">
-                        @else
-                            S/F
-                        @endif
+                    <td class="">{{ $ingreso->proveedor->razon_social }}</td>
+                    <td class="">{{ $ingreso->tipo_ingreso->nombre }}</td>
+                    <td class="">{{ $ingreso->precio }}</td>
+                    <td class="">{{ $ingreso->nro_factura }}</td>
+                    <td class="">{{ $ingreso->descripcion }}</td>
+                    <td class="">
+                        <ul>
+                            @foreach ($ingreso->ingreso_detalles as $id)
+                                <li>{{ $id->producto->nombre }} - {{ $id->cantidad }}</li>
+                            @endforeach
+                        </ul>
                     </td>
-                    <td>{{ $user->usuario }}</td>
-                    <td class="">{{ $user->paterno }}</td>
-                    <td class="">{{ $user->materno }}</td>
-                    <td class="">{{ $user->nombre }}</td>
-                    <td class="">{{ $user->full_ci }}</td>
-                    <td class="">{{ $user->dir }}</td>
-                    <td class="">{{ $user->email }}</td>
-                    <td class="">{{ $user->fono }}</td>
-                    <td class="">{{ $user->tipo }}</td>
-                    <td class="centreado">{{ $user->acceso == 1 ? 'HABILITADO' : 'DENEGADO' }}</td>
-                    <td class="centreado">{{ $user->fecha_registro_t }}</td>
+                    <td class="">{{ $ingreso->fecha_ingreso_t }}</td>
+                    <td class="centreado">{{ $ingreso->fecha_registro_t }}</td>
                 </tr>
             @endforeach
         </tbody>

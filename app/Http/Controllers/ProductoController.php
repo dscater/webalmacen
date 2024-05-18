@@ -32,7 +32,7 @@ class ProductoController extends Controller
 
     public function listado(Request $request)
     {
-        $productos = Producto::select("productos.*");
+        $productos = Producto::select("productos.*")->where("status", 1);
 
         if ($request->order && $request->order == "desc") {
             $productos->orderBy("productos.id", $request->order);
@@ -48,7 +48,7 @@ class ProductoController extends Controller
     public function paginado(Request $request)
     {
         $search = $request->search;
-        $productos = Producto::with(["categoria", "tipo_producto"])->select("productos.*");
+        $productos = Producto::with(["categoria", "tipo_producto"])->select("productos.*")->where("status", 1);
         if (trim($search) != "") {
             $productos->where("nombre", "LIKE", "%$search%");
         }

@@ -35,6 +35,10 @@ textarea {
     background-color: rgba(0, 0, 0, 0.596);
 }
 
+.text-no-visto {
+    color: rgb(0, 204, 0)!important;
+}
+
 .ubicacion,
 iframe {
     width: 100%;
@@ -163,7 +167,7 @@ iframe {
 .__sidebar .v-list-group__items .v-list-item.active .v-list-item__overlay {
     background: none;
     background-color: none;
-    color: var(--principal);
+    color: var(--secundario);
 }
 
 /* NAVBAR */

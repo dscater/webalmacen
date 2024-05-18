@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Obras</title>
+    <title>Productos</title>
     <style type="text/css">
         * {
             font-family: sans-serif;
@@ -11,9 +11,9 @@
 
         @page {
             margin-top: 1.5cm;
-            margin-bottom: 0.5cm;
-            margin-left: 0.5cm;
-            margin-right: 0.5cm;
+            margin-bottom: 0.3cm;
+            margin-left: 0.3cm;
+            margin-right: 0.3cm;
         }
 
         table {
@@ -31,11 +31,11 @@
         }
 
         table thead tr th {
-            font-size: 8pt;
+            font-size: 7pt;
         }
 
         table tbody tr td {
-            font-size: 7pt;
+            font-size: 6pt;
         }
 
 
@@ -46,7 +46,7 @@
         .logo img {
             position: absolute;
             height: 100px;
-            top: 0px;
+            top: -20px;
             left: 0px;
         }
 
@@ -88,7 +88,7 @@
         }
 
         table thead {
-            background: rgb(236, 236, 236);
+            background: rgb(236, 236, 236)
         }
 
         tr {
@@ -130,7 +130,7 @@
         }
 
         .gray {
-            background: rgb(236, 236, 236);
+            background: rgb(202, 202, 202);
         }
 
         .bg-principal {
@@ -143,104 +143,62 @@
         .img_celda img {
             width: 45px;
         }
-
-        .nueva_pagina {
-            page-break-after: always;
-        }
-
-        .subtitulo {
-            font-size: 0.9em;
-        }
-
-        .txtinfo {
-            font-weight: bold;
-        }
-
-        .border-bot {
-            border-bottom: solid 0.7px black;
-        }
-
-        .table-info {
-            margin-top: 4px;
-            border-collapse: separate;
-            border-spacing: 15px 0px;
-        }
-
-        .bordeado {
-            border: solid 0.7px black;
-            height: 14px;
-        }
-
-        .bold {
-            font-weight: bold;
-        }
-
-        .txt-md {
-            font-size: 0.8em;
-        }
-
-        .foto {
-            width: 15%;
-            padding: 0px;
-            padding-bottom: 5px;
-        }
-
-        .foto img {
-            width: 100%;
-        }
-
-        .bg-gray {
-            background: gray;
-        }
     </style>
 </head>
 
 <body>
-    @inject('institucion', 'App\Models\Institucion')
+    @inject('configuracion', 'App\Models\Configuracion')
     <div class="encabezado">
         <div class="logo">
-            <img src="{{ $institucion->first()->url_logo }}">
+            <img src="{{ $configuracion->first()->url_logo }}">
         </div>
         <h2 class="titulo">
-            {{ $institucion->first()->razon_social }}
+            {{ $configuracion->first()->razon_social }}
         </h2>
-        <h4 class="texto">OBRAS</h4>
+        <h4 class="texto">LISTA DE PRODUCTOS</h4>
         <h4 class="fecha">Expedido: {{ date('d-m-Y') }}</h4>
     </div>
     <table border="1">
-        <thead>
+        <thead class="bg-principal">
             <tr>
-                <th class="centreado" width="4%">N°</th>
-                <th>Nombre</th>
-                <th>Gerente Regional</th>
-                <th>Encargado de Obra</th>
-                <th>Fecha de Plazo de Entrega</th>
-                <th>Fecha de Plazo de Ejecución</th>
-                <th>Descripción</th>
-                <th>Categoría</th>
-                <th>Fecha de Registro</th>
+                <th width="3%">N°</th>
+                <th width="5%">CÓDIGO</th>
+                <th>NOMBRE</th>
+                <th>DESCRIPCIÓN</th>
+                <th>CATEGORÍA</th>
+                <th>TIPO DE PRODUCTO</th>
+                <th>STOCK MINÍMO</th>
+                <th>PRECIO</th>
+                <th>IMAGEN</th>
+                <th width="9%">FECHA DE REGISTRO</th>
             </tr>
         </thead>
         <tbody>
             @php
                 $cont = 1;
             @endphp
-            @foreach ($obras as $value)
+            @foreach ($productos as $producto)
                 <tr>
                     <td class="centreado">{{ $cont++ }}</td>
-                    <td class="">{{ $value->nombre }}</td>
-                    <td class="">{{ $value->gerente_regional->full_name }}</td>
-                    <td class="">{{ $value->encargado_obra->full_name }}</td>
-                    <td class="">{{ $value->fecha_pent_t }}</td>
-                    <td class="">{{ $value->fecha_peje_t }}</td>
-                    <td class="">{{ $value->descripcion }}</td>
-                    <td class="">{{ $value->categoria->nombre }}</td>
-                    <td class="">{{ $value->fecha_registro_t }}</td>
+                    <td>{{ $producto->codigo }}</td>
+                    <td class="">{{ $producto->nombre }}</td>
+                    <td class="">{{ $producto->descripcion }}</td>
+                    <td class="">{{ $producto->categoria->nombre }}</td>
+                    <td class="">{{ $producto->tipo_producto->nombre }}</td>
+                    <td class="">{{ $producto->stock_minimo }}</td>
+                    <td class="">{{ $producto->precio }}</td>
+                    <td class="img_celda centreado">
+                        @if ($producto->url_imagen)
+                            <img src="{{ $producto->url_imagen }}" alt="Foto">
+                        @else
+                            S/I
+                        @endif
+                    </td>
+                    <td class="centreado">{{ $producto->fecha_registro_t }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
 </body>
 
 </html>

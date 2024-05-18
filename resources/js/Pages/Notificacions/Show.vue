@@ -30,7 +30,7 @@ import { useMenu } from "@/composables/useMenu";
 const { mobile, identificaDispositivo, cambiarUrl } = useMenu();
 const { setLoading } = useApp();
 const props = defineProps({
-    notificacion_user: {
+    notificacion: {
         type: Object,
     },
 });
@@ -68,25 +68,48 @@ onMounted(() => {
                     <v-card-text>
                         <v-row>
                             <v-col cols="3" class="text-right font-weight-bold"
-                                >Obra:</v-col
+                                >Evento:</v-col
                             >
                             <v-col cols="9" class="text-uppercase">{{
-                                props.notificacion_user.notificacion.avance_obra
-                                    .obra.nombre
+                                props.notificacion.evento
                             }}</v-col>
                         </v-row>
                         <v-row>
                             <v-col cols="3" class="text-right font-weight-bold"
-                                >Registrado:</v-col
+                                >Producto:</v-col
                             >
                             <v-col cols="9" class="text-uppercase">
-                                {{
-                                    props.notificacion_user.notificacion
-                                        .fecha_registro_t
-                                }}
-                                <span class="text-caption"
-                                    >({{ props.notificacion_user.hace }})</span
-                                >
+                                <span v-if="props.notificacion.ingreso_detalle">
+                                    {{
+                                        props.notificacion.ingreso_detalle
+                                            .producto.nombre
+                                    }}
+                                </span>
+                                <span v-if="props.notificacion.salida_detalle">
+                                    {{
+                                        props.notificacion.salida_detalle
+                                            .producto.nombre
+                                    }}
+                                </span>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="3" class="text-right font-weight-bold"
+                                >Cantidad:</v-col
+                            >
+                            <v-col cols="9" class="text-uppercase">
+                                <span v-if="props.notificacion.ingreso_detalle">
+                                    {{
+                                        props.notificacion.ingreso_detalle
+                                            .cantidad
+                                    }}
+                                </span>
+                                <span v-if="props.notificacion.salida_detalle">
+                                    {{
+                                        props.notificacion.salida_detalle
+                                            .cantidad
+                                    }}
+                                </span>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -94,28 +117,38 @@ onMounted(() => {
                                 >Descripción:</v-col
                             >
                             <v-col cols="9" class="text-uppercase">{{
-                                props.notificacion_user.notificacion.descripcion
+                                props.notificacion.descripcion
                             }}</v-col>
                         </v-row>
                         <v-row>
                             <v-col cols="3" class="text-right font-weight-bold"
-                                >Avances registrados:</v-col
+                                >Tipo Ingreo/Salida:</v-col
                             >
-                            <v-col cols="9" class="text-uppercase">{{
-                                props.notificacion_user.notificacion.avance_obra
-                                    .marcados
-                            }}</v-col>
+                            <v-col cols="9" class="text-uppercase">
+                                <span v-if="props.notificacion.ingreso_detalle">
+                                    {{
+                                        props.notificacion.ingreso_detalle
+                                            .ingreso.tipo_ingreso.nombre
+                                    }}
+                                </span>
+                                <span v-if="props.notificacion.salida_detalle">
+                                    {{
+                                        props.notificacion.salida_detalle.salida
+                                            .tipo_salida.nombre
+                                    }}
+                                </span>
+                            </v-col>
                         </v-row>
                         <v-row>
                             <v-col cols="3" class="text-right font-weight-bold"
-                                >Porcentaje Progreso:</v-col
+                                >Fecha y Hora:</v-col
                             >
-                            <v-col cols="9" class="text-uppercase"
-                                >{{
-                                    props.notificacion_user.notificacion
-                                        .avance_obra.porcentaje
-                                }}%</v-col
-                            >
+                            <v-col cols="9" class="text-uppercase">
+                                {{ props.notificacion.fecha_hora_t }}
+                                <span class="text-caption"
+                                    >({{ props.notificacion.hace }})</span
+                                >
+                            </v-col>
                         </v-row>
                     </v-card-text>
                 </v-card>

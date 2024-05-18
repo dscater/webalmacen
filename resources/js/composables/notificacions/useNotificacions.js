@@ -4,10 +4,6 @@ import { usePage } from "@inertiajs/vue3";
 
 const oNotificacion = ref({
     id: 0,
-    nombre: "",
-    nro_avances: "",
-    fecha_registro: "",
-    _method: "POST",
 });
 
 export const useNotificacions = () => {
@@ -66,10 +62,6 @@ export const useNotificacions = () => {
     const setNotificacion = (item = null) => {
         if (item) {
             oNotificacion.value.id = item.id;
-            oNotificacion.value.nombre = item.nombre;
-            oNotificacion.value.nro_avances = item.nro_avances;
-            oNotificacion.value.fecha_registro = item.fecha_registro;
-            oNotificacion.value._method = "PUT";
             return oNotificacion;
         }
         return false;
@@ -77,10 +69,6 @@ export const useNotificacions = () => {
 
     const limpiarNotificacion = () => {
         oNotificacion.value.id = 0;
-        oNotificacion.value.nombre = "";
-        oNotificacion.value.nro_avances = "";
-        oNotificacion.value.fecha_registro = "";
-        oNotificacion.value._method = "POST";
     };
 
     onMounted(() => {});

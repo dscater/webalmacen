@@ -13,7 +13,42 @@ const { oConfiguracion } = useConfiguracion();
 const listNotificacions = ref([]);
 const sin_ver = ref(0);
 
-onMounted(() => {});
+const getNotificacions = () => {
+    let tipo_usuario = props.auth.user.tipo;
+    if (tipo_usuario == "SUPERVISOR DE ALMACEN") {
+        axios
+            .get(route("notificacions.byUser"), {
+                params: {
+                    sin_ver: sin_ver.value,
+                },
+            })
+            .then((response) => {
+                if (
+                    response.data.list_notificacions.length !=
+                        listNotificacions.value.length ||
+                    sin_ver.value != response.data.sin_ver
+                ) {
+                    listNotificacions.value = response.data.list_notificacions;
+                }
+                console.log(listNotificacions.value);
+                sin_ver.value = response.data.sin_ver;
+            });
+    }
+};
+
+const marcarVisto = (id) => {
+    listNotificacions.value.filter((elem) => elem.id === id)[0].visto = 1;
+
+    let nuev_sin_ver = listNotificacions.value.filter(
+        (elem) => elem.visto === 0
+    );
+    sin_ver.value = nuev_sin_ver.length;
+};
+
+onMounted(() => {
+    getNotificacions();
+    interval_notificacions = setInterval(getNotificacions, 1500);
+});
 </script>
 <template>
     <v-app-bar class="__navbar">
@@ -60,11 +95,8 @@ onMounted(() => {});
                 </div>
             </div>
             <div class="user">
-                <!-- <v-menu
-                    v-if="
-                        props.auth.user.tipo == 'GERENTE GENERAL' ||
-                        props.auth.user.tipo == 'GERENTE REGIONAL'
-                    "
+                <v-menu
+                    v-if="props.auth.user.tipo == 'SUPERVISOR DE ALMACEN'"
                     :width="mobile ? '100%' : '20%'"
                     rounded
                 >
@@ -96,9 +128,7 @@ onMounted(() => {});
                                 <template v-slot:prepend>
                                     <v-icon
                                         :class="[
-                                            item.visto == 0
-                                                ? 'text-orange-darken-4'
-                                                : '',
+                                            item.visto == 0 ? 'text-green' : '',
                                         ]"
                                         :icon="
                                             item.visto == 0
@@ -110,28 +140,29 @@ onMounted(() => {});
                                 <template v-slot:title>
                                     <Link
                                         :href="
-                                            route('notificacions.show', item.id)
+                                            route(
+                                                'notificacions.show',
+                                                item?.notificacion_id
+                                            )
                                         "
+                                        @click="marcarVisto(item.id)"
                                         class="text-decoration-none text-body-2"
                                         :class="[
-                                            item.visto == 0
-                                                ? 'text-orange-darken-3'
-                                                : '',
+                                            item.visto == 0 ? 'text-green' : 'text-black',
                                         ]"
                                         >{{
-                                            item.notificacion.descripcion
+                                            item.notificacion?.descripcion
                                         }}</Link
                                     >
                                 </template>
                                 <template v-slot:subtitle>
                                     <span class="text-caption">{{
-                                        item.notificacion.avance_obra.obra
-                                            .nombre
+                                        item.notificacion.evento
                                     }}</span>
                                 </template>
                                 <template v-slot:append>
                                     <span class="text-caption"
-                                        >{{ item.hace }}.</span
+                                        >{{ item.notificacion?.hace }}.</span
                                     >
                                 </template>
                             </v-list-item>
@@ -140,7 +171,7 @@ onMounted(() => {});
                             ></v-divider>
                         </template>
                     </v-list>
-                </v-menu> -->
+                </v-menu>
 
                 <v-menu :width="mobile ? '50%' : '13%'" rounded>
                     <template v-slot:activator="{ props }">

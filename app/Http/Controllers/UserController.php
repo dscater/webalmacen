@@ -72,8 +72,60 @@ class UserController extends Controller
             "notificacion_users.destroy",
 
             "reportes.usuarios",
+            "reportes.productos",
+            "reportes.ingreso_productos",
+            "reportes.salida_productos",
+            "reportes.inventario_productos",
+            "reportes.kardex_productos",
         ],
-        "SUPERVISOR DE ALMACEN" => [],
+        "SUPERVISOR DE ALMACEN" => [
+            "proveedors.index",
+            "proveedors.create",
+            "proveedors.edit",
+            "proveedors.destroy",
+
+            "categorias.index",
+            "categorias.create",
+            "categorias.edit",
+            "categorias.destroy",
+
+            "tipo_productos.index",
+            "tipo_productos.create",
+            "tipo_productos.edit",
+            "tipo_productos.destroy",
+
+            "productos.index",
+            "productos.create",
+            "productos.edit",
+            "productos.destroy",
+
+            "tipo_ingresos.index",
+            "tipo_ingresos.create",
+            "tipo_ingresos.edit",
+            "tipo_ingresos.destroy",
+
+            "ingresos.index",
+            "ingresos.create",
+            "ingresos.edit",
+            "ingresos.destroy",
+
+            "tipo_salidas.index",
+            "tipo_salidas.create",
+            "tipo_salidas.edit",
+            "tipo_salidas.destroy",
+
+            "salidas.index",
+            "salidas.create",
+            "salidas.edit",
+            "salidas.destroy",
+
+            "notificacions.index",
+            "notificacions.create",
+            "notificacions.edit",
+            "notificacions.destroy",
+
+            "notificacion_users.index",
+        ],
         "ALMACENERO" => [],
     ];
 
