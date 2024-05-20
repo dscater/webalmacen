@@ -4,6 +4,7 @@ use App\Http\Controllers\AvanceObraController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\IngresoController;
+use App\Http\Controllers\InicioController;
 use App\Http\Controllers\MaquinariaController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\NotificacionController;
@@ -56,9 +57,9 @@ Route::get("configuracions/getConfiguracion", [ConfiguracionController::class, '
 
 Route::middleware('auth')->group(function () {
     // INICIO
-    Route::get('/inicio', function () {
-        return Inertia::render('Home');
-    })->name('inicio');
+    // INICIO
+    Route::get('/inicio', [InicioController::class, 'inicio'])->name('inicio');
+    Route::get("/inicio/getMaximoImagenes", [InicioController::class, 'getMaximoImagenes'])->name("entrenamientos.getMaximoImagenes");
 
     // INSTITUCION
     Route::resource("configuracions", ConfiguracionController::class)->only(
@@ -172,6 +173,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('reportes/kardex_productos', [ReporteController::class, 'kardex_productos'])->name("reportes.kardex_productos");
     Route::get('reportes/r_kardex_productos', [ReporteController::class, 'r_kardex_productos'])->name("reportes.r_kardex_productos");
+
+    Route::get('reportes/analisis_almacen', [ReporteController::class, 'analisis_almacen'])->name("reportes.analisis_almacen");
 });
 
 require __DIR__ . '/auth.php';

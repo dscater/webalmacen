@@ -50,7 +50,7 @@ class ProveedorController extends Controller
         $proveedors = Proveedor::select("proveedors.*");
 
         if (trim($search) != "") {
-            $proveedors->where("nombre", "LIKE", "%$search%");
+            $proveedors->where("razon_social", "LIKE", "%$search%");
         }
 
         $proveedors = $proveedors->paginate($request->itemsPerPage);

@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Reporte Lista de Productos",
+        title: "Reporte Kardex de Productos",
         disabled: false,
         url: "",
         name_url: "",
@@ -20,13 +20,29 @@ import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
 import { computed, onMounted, ref } from "vue";
 import { Head, usePage } from "@inertiajs/vue3";
+import Highcharts from "highcharts";
+import exporting from "highcharts/modules/exporting";
 import { useProductos } from "@/composables/productos/useProductos";
 import { useCategorias } from "@/composables/categorias/useCategorias";
 import { useTipoProductos } from "@/composables/tipo_productos/useTipoProductos";
+
+exporting(Highcharts);
+Highcharts.setOptions({
+    lang: {
+        downloadPNG: "Descargar PNG",
+        downloadJPEG: "Descargar JPEG",
+        downloadPDF: "Descargar PDF",
+        downloadSVG: "Descargar SVG",
+        printChart: "Imprimir gráfico",
+        contextButtonTitle: "Menú de exportación",
+        viewFullscreen: "Pantalla completa",
+        exitFullscreen: "Salir de pantalla completa",
+    },
+});
+
 const { getCategorias } = useCategorias();
 const { getTipoProductos } = useTipoProductos();
 const { getProductos } = useProductos();
-
 const { setLoading } = useApp();
 
 onMounted(() => {
@@ -40,6 +56,8 @@ const form = ref({
     producto_id: "todos",
     categoria_id: "todos",
     tipo_producto_id: "todos",
+    fecha_ini: obtenerFechaActual(),
+    fecha_fin: obtenerFechaActual(),
 });
 
 const generando = ref(false);
@@ -47,7 +65,13 @@ const txtBtn = computed(() => {
     if (generando.value) {
         return "Generando Reporte...";
     }
-    return "Generar Reporte";
+    return `Generar Reporte Gráfico <i class="mdi mdi-chart-bar"></i>`;
+});
+const txtBtn2 = computed(() => {
+    if (generando.value) {
+        return "Generando Reporte...";
+    }
+    return `Generar Reporte Pdf <i class="mdi mdi-file-pdf-box"></i>`;
 });
 
 const listFiltro = ref([
@@ -72,9 +96,10 @@ const listProductos = ref([]);
 const listCategorias = ref([]);
 const listTipoProductos = ref([]);
 
-const generarReporte = () => {
+const formulario = ref(null);
+const generarReportePdf = () => {
     generando.value = true;
-    const url = route("reportes.r_productos", form.value);
+    const url = route("reportes.r_kardex_productos", form.value);
     window.open(url, "_blank");
     setTimeout(() => {
         generando.value = false;
@@ -100,12 +125,21 @@ const cargarListas = async () => {
     });
 };
 
+function obtenerFechaActual() {
+    const fecha = new Date();
+    const año = fecha.getFullYear();
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+    const dia = fecha.getDate().toString().padStart(2, "0");
+
+    return `${año}-${mes}-${dia}`;
+}
+
 onMounted(() => {
     cargarListas();
 });
 </script>
 <template>
-    <Head title="Reporte Lista de Productos"></Head>
+    <Head title="Reporte Ingreso de Productos"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row>
@@ -113,7 +147,10 @@ onMounted(() => {
                 <v-card>
                     <v-card-item>
                         <v-container>
-                            <form @submit.prevent="generarReporte">
+                            <v-form
+                                @submit.prevent="generarReportePdf"
+                                ref="formulario"
+                            >
                                 <v-row>
                                     <v-col cols="12">
                                         <v-select
@@ -234,19 +271,80 @@ onMounted(() => {
                                         ></v-select>
                                     </v-col>
                                     <v-col cols="12">
+                                        <v-row>
+                                            <v-col cols="6">
+                                                <v-text-field
+                                                    :hide-details="
+                                                        form.errors?.fecha_ini
+                                                            ? false
+                                                            : true
+                                                    "
+                                                    :error="
+                                                        form.errors?.fecha_ini
+                                                            ? true
+                                                            : false
+                                                    "
+                                                    :error-messages="
+                                                        form.errors?.fecha_ini
+                                                            ? form.errors
+                                                                  ?.fecha_ini
+                                                            : ''
+                                                    "
+                                                    density="compact"
+                                                    variant="underlined"
+                                                    color="primary"
+                                                    type="date"
+                                                    label="Fecha Inicio*"
+                                                    required
+                                                    v-model="form.fecha_ini"
+                                                ></v-text-field>
+                                            </v-col>
+                                            <v-col cols="6">
+                                                <v-text-field
+                                                    :hide-details="
+                                                        form.errors?.fecha_fin
+                                                            ? false
+                                                            : true
+                                                    "
+                                                    :error="
+                                                        form.errors?.fecha_fin
+                                                            ? true
+                                                            : false
+                                                    "
+                                                    :error-messages="
+                                                        form.errors?.fecha_fin
+                                                            ? form.errors
+                                                                  ?.fecha_fin
+                                                            : ''
+                                                    "
+                                                    density="compact"
+                                                    variant="underlined"
+                                                    color="primary"
+                                                    type="date"
+                                                    label="Fecha Fin*"
+                                                    required
+                                                    v-model="form.fecha_fin"
+                                                ></v-text-field>
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>
+                                    <v-col cols="12">
                                         <v-btn
                                             color="yellow-accent-3"
                                             block
-                                            @click="generarReporte"
+                                            @click="generarReportePdf"
                                             :disabled="generando"
-                                            v-text="txtBtn"
+                                            v-html="txtBtn2"
                                         ></v-btn>
                                     </v-col>
                                 </v-row>
-                            </form>
+                            </v-form>
                         </v-container>
                     </v-card-item>
                 </v-card>
+            </v-col>
+            <v-col cols="12">
+                <div id="container"></div>
             </v-col>
         </v-row>
     </v-container>

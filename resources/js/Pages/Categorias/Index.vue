@@ -17,7 +17,7 @@ const breadbrums = [
 <script setup>
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
-import { Head } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import { useCategorias } from "@/composables/categorias/useCategorias";
 import { ref, onMounted } from "vue";
 import { useMenu } from "@/composables/useMenu";
@@ -30,7 +30,7 @@ onMounted(() => {
         setLoading(false);
     }, 300);
 });
-
+const { props } = usePage();
 const { getCategoriasApi, setCategoria, limpiarCategoria, deleteCategoria } =
     useCategorias();
 const responseCategorias = ref([]);
@@ -143,7 +143,11 @@ const eliminarCategoria = (item) => {
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
-            <v-col cols="12" class="d-flex justify-end">
+            <v-col
+                cols="12"
+                class="d-flex justify-end"
+                v-if="props.auth.user.permisos.includes('categorias.create')"
+            >
                 <v-btn
                     color="primary"
                     prepend-icon="mdi-plus"
@@ -207,6 +211,11 @@ const eliminarCategoria = (item) => {
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
                                         <v-btn
+                                            v-if="
+                                                props.auth.user.permisos.includes(
+                                                    'categorias.edit'
+                                                )
+                                            "
                                             color="yellow"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -214,6 +223,11 @@ const eliminarCategoria = (item) => {
                                             icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
+                                            v-if="
+                                                props.auth.user.permisos.includes(
+                                                    'categorias.destroy'
+                                                )
+                                            "
                                             color="error"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -256,6 +270,11 @@ const eliminarCategoria = (item) => {
                                                 class="text-center pa-5"
                                             >
                                                 <v-btn
+                                                    v-if="
+                                                        props.auth.user.permisos.includes(
+                                                            'categorias.edit'
+                                                        )
+                                                    "
                                                     color="yellow"
                                                     size="small"
                                                     class="pa-1 ma-1"
@@ -265,6 +284,11 @@ const eliminarCategoria = (item) => {
                                                     icon="mdi-pencil"
                                                 ></v-btn>
                                                 <v-btn
+                                                    v-if="
+                                                        props.auth.user.permisos.includes(
+                                                            'categorias.destroy'
+                                                        )
+                                                    "
                                                     color="error"
                                                     size="small"
                                                     class="pa-1 ma-1"

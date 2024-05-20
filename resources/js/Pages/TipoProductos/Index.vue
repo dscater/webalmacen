@@ -17,7 +17,7 @@ const breadbrums = [
 <script setup>
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
-import { Head } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import { useTipoProductos } from "@/composables/tipo_productos/useTipoProductos";
 import { ref, onMounted } from "vue";
 import { useMenu } from "@/composables/useMenu";
@@ -30,7 +30,7 @@ onMounted(() => {
         setLoading(false);
     }, 300);
 });
-
+const { props } = usePage();
 const {
     getTipoProductosApi,
     setTipoProducto,
@@ -147,7 +147,11 @@ const eliminarTipoProducto = (item) => {
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
-            <v-col cols="12" class="d-flex justify-end">
+            <v-col
+                cols="12"
+                class="d-flex justify-end"
+                v-if="props.auth.user.permisos.includes('tipo_productos.create')"
+            >
                 <v-btn
                     color="primary"
                     prepend-icon="mdi-plus"
@@ -162,7 +166,9 @@ const eliminarTipoProducto = (item) => {
                 <v-card flat>
                     <v-card-title>
                         <v-row class="bg-primary d-flex align-center pa-3">
-                            <v-col cols="12" sm="6" md="4"> Tipo de Productos </v-col>
+                            <v-col cols="12" sm="6" md="4">
+                                Tipo de Productos
+                            </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
@@ -211,6 +217,11 @@ const eliminarTipoProducto = (item) => {
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
                                         <v-btn
+                                            v-if="
+                                                props.auth.user.permisos.includes(
+                                                    'tipo_productos.edit'
+                                                )
+                                            "
                                             color="yellow"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -218,6 +229,11 @@ const eliminarTipoProducto = (item) => {
                                             icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
+                                            v-if="
+                                                props.auth.user.permisos.includes(
+                                                    'tipo_productos.destroy'
+                                                )
+                                            "
                                             color="error"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -260,6 +276,11 @@ const eliminarTipoProducto = (item) => {
                                                 class="text-center pa-5"
                                             >
                                                 <v-btn
+                                                    v-if="
+                                                        props.auth.user.permisos.includes(
+                                                            'tipo_productos.edit'
+                                                        )
+                                                    "
                                                     color="yellow"
                                                     size="small"
                                                     class="pa-1 ma-1"
@@ -269,6 +290,11 @@ const eliminarTipoProducto = (item) => {
                                                     icon="mdi-pencil"
                                                 ></v-btn>
                                                 <v-btn
+                                                    v-if="
+                                                        props.auth.user.permisos.includes(
+                                                            'tipo_productos.destroy'
+                                                        )
+                                                    "
                                                     color="error"
                                                     size="small"
                                                     class="pa-1 ma-1"

@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Reporte Lista de Productos",
+        title: "Reporte Ingreso de Productos",
         disabled: false,
         url: "",
         name_url: "",
@@ -20,13 +20,29 @@ import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
 import { computed, onMounted, ref } from "vue";
 import { Head, usePage } from "@inertiajs/vue3";
+import Highcharts from "highcharts";
+import exporting from "highcharts/modules/exporting";
 import { useProductos } from "@/composables/productos/useProductos";
 import { useCategorias } from "@/composables/categorias/useCategorias";
 import { useTipoProductos } from "@/composables/tipo_productos/useTipoProductos";
+
+exporting(Highcharts);
+Highcharts.setOptions({
+    lang: {
+        downloadPNG: "Descargar PNG",
+        downloadJPEG: "Descargar JPEG",
+        downloadPDF: "Descargar PDF",
+        downloadSVG: "Descargar SVG",
+        printChart: "Imprimir gráfico",
+        contextButtonTitle: "Menú de exportación",
+        viewFullscreen: "Pantalla completa",
+        exitFullscreen: "Salir de pantalla completa",
+    },
+});
+
 const { getCategorias } = useCategorias();
 const { getTipoProductos } = useTipoProductos();
 const { getProductos } = useProductos();
-
 const { setLoading } = useApp();
 
 onMounted(() => {
@@ -47,7 +63,13 @@ const txtBtn = computed(() => {
     if (generando.value) {
         return "Generando Reporte...";
     }
-    return "Generar Reporte";
+    return `Generar Reporte Gráfico <i class="mdi mdi-chart-bar"></i>`;
+});
+const txtBtn2 = computed(() => {
+    if (generando.value) {
+        return "Generando Reporte...";
+    }
+    return `Generar Reporte Pdf <i class="mdi mdi-file-pdf-box"></i>`;
 });
 
 const listFiltro = ref([
@@ -72,9 +94,77 @@ const listProductos = ref([]);
 const listCategorias = ref([]);
 const listTipoProductos = ref([]);
 
-const generarReporte = () => {
+const formulario = ref(null);
+const generarReporte = async () => {
+    const { valid } = await formulario.value.validate();
+    if (valid) {
+        generando.value = true;
+
+        axios
+            .get(route("reportes.rg_inventario_productos"), { params: form.value })
+            .then((response) => {
+                // Create the chart
+                Highcharts.chart("container", {
+                    chart: {
+                        type: "column",
+                    },
+                    title: {
+                        align: "center",
+                        text: "Inventario de Productos",
+                    },
+                    subtitle: {
+                        align: "left",
+                        text: "",
+                    },
+                    accessibility: {
+                        announceNewData: {
+                            enabled: true,
+                        },
+                    },
+                    xAxis: {
+                        type: "category",
+                    },
+                    yAxis: {
+                        title: {
+                            text: "Total",
+                        },
+                    },
+                    legend: {
+                        enabled: false,
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: "{point.y:.2f}",
+                            },
+                        },
+                    },
+
+                    tooltip: {
+                        headerFormat:
+                            '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat:
+                            '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> %<br/>',
+                    },
+
+                    series: [
+                        {
+                            name: "Total Ingresos",
+                            colorByPoint: true,
+                            data: response.data.data,
+                        },
+                    ],
+                });
+                generando.value = false;
+            });
+    }
+};
+
+const generarReportePdf = () => {
     generando.value = true;
-    const url = route("reportes.r_productos", form.value);
+    const url = route("reportes.r_inventario_productos", form.value);
     window.open(url, "_blank");
     setTimeout(() => {
         generando.value = false;
@@ -100,12 +190,21 @@ const cargarListas = async () => {
     });
 };
 
+function obtenerFechaActual() {
+    const fecha = new Date();
+    const año = fecha.getFullYear();
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+    const dia = fecha.getDate().toString().padStart(2, "0");
+
+    return `${año}-${mes}-${dia}`;
+}
+
 onMounted(() => {
     cargarListas();
 });
 </script>
 <template>
-    <Head title="Reporte Lista de Productos"></Head>
+    <Head title="Reporte Ingreso de Productos"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row>
@@ -113,7 +212,10 @@ onMounted(() => {
                 <v-card>
                     <v-card-item>
                         <v-container>
-                            <form @submit.prevent="generarReporte">
+                            <v-form
+                                @submit.prevent="generarReporte"
+                                ref="formulario"
+                            >
                                 <v-row>
                                     <v-col cols="12">
                                         <v-select
@@ -233,20 +335,32 @@ onMounted(() => {
                                             v-model="form.tipo_producto_id"
                                         ></v-select>
                                     </v-col>
-                                    <v-col cols="12">
+                                    <!-- <v-col cols="12">
                                         <v-btn
                                             color="yellow-accent-3"
                                             block
                                             @click="generarReporte"
                                             :disabled="generando"
-                                            v-text="txtBtn"
+                                            v-html="txtBtn"
+                                        ></v-btn>
+                                    </v-col> -->
+                                    <v-col cols="12">
+                                        <v-btn
+                                            color="yellow-accent-3"
+                                            block
+                                            @click="generarReportePdf"
+                                            :disabled="generando"
+                                            v-html="txtBtn2"
                                         ></v-btn>
                                     </v-col>
                                 </v-row>
-                            </form>
+                            </v-form>
                         </v-container>
                     </v-card-item>
                 </v-card>
+            </v-col>
+            <v-col cols="12">
+                <div id="container"></div>
             </v-col>
         </v-row>
     </v-container>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 17-05-2024 a las 19:50:27
+-- Tiempo de generación: 20-05-2024 a las 16:41:43
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -140,7 +140,11 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (40, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>nombre: TIPO SALIDA #1A<br/>descripcion: DESC TIPO 1A<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:06:44<br/>updated_at: 2024-05-17 15:06:50<br/>', NULL, 'CATEGORIAS', '2024-05-17', '15:07:04', '2024-05-17 19:07:04', '2024-05-17 19:07:04'),
 (41, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: TIPO DE SALIDA #1<br/>descripcion: DESC. TIPO SALIDA 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:07:29<br/>updated_at: 2024-05-17 15:07:29<br/>', NULL, 'CATEGORIAS', '2024-05-17', '15:07:29', '2024-05-17 19:07:29', '2024-05-17 19:07:29'),
 (42, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>nombre: TIPO DE SALIDA #2<br/>descripcion: <br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:07:38<br/>updated_at: 2024-05-17 15:07:38<br/>', NULL, 'CATEGORIAS', '2024-05-17', '15:07:38', '2024-05-17 19:07:38', '2024-05-17 19:07:38'),
-(43, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SALIDA DE PRODUCTO', 'id: 3<br/>tipo_salida_id: 1<br/>unidad_solicitante: LA PAZ<br/>descripcion: PRUEBA SALIDA 1<br/>fecha_salida: 2024-05-17<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:47:59<br/>updated_at: 2024-05-17 15:47:59<br/>', NULL, 'SALIDA DE PRODUCTOS', '2024-05-17', '15:47:59', '2024-05-17 19:47:59', '2024-05-17 19:47:59');
+(43, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SALIDA DE PRODUCTO', 'id: 3<br/>tipo_salida_id: 1<br/>unidad_solicitante: LA PAZ<br/>descripcion: PRUEBA SALIDA 1<br/>fecha_salida: 2024-05-17<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:47:59<br/>updated_at: 2024-05-17 15:47:59<br/>', NULL, 'SALIDA DE PRODUCTOS', '2024-05-17', '15:47:59', '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(44, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 3<br/>usuario: MMAMANI<br/>password: $2y$12$sjG/cz2q0H7k0nn1.Ya6GODlBnj6DvplYcTej8bU3RBGWt9dCJ/Pm<br/>nombre: MARCOS<br/>paterno: MAMANI<br/>materno: MAMANI<br/>ci: 2222<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: <br/>fono: 7777777<br/>tipo: ALMACENERO<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-05-20 00:00:00<br/>created_at: 2024-05-20 12:09:22<br/>updated_at: 2024-05-20 12:09:22<br/>', NULL, 'USUARIOS', '2024-05-20', '12:09:22', '2024-05-20 16:09:22', '2024-05-20 16:09:22'),
+(45, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-17 15:47:59<br/>', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 100<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-20 12:23:29<br/>', 'PRODUCTOS', '2024-05-20', '12:23:29', '2024-05-20 16:23:29', '2024-05-20 16:23:29'),
+(46, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN PRODUCTO', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 100<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-20 12:23:29<br/>', NULL, 'PRODUCTOS', '2024-05-20', '12:41:01', '2024-05-20 16:41:01', '2024-05-20 16:41:01'),
+(47, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 100<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-20 12:41:01<br/>', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 20<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-20 12:41:35<br/>', 'PRODUCTOS', '2024-05-20', '12:41:35', '2024-05-20 16:41:35', '2024-05-20 16:41:35');
 
 -- --------------------------------------------------------
 
@@ -310,9 +314,9 @@ CREATE TABLE `notificacion_users` (
 --
 
 INSERT INTO `notificacion_users` (`id`, `notificacion_id`, `user_id`, `visto`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 0, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
-(2, 2, 2, 0, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
-(5, 5, 2, 0, '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(1, 1, 2, 1, '2024-05-17 18:25:29', '2024-05-18 14:56:51'),
+(2, 2, 2, 1, '2024-05-17 18:25:29', '2024-05-18 14:52:48'),
+(5, 5, 2, 1, '2024-05-17 19:47:59', '2024-05-18 14:56:28'),
 (6, 6, 2, 0, '2024-05-17 19:47:59', '2024-05-17 19:47:59');
 
 -- --------------------------------------------------------
@@ -363,7 +367,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `codigo`, `nro`, `nombre`, `descripcion`, `categoria_id`, `tipo_producto_id`, `stock_minimo`, `stock_actual`, `precio`, `imagen`, `fecha_registro`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'P.1', 1, 'PRODUCTO #1', 'DESC. PROD. 1', 1, 1, 5.00, 95.00, 20.00, '1715878316_1.png', '2024-05-16', 1, '2024-05-16 16:51:56', '2024-05-17 19:47:59'),
+(1, 'P.1', 1, 'PRODUCTO #1', 'DESC. PROD. 1', 1, 1, 20.00, 95.00, 20.00, '1715878316_1.png', '2024-05-16', 1, '2024-05-16 16:51:56', '2024-05-20 16:41:35'),
 (2, 'P.2', 2, 'PRODUCTO #2', 'DESCRIPCION', 2, 2, 3.00, 147.00, 40.00, NULL, '2024-05-17', 1, '2024-05-17 16:51:36', '2024-05-17 19:47:59');
 
 -- --------------------------------------------------------
@@ -541,7 +545,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `usuario`, `password`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `email`, `fono`, `tipo`, `foto`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin', NULL, NULL, '0', '', '', 'admin@gmail.com', '', 'ADMINISTRADOR', NULL, 1, '2024-01-31', NULL, NULL),
-(2, 'JPERES', '$2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG', 'JUAN', 'PERES', 'MAMANI', '111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '77777777', 'SUPERVISOR DE ALMACEN', '1715274374_JPERES.jpg', 1, '2024-05-09', '2024-05-09 17:06:14', '2024-05-09 17:06:14');
+(2, 'JPERES', '$2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG', 'JUAN', 'PERES', 'MAMANI', '111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '77777777', 'SUPERVISOR DE ALMACEN', '1715274374_JPERES.jpg', 1, '2024-05-09', '2024-05-09 17:06:14', '2024-05-09 17:06:14'),
+(3, 'MMAMANI', '$2y$12$sjG/cz2q0H7k0nn1.Ya6GODlBnj6DvplYcTej8bU3RBGWt9dCJ/Pm', 'MARCOS', 'MAMANI', 'MAMANI', '2222', 'LP', 'LOS OLIVOS', '', '7777777', 'ALMACENERO', NULL, 1, '2024-05-20', '2024-05-20 16:09:22', '2024-05-20 16:09:22');
 
 --
 -- Índices para tablas volcadas
@@ -691,7 +696,7 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `ingresos`
@@ -781,7 +786,7 @@ ALTER TABLE `tipo_salidas`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

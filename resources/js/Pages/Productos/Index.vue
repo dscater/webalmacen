@@ -17,7 +17,7 @@ const breadbrums = [
 <script setup>
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
-import { Head } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import { useProductos } from "@/composables/productos/useProductos";
 import { ref, onMounted } from "vue";
 import { useMenu } from "@/composables/useMenu";
@@ -30,7 +30,7 @@ onMounted(() => {
         setLoading(false);
     }, 300);
 });
-
+const { props } = usePage();
 const { getProductosApi, setProducto, limpiarProducto, deleteProducto } =
     useProductos();
 const responseProductos = ref([]);
@@ -77,7 +77,8 @@ const headers = ref([
         title: "Stock Actual",
         align: "start",
         sortable: false,
-    },{
+    },
+    {
         title: "Imagen",
         align: "start",
         sortable: false,
@@ -169,7 +170,11 @@ const eliminarProducto = (item) => {
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
-            <v-col cols="12" class="d-flex justify-end">
+            <v-col
+                cols="12"
+                class="d-flex justify-end"
+                v-if="props.auth.user.permisos.includes('productos.create')"
+            >
                 <v-btn
                     color="primary"
                     prepend-icon="mdi-plus"
@@ -224,7 +229,14 @@ const eliminarProducto = (item) => {
                             ]"
                         >
                             <template v-slot:item="{ item }">
-                                <tr v-if="!mobile">
+                                <tr
+                                    v-if="!mobile"
+                                    :class="[
+                                        item.stock_actual <= item.stock_minimo
+                                            ? 'minimo'
+                                            : '',
+                                    ]"
+                                >
                                     <td>{{ item.codigo }}</td>
                                     <td>{{ item.nombre }}</td>
                                     <td>
@@ -256,6 +268,11 @@ const eliminarProducto = (item) => {
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
                                         <v-btn
+                                            v-if="
+                                                props.auth.user.permisos.includes(
+                                                    'productos.edit'
+                                                )
+                                            "
                                             color="yellow"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -263,6 +280,11 @@ const eliminarProducto = (item) => {
                                             icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
+                                            v-if="
+                                                props.auth.user.permisos.includes(
+                                                    'productos.destroy'
+                                                )
+                                            "
                                             color="error"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -271,7 +293,14 @@ const eliminarProducto = (item) => {
                                         ></v-btn>
                                     </td>
                                 </tr>
-                                <tr v-else>
+                                <tr
+                                    v-else
+                                    :class="[
+                                        item.stock_actual <= item.stock_minimo
+                                            ? 'minimo'
+                                            : '',
+                                    ]"
+                                >
                                     <td>
                                         <ul class="flex-content">
                                             <li
@@ -346,6 +375,11 @@ const eliminarProducto = (item) => {
                                                 class="text-center pa-5"
                                             >
                                                 <v-btn
+                                                    v-if="
+                                                        props.auth.user.permisos.includes(
+                                                            'productos.edit'
+                                                        )
+                                                    "
                                                     color="yellow"
                                                     size="small"
                                                     class="pa-1 ma-1"
@@ -355,6 +389,11 @@ const eliminarProducto = (item) => {
                                                     icon="mdi-pencil"
                                                 ></v-btn>
                                                 <v-btn
+                                                    v-if="
+                                                        props.auth.user.permisos.includes(
+                                                            'productos.destroy'
+                                                        )
+                                                    "
                                                     color="error"
                                                     size="small"
                                                     class="pa-1 ma-1"
@@ -381,3 +420,10 @@ const eliminarProducto = (item) => {
         ></Formulario>
     </v-container>
 </template>
+
+<style scoped>
+.minimo {
+    background-color: rgb(255, 216, 216);
+    color: rgb(145, 0, 0);
+}
+</style>

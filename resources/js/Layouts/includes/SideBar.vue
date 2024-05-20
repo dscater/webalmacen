@@ -264,7 +264,8 @@ const scrollActive = () => {
                 :class="[
                     route_current == 'ingresos.index' ||
                     route_current == 'ingresos.create' ||
-                    route_current == 'ingresos.edit'
+                    route_current == 'ingresos.edit' ||
+                    route_current == 'ingresos.show'
                         ? 'active'
                         : '',
                     drawer ? 'px-3' : '',
@@ -308,7 +309,8 @@ const scrollActive = () => {
                 :class="[
                     route_current == 'salidas.index' ||
                     route_current == 'salidas.create' ||
-                    route_current == 'salidas.edit'
+                    route_current == 'salidas.edit' ||
+                    route_current == 'salidas.show'
                         ? 'active'
                         : '',
                     drawer ? 'px-3' : '',
@@ -374,10 +376,12 @@ const scrollActive = () => {
                 class="text-caption bg-blue-darken-4"
                 v-if="
                     oUser.permisos.includes('reportes.usuarios') ||
-                    oUser.permisos.includes('reportes.presupuestos') ||
-                    oUser.permisos.includes('reportes.operarios') ||
-                    oUser.permisos.includes('reportes.obras') ||
-                    oUser.permisos.includes('reportes.avance_obras')
+                    oUser.permisos.includes('reportes.productos') ||
+                    oUser.permisos.includes('reportes.ingreso_productos') ||
+                    oUser.permisos.includes('reportes.salida_productos') ||
+                    oUser.permisos.includes('reportes.inventario_productos') ||
+                    oUser.permisos.includes('reportes.kardex_productos') ||
+                    oUser.permisos.includes('reportes.analisis_almacen')
                 "
                 ><span v-if="rail && !mobile" class="text-center d-block"
                     ><v-icon>mdi-dots-horizontal</v-icon></span
@@ -446,9 +450,7 @@ const scrollActive = () => {
                     prepend-icon="mdi-chevron-right"
                     title="Lista de Productos"
                     :class="[
-                        route_current == 'reportes.productos'
-                            ? 'active'
-                            : '',
+                        route_current == 'reportes.productos' ? 'active' : '',
                     ]"
                     @click="cambiarUrl(route('reportes.productos'))"
                     link
@@ -466,7 +468,9 @@ const scrollActive = () => {
                     prepend-icon="mdi-chevron-right"
                     title="Ingreso de Productos"
                     :class="[
-                        route_current == 'reportes.ingreso_productos' ? 'active' : '',
+                        route_current == 'reportes.ingreso_productos'
+                            ? 'active'
+                            : '',
                         drawer ? 'px-3' : '',
                     ]"
                     @click="cambiarUrl(route('reportes.ingreso_productos'))"
@@ -485,7 +489,9 @@ const scrollActive = () => {
                     prepend-icon="mdi-chevron-right"
                     title="Salida de Productos"
                     :class="[
-                        route_current == 'reportes.salida_productos' ? 'active' : '',
+                        route_current == 'reportes.salida_productos'
+                            ? 'active'
+                            : '',
                         drawer ? 'px-3' : '',
                     ]"
                     @click="cambiarUrl(route('reportes.salida_productos'))"
@@ -500,7 +506,9 @@ const scrollActive = () => {
                     ></v-list-item
                 >
                 <v-list-item
-                    v-if="oUser.permisos.includes('reportes.inventario_productos')"
+                    v-if="
+                        oUser.permisos.includes('reportes.inventario_productos')
+                    "
                     prepend-icon="mdi-chevron-right"
                     title="Inventario de Productos"
                     :class="[
@@ -540,6 +548,28 @@ const scrollActive = () => {
                     ></v-list-item
                 >
             </v-list-group>
+            <v-list-item
+                :class="[
+                    route_current == 'reportes.analisis_almacen'
+                        ? 'active'
+                        : '',
+                    drawer ? 'px-3' : '',
+                ]"
+                class="mx-3"
+                v-if="oUser.permisos.includes('reportes.analisis_almacen')"
+                prepend-icon="mdi-chart-bar"
+                @click="cambiarUrl(route('reportes.analisis_almacen'))"
+                link
+            >
+                <v-list-item-title>Análisis de almacén</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Análisis de almacén</v-tooltip
+                >
+            </v-list-item>
             <v-list-item class="text-caption bg-blue-darken-4"
                 ><span v-if="rail && !mobile" class="text-center d-block"
                     ><v-icon>mdi-dots-horizontal</v-icon></span

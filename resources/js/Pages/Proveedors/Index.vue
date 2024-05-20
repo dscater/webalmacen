@@ -17,7 +17,7 @@ const breadbrums = [
 <script setup>
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
-import { Head } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import { useProveedors } from "@/composables/proveedors/useProveedors";
 import { ref, onMounted } from "vue";
 import { useMenu } from "@/composables/useMenu";
@@ -30,7 +30,7 @@ onMounted(() => {
         setLoading(false);
     }, 300);
 });
-
+const { props } = usePage();
 const { getProveedorsApi, setProveedor, limpiarProveedor, deleteProveedor } =
     useProveedors();
 const responseProveedors = ref([]);
@@ -160,7 +160,11 @@ const eliminarProveedor = (item) => {
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row class="mt-0">
-            <v-col cols="12" class="d-flex justify-end">
+            <v-col
+                cols="12"
+                class="d-flex justify-end"
+                v-if="props.auth.user.permisos.includes('proveedors.create')"
+            >
                 <v-btn
                     color="primary"
                     prepend-icon="mdi-plus"
@@ -236,6 +240,11 @@ const eliminarProveedor = (item) => {
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
                                         <v-btn
+                                            v-if="
+                                                props.auth.user.permisos.includes(
+                                                    'proveedors.edit'
+                                                )
+                                            "
                                             color="yellow"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -243,6 +252,11 @@ const eliminarProveedor = (item) => {
                                             icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
+                                            v-if="
+                                                props.auth.user.permisos.includes(
+                                                    'proveedors.destroy'
+                                                )
+                                            "
                                             color="error"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -309,6 +323,11 @@ const eliminarProveedor = (item) => {
                                                 class="text-center pa-5"
                                             >
                                                 <v-btn
+                                                    v-if="
+                                                        props.auth.user.permisos.includes(
+                                                            'proveedors.edit'
+                                                        )
+                                                    "
                                                     color="yellow"
                                                     size="small"
                                                     class="pa-1 ma-1"
@@ -318,6 +337,11 @@ const eliminarProveedor = (item) => {
                                                     icon="mdi-pencil"
                                                 ></v-btn>
                                                 <v-btn
+                                                    v-if="
+                                                        props.auth.user.permisos.includes(
+                                                            'proveedors.destroy'
+                                                        )
+                                                    "
                                                     color="error"
                                                     size="small"
                                                     class="pa-1 ma-1"

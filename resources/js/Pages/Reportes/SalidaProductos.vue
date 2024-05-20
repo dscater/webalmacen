@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Reporte Ingreso de Productos",
+        title: "Reporte Salida de Productos",
         disabled: false,
         url: "",
         name_url: "",
@@ -25,7 +25,7 @@ import exporting from "highcharts/modules/exporting";
 import { useProductos } from "@/composables/productos/useProductos";
 import { useCategorias } from "@/composables/categorias/useCategorias";
 import { useTipoProductos } from "@/composables/tipo_productos/useTipoProductos";
-import { useTipoIngresos } from "@/composables/tipo_ingresos/useTipoIngresos";
+import { useTipoSalidas } from "@/composables/tipo_salidas/useTipoSalidas";
 
 exporting(Highcharts);
 Highcharts.setOptions({
@@ -43,7 +43,7 @@ Highcharts.setOptions({
 
 const { getCategorias } = useCategorias();
 const { getTipoProductos } = useTipoProductos();
-const { getTipoIngresos } = useTipoIngresos();
+const { getTipoSalidas } = useTipoSalidas();
 const { getProductos } = useProductos();
 const { setLoading } = useApp();
 
@@ -58,7 +58,7 @@ const form = ref({
     producto_id: "todos",
     categoria_id: "todos",
     tipo_producto_id: "todos",
-    tipo_ingreso_id: "todos",
+    tipo_salida_id: "todos",
     fecha_ini: obtenerFechaActual(),
     fecha_fin: obtenerFechaActual(),
 });
@@ -95,14 +95,14 @@ const listFiltro = ref([
         label: "POR TIPO DE PRODUCTO",
     },
     {
-        value: "tipo_ingreso",
-        label: "POR TIPO DE INGRESO",
+        value: "tipo_salida",
+        label: "POR TIPO DE SALIDA",
     },
 ]);
 const listProductos = ref([]);
 const listCategorias = ref([]);
 const listTipoProductos = ref([]);
-const listTipoIngresos = ref([]);
+const listTipoSalidas = ref([]);
 
 const formulario = ref(null);
 const generarReporte = async () => {
@@ -111,7 +111,7 @@ const generarReporte = async () => {
         generando.value = true;
 
         axios
-            .get(route("reportes.rg_ingreso_productos"), { params: form.value })
+            .get(route("reportes.rg_salida_productos"), { params: form.value })
             .then((response) => {
                 // Create the chart
                 Highcharts.chart("container", {
@@ -120,7 +120,7 @@ const generarReporte = async () => {
                     },
                     title: {
                         align: "center",
-                        text: "Ingreso de Productos",
+                        text: "Salida de Productos",
                     },
                     subtitle: {
                         align: "left",
@@ -161,7 +161,7 @@ const generarReporte = async () => {
 
                     series: [
                         {
-                            name: "Total Ingresos",
+                            name: "Total Salidas",
                             colorByPoint: true,
                             data: response.data.data,
                         },
@@ -174,7 +174,7 @@ const generarReporte = async () => {
 
 const generarReportePdf = () => {
     generando.value = true;
-    const url = route("reportes.r_ingreso_productos", form.value);
+    const url = route("reportes.r_salida_productos", form.value);
     window.open(url, "_blank");
     setTimeout(() => {
         generando.value = false;
@@ -185,7 +185,7 @@ const cargarListas = async () => {
     listProductos.value = await getProductos();
     listCategorias.value = await getCategorias();
     listTipoProductos.value = await getTipoProductos();
-    listTipoIngresos.value = await getTipoIngresos();
+    listTipoSalidas.value = await getTipoSalidas();
 
     listProductos.value.unshift({
         id: "todos",
@@ -199,7 +199,7 @@ const cargarListas = async () => {
         id: "todos",
         nombre: "TODOS",
     });
-    listTipoIngresos.value.unshift({
+    listTipoSalidas.value.unshift({
         id: "todos",
         nombre: "TODOS",
     });
@@ -219,7 +219,7 @@ onMounted(() => {
 });
 </script>
 <template>
-    <Head title="Reporte Ingreso de Productos"></Head>
+    <Head title="Reporte Salida de Productos"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
         <v-row>
@@ -352,33 +352,33 @@ onMounted(() => {
                                     </v-col>
                                     <v-col
                                         cols="12"
-                                        v-if="form.filtro == 'tipo_ingreso'"
+                                        v-if="form.filtro == 'tipo_salida'"
                                     >
                                         <v-select
                                             :hide-details="
-                                                form.errors?.tipo_ingreso_id
+                                                form.errors?.tipo_salida_id
                                                     ? false
                                                     : true
                                             "
                                             :error="
-                                                form.errors?.tipo_ingreso_id
+                                                form.errors?.tipo_salida_id
                                                     ? true
                                                     : false
                                             "
                                             :error-messages="
-                                                form.errors?.tipo_ingreso_id
+                                                form.errors?.tipo_salida_id
                                                     ? form.errors
-                                                          ?.tipo_ingreso_id
+                                                          ?.tipo_salida_id
                                                     : ''
                                             "
                                             variant="outlined"
                                             density="compact"
                                             required
-                                            :items="listTipoIngresos"
+                                            :items="listTipoSalidas"
                                             item-value="id"
                                             item-title="nombre"
-                                            label="Seleccionar Tipo de Ingreso*"
-                                            v-model="form.tipo_ingreso_id"
+                                            label="Seleccionar Tipo de Salida*"
+                                            v-model="form.tipo_salida_id"
                                         ></v-select>
                                     </v-col>
                                     <v-col cols="12">
