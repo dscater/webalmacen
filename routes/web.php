@@ -124,6 +124,7 @@ Route::middleware('auth')->group(function () {
     );
 
     // INGRESOS
+    Route::get("/ingresos/pdf/{ingreso}", [IngresoController::class, 'pdf'])->name("ingresos.pdf");
     Route::get("/ingresos/paginado", [IngresoController::class, 'paginado'])->name("ingresos.paginado");
     Route::get("/ingresos/listado", [IngresoController::class, 'listado'])->name("ingresos.listado");
     Route::resource("ingresos", IngresoController::class)->only(
@@ -138,6 +139,7 @@ Route::middleware('auth')->group(function () {
     );
 
     // SALIDAS
+    Route::get("/salidas/pdf/{salida}", [SalidaController::class, 'pdf'])->name("salidas.pdf");
     Route::get("/salidas/paginado", [SalidaController::class, 'paginado'])->name("salidas.paginado");
     Route::get("/salidas/listado", [SalidaController::class, 'listado'])->name("salidas.listado");
     Route::resource("salidas", SalidaController::class)->only(

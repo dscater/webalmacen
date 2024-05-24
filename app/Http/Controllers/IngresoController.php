@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use PDF;
 
 class IngresoController extends Controller
 {
@@ -116,6 +117,21 @@ class IngresoController extends Controller
     {
         $ingreso = $ingreso->load(["proveedor", "tipo_ingreso", "ingreso_detalles.producto"]);
         return Inertia::render("Ingresos/Show", compact("ingreso"));
+    }
+
+    public function pdf(Ingreso $ingreso)
+    {
+        $pdf = PDF::loadView('reportes.ingreso', compact('ingreso'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('ingreso.pdf');
     }
 
     public function edit(Ingreso $ingreso)

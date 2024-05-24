@@ -105,6 +105,10 @@ const verIngreso = (item) => {
     cambiarUrl(route("ingresos.show", item.id));
 };
 
+const pdf = (item) => {
+    window.open(route("ingresos.pdf", item.id), "_blank");
+};
+
 const eliminarIngreso = (item) => {
     Swal.fire({
         title: "¿Quierés eliminar este registro?",
@@ -211,6 +215,13 @@ const verUbicación = async (item) => {};
                                         </td>
                                         <td class="text-right" width="5%">
                                             <v-btn
+                                                color="yellow-accent-2"
+                                                size="small"
+                                                class="pa-1 ma-1"
+                                                @click="pdf(item)"
+                                                icon="mdi-file-outline"
+                                            ></v-btn>
+                                            <v-btn
                                                 color="primary"
                                                 size="small"
                                                 class="pa-1 ma-1"
@@ -256,11 +267,19 @@ const verUbicación = async (item) => {};
                                                     <v-table class="border">
                                                         <thead>
                                                             <tr>
-                                                                <th class="text-center">N°</th>
-                                                                <th class="text-center">
+                                                                <th
+                                                                    class="text-center"
+                                                                >
+                                                                    N°
+                                                                </th>
+                                                                <th
+                                                                    class="text-center"
+                                                                >
                                                                     Producto
                                                                 </th>
-                                                                <th class="text-center">
+                                                                <th
+                                                                    class="text-center"
+                                                                >
                                                                     Cantidad
                                                                 </th>
                                                             </tr>
@@ -416,6 +435,13 @@ const verUbicación = async (item) => {};
                                                     cols="12"
                                                     class="text-center pa-5"
                                                 >
+                                                    <v-btn
+                                                        color="yellow-accent-2"
+                                                        size="small"
+                                                        class="pa-1 ma-1"
+                                                        @click="pdf(item)"
+                                                        icon="mdi-file-outline"
+                                                    ></v-btn>
                                                     <v-btn
                                                         color="primary"
                                                         size="small"

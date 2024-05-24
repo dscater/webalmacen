@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use PDF;
 
 class SalidaController extends Controller
 {
@@ -116,6 +117,21 @@ class SalidaController extends Controller
     {
         $salida = $salida->load(["proveedor", "tipo_salida", "salida_detalles.producto"]);
         return Inertia::render("Salidas/Show", compact("salida"));
+    }
+
+    public function pdf(Salida $salida)
+    {
+        $pdf = PDF::loadView('reportes.salida', compact('salida'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('salida.pdf');
     }
 
     public function edit(Salida $salida)
