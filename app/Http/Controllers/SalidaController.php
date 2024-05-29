@@ -68,7 +68,6 @@ class SalidaController extends Controller
 
     public function store(Request $request)
     {
-
         if (!isset($request->salida_detalles) || count($request->salida_detalles) <= 0) {
             throw ValidationException::withMessages([
                 'error' =>  "Debes ingresar al menos un producto",
@@ -80,11 +79,25 @@ class SalidaController extends Controller
         DB::beginTransaction();
         try {
             // crear el Salida
-            $nuevo_salida = Salida::create(array_map('mb_strtoupper', $request->except("salida_detalles", "eliminados")));
+            $nuevo_salida = Salida::create([
+                "tipo_salida_id" => $request->tipo_salida_id,
+                "unidad_solicitante" => $request->unidad_solicitante,
+                "descripcion" => $request->descripcion,
+                "fecha_salida" => $request->fecha_salida,
+                "fecha_registro" => $request->fecha_registro
+            ]);
 
             // registrar kardex
             $salida_detalles = $request->salida_detalles;
             foreach ($salida_detalles as $item) {
+                // validar stock
+                $producto = Producto::findOrFail($item["producto_id"]);
+                if ($producto->stock_actual < $item["cantidad"]) {
+                    throw ValidationException::withMessages([
+                        "error" => "El stock actual del producto " . $producto->nombre . " es insuficiente. Actual: " . $producto->stock_actual,
+                    ]);
+                }
+
                 $salida_detalle = $nuevo_salida->salida_detalles()->create([
                     "producto_id" => $item["producto_id"],
                     "cantidad" => $item["cantidad"],
