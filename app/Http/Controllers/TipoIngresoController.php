@@ -14,13 +14,16 @@ use Inertia\Inertia;
 class TipoIngresoController extends Controller
 {
     public $validacion = [
-        "nombre" => "required|min:2",
+        'nombre' => 'required|min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu',
     ];
 
     public $mensajes = [
         "nombre.required" => "Este campo es obligatorio",
+        'nombre.regex' => 'Debes ingresar solo texto',
         "nombre.min" => "Debes ingresar al menos :min caracteres",
+        'descripcion.regex' => 'Debes ingresar solo texto',
     ];
+
 
     public function index()
     {
@@ -58,6 +61,9 @@ class TipoIngresoController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->descripcion) {
+            $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
         $request->validate($this->validacion, $this->mensajes);
         $request['fecha_registro'] = date('Y-m-d');
         DB::beginTransaction();
@@ -68,9 +74,9 @@ class TipoIngresoController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' REGISTRO UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' REGISTRO UN TIPO DE INGRESO',
                 'datos_original' => $datos_original,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'TIPO DE INGRESOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
@@ -91,6 +97,9 @@ class TipoIngresoController extends Controller
 
     public function update(TipoIngreso $tipo_ingreso, Request $request)
     {
+        if ($request->descripcion) {
+            $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
         $request->validate($this->validacion, $this->mensajes);
         DB::beginTransaction();
         try {
@@ -101,10 +110,10 @@ class TipoIngresoController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' MODIFICÓ UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' MODIFICÓ UN TIPO DE INGRESO',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'TIPO DE INGRESOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
@@ -134,9 +143,9 @@ class TipoIngresoController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'ELIMINACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' ELIMINÓ UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' ELIMINÓ UN TIPO DE INGRESO',
                 'datos_original' => $datos_original,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'TIPO DE INGRESOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);

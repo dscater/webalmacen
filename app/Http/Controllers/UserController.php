@@ -61,6 +61,11 @@ class UserController extends Controller
             "tipo_salidas.create",
             "tipo_salidas.edit",
             "tipo_salidas.destroy",
+            
+            "unidads.index",
+            "unidads.create",
+            "unidads.edit",
+            "unidads.destroy",
 
             "salidas.index",
             "salidas.create",

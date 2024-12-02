@@ -250,7 +250,7 @@ const cerrarDialog = () => {
                                         density="compact"
                                         variant="underlined"
                                         color="primary"
-                                        label="Dirección*"
+                                        label="Dirección"
                                         v-model="form.dir"
                                         required
                                     ></v-text-field>
@@ -258,14 +258,14 @@ const cerrarDialog = () => {
                                 <v-col cols="12" sm="6" md="4">
                                     <v-text-field
                                         :hide-details="
-                                            form.errors?.correo ? false : true
+                                            form.errors?.email ? false : true
                                         "
                                         :error="
-                                            form.errors?.correo ? true : false
+                                            form.errors?.email ? true : false
                                         "
                                         :error-messages="
-                                            form.errors?.correo
-                                                ? form.errors?.correo
+                                            form.errors?.email
+                                                ? form.errors?.email
                                                 : ''
                                         "
                                         density="compact"

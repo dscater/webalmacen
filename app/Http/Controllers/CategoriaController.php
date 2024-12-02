@@ -14,12 +14,14 @@ use Inertia\Inertia;
 class CategoriaController extends Controller
 {
     public $validacion = [
-        "nombre" => "required|min:2",
+        'nombre' => 'required|min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu',
     ];
 
     public $mensajes = [
         "nombre.required" => "Este campo es obligatorio",
+        'nombre.regex' => 'Debes ingresar solo texto',
         "nombre.min" => "Debes ingresar al menos :min caracteres",
+        'descripcion.regex' => 'Debes ingresar solo texto',
     ];
 
     public function index()
@@ -58,6 +60,9 @@ class CategoriaController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->descripcion) {
+            $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
         $request->validate($this->validacion, $this->mensajes);
         $request['fecha_registro'] = date('Y-m-d');
         DB::beginTransaction();
@@ -85,12 +90,13 @@ class CategoriaController extends Controller
         }
     }
 
-    public function show(Categoria $categoria)
-    {
-    }
+    public function show(Categoria $categoria) {}
 
     public function update(Categoria $categoria, Request $request)
     {
+        if ($request->descripcion) {
+            $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
         $request->validate($this->validacion, $this->mensajes);
         DB::beginTransaction();
         try {

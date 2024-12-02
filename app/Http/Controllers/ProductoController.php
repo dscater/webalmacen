@@ -15,14 +15,24 @@ use Inertia\Inertia;
 class ProductoController extends Controller
 {
     public $validacion = [
-        "nombre" => "required|min:2",
-        "precio" => "required",
+        'nombre' => 'required|min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu',
+        "precio" => "required|numeric|min:0.01",
+        "stock_minimo" => "required|int|min:1",
+        "categoria_id" => "required",
+        "tipo_producto_id" => "required",
     ];
 
     public $mensajes = [
         "nombre.required" => "Este campo es obligatorio",
+        'nombre.regex' => 'Debes ingresar solo texto',
         "nombre.min" => "Debes ingresar al menos :min caracteres",
         "precio.required" => "Este campo es obligatorio",
+        "precio.min" => "Debes ingresar al menos :min",
+        'descripcion.regex' => 'Debes ingresar solo texto',
+        "stock_minimo.required" => "Este campo es obligatorio",
+        "stock_minimo.min" => "Debes ingresar al menos :min",
+        "categoria_id.required" => "Este campo es obligatorio",
+        "tipo_producto_id.required" => "Este campo es obligatorio",
     ];
 
     public function index()
@@ -61,6 +71,9 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->descripcion) {
+            $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
         $request->validate($this->validacion, $this->mensajes);
         $request['fecha_registro'] = date('Y-m-d');
         DB::beginTransaction();
@@ -99,12 +112,13 @@ class ProductoController extends Controller
         }
     }
 
-    public function show(Producto $producto)
-    {
-    }
+    public function show(Producto $producto) {}
 
     public function update(Producto $producto, Request $request)
     {
+        if ($request->descripcion) {
+            $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
         $request->validate($this->validacion, $this->mensajes);
         DB::beginTransaction();
         try {

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 20-05-2024 a las 16:41:43
+-- Tiempo de generación: 02-12-2024 a las 19:14:21
 -- Versión del servidor: 8.0.30
--- Versión de PHP: 8.1.10
+-- Versión de PHP: 8.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,8 +41,8 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'CATEGORIA #1', 'DESC. CAT. 1', '2024-05-16', '2024-05-16 15:55:33', '2024-05-16 15:55:33'),
-(2, 'CATEGORIA #2', '', '2024-05-16', '2024-05-16 15:55:38', '2024-05-16 15:55:38');
+(1, 'CATEGORIA  UNO', 'DESC. CAT. 1', '2024-05-16', '2024-05-16 15:55:33', '2024-12-02 18:21:45'),
+(2, 'CATEGORIA DOS', '', '2024-05-16', '2024-05-16 15:55:38', '2024-12-02 18:22:34');
 
 -- --------------------------------------------------------
 
@@ -71,7 +71,7 @@ CREATE TABLE `configuracions` (
 --
 
 INSERT INTO `configuracions` (`id`, `nombre_sistema`, `alias`, `razon_social`, `ciudad`, `dir`, `fono`, `correo`, `web`, `actividad`, `logo`, `created_at`, `updated_at`) VALUES
-(1, 'WEBALMACEN', 'WA', 'WEBALMACEN S.A.', 'LA PAZ', 'LOS OLIVOS', '7777777', 'WEBALMACEN@GMAIL.COM', 'WEBALMACEN.COM', 'ACTIVIDAD', '1710002413_1.jpg', NULL, '2024-03-09 16:40:13');
+(1, 'WEBALMACEN', 'WA', 'WEBALMACEN S.A.', 'LA PAZ', 'LOS OLIVOS', '7777777', 'WEBALMACEN@GMAIL.COM', 'WEBALMACEN.COM', 'ACTIVIDAD', '1716506212_1.jpg', NULL, '2024-05-23 23:16:52');
 
 -- --------------------------------------------------------
 
@@ -144,7 +144,51 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (44, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 3<br/>usuario: MMAMANI<br/>password: $2y$12$sjG/cz2q0H7k0nn1.Ya6GODlBnj6DvplYcTej8bU3RBGWt9dCJ/Pm<br/>nombre: MARCOS<br/>paterno: MAMANI<br/>materno: MAMANI<br/>ci: 2222<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: <br/>fono: 7777777<br/>tipo: ALMACENERO<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-05-20 00:00:00<br/>created_at: 2024-05-20 12:09:22<br/>updated_at: 2024-05-20 12:09:22<br/>', NULL, 'USUARIOS', '2024-05-20', '12:09:22', '2024-05-20 16:09:22', '2024-05-20 16:09:22'),
 (45, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 5<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-17 15:47:59<br/>', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 100<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-20 12:23:29<br/>', 'PRODUCTOS', '2024-05-20', '12:23:29', '2024-05-20 16:23:29', '2024-05-20 16:23:29'),
 (46, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN PRODUCTO', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 100<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-20 12:23:29<br/>', NULL, 'PRODUCTOS', '2024-05-20', '12:41:01', '2024-05-20 16:41:01', '2024-05-20 16:41:01'),
-(47, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 100<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-20 12:41:01<br/>', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 20<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-20 12:41:35<br/>', 'PRODUCTOS', '2024-05-20', '12:41:35', '2024-05-20 16:41:35', '2024-05-20 16:41:35');
+(47, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 100<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-20 12:41:01<br/>', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 20<br/>stock_actual: 95<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-20 12:41:35<br/>', 'PRODUCTOS', '2024-05-20', '12:41:35', '2024-05-20 16:41:35', '2024-05-20 16:41:35'),
+(48, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN INGRESO DE PRODUCTO', 'id: 2<br/>proveedor_id: 2<br/>tipo_ingreso_id: 1<br/>precio: 3000<br/>nro_factura: 121231231<br/>descripcion: <br/>fecha_ingreso: 2024-05-24<br/>fecha_registro: 2024-05-24<br/>created_at: 2024-05-24 10:20:18<br/>updated_at: 2024-05-24 10:20:18<br/>', NULL, 'INGRESO DE PRODUCTOS', '2024-05-24', '10:20:18', '2024-05-24 14:20:18', '2024-05-24 14:20:18'),
+(49, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SALIDA DE PRODUCTO', 'id: 4<br/>tipo_salida_id: 2<br/>unidad_solicitante: LA PAZ<br/>descripcion: DESCRIPCION SALIDA<br/>fecha_salida: 2024-05-29<br/>fecha_registro: 2024-05-29<br/>created_at: 2024-05-29 08:24:18<br/>updated_at: 2024-05-29 08:24:18<br/>', NULL, 'SALIDA DE PRODUCTOS', '2024-05-29', '08:24:18', '2024-05-29 12:24:18', '2024-05-29 12:24:18'),
+(50, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SALIDA DE PRODUCTO', 'id: 7<br/>tipo_salida_id: 1<br/>unidad_solicitante: la paz<br/>descripcion: descripcion<br/>fecha_salida: 2024-05-29<br/>fecha_registro: 2024-05-29<br/>created_at: 2024-05-29 08:37:34<br/>updated_at: 2024-05-29 08:37:34<br/>', NULL, 'SALIDA DE PRODUCTOS', '2024-05-29', '08:37:34', '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
+(51, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 4<br/>usuario: SCORTEZ<br/>password: $2y$12$lGkdvp27XH5WETidgcQNJ.sRUnpVd/ToAhdFmA8rT03to2tIY8sa2<br/>nombre: SANDRO<br/>paterno: CORTEZ<br/>materno: <br/>ci: 3333<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: SANDRO@GMAIL.COM<br/>fono: 7777777<br/>tipo: ADMINISTRADOR<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-12-02 00:00:00<br/>created_at: 2024-12-02 14:13:31<br/>updated_at: 2024-12-02 14:13:31<br/>', NULL, 'USUARIOS', '2024-12-02', '14:13:31', '2024-12-02 18:13:31', '2024-12-02 18:13:31'),
+(52, 1, 'ELIMINACIÓN', 'EL USUARIO admin ELIMINÓ UN USUARIO', 'id: 4<br/>usuario: SCORTEZ<br/>password: $2y$12$lGkdvp27XH5WETidgcQNJ.sRUnpVd/ToAhdFmA8rT03to2tIY8sa2<br/>nombre: SANDRO<br/>paterno: CORTEZ<br/>materno: <br/>ci: 3333<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: SANDRO@GMAIL.COM<br/>fono: 7777777<br/>tipo: ADMINISTRADOR<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-12-02 00:00:00<br/>created_at: 2024-12-02 14:13:31<br/>updated_at: 2024-12-02 14:13:31<br/>', NULL, 'USUARIOS', '2024-12-02', '14:14:25', '2024-12-02 18:14:25', '2024-12-02 18:14:25'),
+(53, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-05-09 13:06:14<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI2<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:18:10<br/>', 'USUARIOS', '2024-12-02', '14:18:10', '2024-12-02 18:18:10', '2024-12-02 18:18:10'),
+(54, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI2<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:18:10<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:18:29<br/>', 'USUARIOS', '2024-12-02', '14:18:29', '2024-12-02 18:18:29', '2024-12-02 18:18:29'),
+(55, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:18:29<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO.<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:19:25<br/>', 'USUARIOS', '2024-12-02', '14:19:25', '2024-12-02 18:19:25', '2024-12-02 18:19:25'),
+(56, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO.<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:19:25<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:19:29<br/>', 'USUARIOS', '2024-12-02', '14:19:29', '2024-12-02 18:19:29', '2024-12-02 18:19:29'),
+(57, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:19:29<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM##<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:20:12<br/>', 'USUARIOS', '2024-12-02', '14:20:12', '2024-12-02 18:20:12', '2024-12-02 18:20:12'),
+(58, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM##<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:20:12<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:20:18<br/>', 'USUARIOS', '2024-12-02', '14:20:18', '2024-12-02 18:20:18', '2024-12-02 18:20:18'),
+(59, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:20:18<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:20:23<br/>', 'USUARIOS', '2024-12-02', '14:20:23', '2024-12-02 18:20:23', '2024-12-02 18:20:23'),
+(60, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:20:23<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:20:23<br/>', 'USUARIOS', '2024-12-02', '14:20:58', '2024-12-02 18:20:58', '2024-12-02 18:20:58'),
+(61, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 3<br/>usuario: MMAMANI<br/>password: $2y$12$sjG/cz2q0H7k0nn1.Ya6GODlBnj6DvplYcTej8bU3RBGWt9dCJ/Pm<br/>nombre: MARCOS<br/>paterno: MAMANI<br/>materno: MAMANI<br/>ci: 2222<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: <br/>fono: 7777777<br/>tipo: ALMACENERO<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-05-20 00:00:00<br/>created_at: 2024-05-20 12:09:22<br/>updated_at: 2024-05-20 12:09:22<br/>', 'id: 3<br/>usuario: MMAMANI<br/>password: $2y$12$sjG/cz2q0H7k0nn1.Ya6GODlBnj6DvplYcTej8bU3RBGWt9dCJ/Pm<br/>nombre: MARCOS<br/>paterno: MAMANI<br/>materno: MAMANI<br/>ci: 2222<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: <br/>fono: 7777777<br/>tipo: ALMACENERO<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-05-20 00:00:00<br/>created_at: 2024-05-20 12:09:22<br/>updated_at: 2024-05-20 12:09:22<br/>', 'USUARIOS', '2024-12-02', '14:21:01', '2024-12-02 18:21:01', '2024-12-02 18:21:01'),
+(62, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 3<br/>usuario: MMAMANI<br/>password: $2y$12$sjG/cz2q0H7k0nn1.Ya6GODlBnj6DvplYcTej8bU3RBGWt9dCJ/Pm<br/>nombre: MARCOS<br/>paterno: MAMANI<br/>materno: MAMANI<br/>ci: 2222<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: <br/>fono: 7777777<br/>tipo: ALMACENERO<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-05-20 00:00:00<br/>created_at: 2024-05-20 12:09:22<br/>updated_at: 2024-05-20 12:09:22<br/>', 'id: 3<br/>usuario: MMAMANI<br/>password: $2y$12$sjG/cz2q0H7k0nn1.Ya6GODlBnj6DvplYcTej8bU3RBGWt9dCJ/Pm<br/>nombre: MARCOS<br/>paterno: MAMANI<br/>materno: <br/>ci: 2222<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: <br/>fono: 7777777<br/>tipo: ALMACENERO<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-05-20 00:00:00<br/>created_at: 2024-05-20 12:09:22<br/>updated_at: 2024-12-02 14:21:09<br/>', 'USUARIOS', '2024-12-02', '14:21:09', '2024-12-02 18:21:09', '2024-12-02 18:21:09'),
+(63, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>descripcion: DESC. CAT. 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:33<br/>updated_at: 2024-05-16 11:55:33<br/>', 'id: 1<br/>nombre: CATEGORIA  UNO<br/>descripcion: DESC. CAT. 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:33<br/>updated_at: 2024-12-02 14:21:45<br/>', 'CATEGORIAS', '2024-12-02', '14:21:45', '2024-12-02 18:21:45', '2024-12-02 18:21:45'),
+(64, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>nombre: CATEGORIA #2<br/>descripcion: <br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:38<br/>updated_at: 2024-05-16 11:55:38<br/>', 'id: 2<br/>nombre: CATEGORIA DOS<br/>descripcion: <br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:55:38<br/>updated_at: 2024-12-02 14:22:34<br/>', 'CATEGORIAS', '2024-12-02', '14:22:34', '2024-12-02 18:22:34', '2024-12-02 18:22:34'),
+(65, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN TIPO DE PRODUCTO', 'id: 1<br/>nombre: TIPO PRODUCTO #1<br/>descripcion: DESC. TIPO 1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 12:00:44<br/>updated_at: 2024-05-16 12:00:44<br/>', 'id: 1<br/>nombre: TIPO PRODUCTO UNO<br/>descripcion: DESC. TIPO UNO<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 12:00:44<br/>updated_at: 2024-12-02 14:23:21<br/>', 'TIPO DE PRODUCTOS', '2024-12-02', '14:23:21', '2024-12-02 18:23:21', '2024-12-02 18:23:21'),
+(66, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN TIPO DE PRODUCTO', 'id: 2<br/>nombre: TIPO PRODUCTO #2<br/>descripcion: <br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 12:00:50<br/>updated_at: 2024-05-16 12:00:50<br/>', 'id: 2<br/>nombre: TIPO PRODUCTO DOS<br/>descripcion: <br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 12:00:50<br/>updated_at: 2024-12-02 14:23:28<br/>', 'TIPO DE PRODUCTOS', '2024-12-02', '14:23:28', '2024-12-02 18:23:28', '2024-12-02 18:23:28'),
+(67, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO #1<br/>descripcion: DESC. PROD. 1<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 20<br/>stock_actual: 15<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-05-29 08:37:34<br/>', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO UNO<br/>descripcion: DESC. PROD. UNO<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 20<br/>stock_actual: 15<br/>precio: 20<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-12-02 14:24:38<br/>', 'PRODUCTOS', '2024-12-02', '14:24:38', '2024-12-02 18:24:38', '2024-12-02 18:24:38'),
+(68, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO UNO<br/>descripcion: DESC. PROD. UNO<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 20<br/>stock_actual: 15<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-12-02 14:24:38<br/>', 'id: 1<br/>codigo: P.1<br/>nro: 1<br/>nombre: PRODUCTO UNO<br/>descripcion: DESC. PROD. UNO<br/>categoria_id: 1<br/>tipo_producto_id: 1<br/>stock_minimo: 4<br/>stock_actual: 15<br/>precio: 20.00<br/>imagen: 1715878316_1.png<br/>fecha_registro: 2024-05-16<br/>status: 1<br/>created_at: 2024-05-16 12:51:56<br/>updated_at: 2024-12-02 14:25:16<br/>', 'PRODUCTOS', '2024-12-02', '14:25:16', '2024-12-02 18:25:16', '2024-12-02 18:25:16'),
+(69, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: TIPO INGRESO #1<br/>descripcion: TIPO DE INGRESO 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:26:57<br/>updated_at: 2024-05-17 11:27:14<br/>', 'id: 1<br/>nombre: TIPO INGRESO UNO<br/>descripcion: TIPO DE INGRESO UNO<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:26:57<br/>updated_at: 2024-12-02 14:26:34<br/>', 'CATEGORIAS', '2024-12-02', '14:26:34', '2024-12-02 18:26:34', '2024-12-02 18:26:34'),
+(70, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>nombre: TIPO INGRESO #2<br/>descripcion: <br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:27:03<br/>updated_at: 2024-05-17 11:27:03<br/>', 'id: 2<br/>nombre: TIPO INGRESO DOS<br/>descripcion: <br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 11:27:03<br/>updated_at: 2024-12-02 14:26:38<br/>', 'CATEGORIAS', '2024-12-02', '14:26:38', '2024-12-02 18:26:38', '2024-12-02 18:26:38'),
+(71, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: TIPO DE SALIDA #1<br/>descripcion: DESC. TIPO SALIDA 1<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:07:29<br/>updated_at: 2024-05-17 15:07:29<br/>', 'id: 1<br/>nombre: TIPO DE SALIDA UNO<br/>descripcion: DESC. TIPO SALIDA UNO<br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:07:29<br/>updated_at: 2024-12-02 14:27:11<br/>', 'CATEGORIAS', '2024-12-02', '14:27:11', '2024-12-02 18:27:11', '2024-12-02 18:27:11'),
+(72, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>nombre: TIPO DE SALIDA #2<br/>descripcion: <br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:07:38<br/>updated_at: 2024-05-17 15:07:38<br/>', 'id: 2<br/>nombre: TIPO DE SALIDA DOS Ñ<br/>descripcion: <br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:07:38<br/>updated_at: 2024-12-02 14:27:17<br/>', 'CATEGORIAS', '2024-12-02', '14:27:17', '2024-12-02 18:27:17', '2024-12-02 18:27:17'),
+(73, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>nombre: TIPO DE SALIDA DOS Ñ<br/>descripcion: <br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:07:38<br/>updated_at: 2024-12-02 14:27:17<br/>', 'id: 2<br/>nombre: TIPO DE SALIDA DOS<br/>descripcion: <br/>fecha_registro: 2024-05-17<br/>created_at: 2024-05-17 15:07:38<br/>updated_at: 2024-12-02 14:27:21<br/>', 'CATEGORIAS', '2024-12-02', '14:27:21', '2024-12-02 18:27:21', '2024-12-02 18:27:21'),
+(74, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN LA CONTRASEÑA DE UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:20:23<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$tf.kxKWMW4w6eNfHsWkgtuC6MJuUw556RHNduGkCdX8tiTzyP3OwW<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:42:52<br/>', 'USUARIOS', '2024-12-02', '14:42:52', '2024-12-02 18:42:52', '2024-12-02 18:42:52'),
+(75, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN LA CONTRASEÑA DE UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$tf.kxKWMW4w6eNfHsWkgtuC6MJuUw556RHNduGkCdX8tiTzyP3OwW<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:42:52<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$.9tm5qarotseEt/PrU8cbO9s.Mvtbdpfjp1BEnYguJUTyf67Akv5C<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:43:27<br/>', 'USUARIOS', '2024-12-02', '14:43:27', '2024-12-02 18:43:27', '2024-12-02 18:43:27'),
+(76, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN LA CONTRASEÑA DE UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$.9tm5qarotseEt/PrU8cbO9s.Mvtbdpfjp1BEnYguJUTyf67Akv5C<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:43:27<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$S5xCEOkchMcOqZESxFF.qOGydDkt8nvr3VcB0O5yqnQyqa/3JqptS<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 111<br/>ci_exp: LP<br/>dir: LOS OLIVOS NRO. 2<br/>email: JUAN@GMAIL.COM<br/>fono: 77777777<br/>tipo: SUPERVISOR DE ALMACEN<br/>foto: 1715274374_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-05-09 00:00:00<br/>created_at: 2024-05-09 13:06:14<br/>updated_at: 2024-12-02 14:43:40<br/>', 'USUARIOS', '2024-12-02', '14:43:40', '2024-12-02 18:43:40', '2024-12-02 18:43:40'),
+(77, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PROVEEDOR', 'id: 1<br/>razon_social: PROVEEDOR #1 S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR #1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-05-16 11:49:45<br/>', 'id: 1<br/>razon_social: PROVEEDOR #1 S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR #1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-05-16 11:49:45<br/>', 'PROVEEDORES', '2024-12-02', '14:44:49', '2024-12-02 18:44:49', '2024-12-02 18:44:49'),
+(78, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PROVEEDOR', 'id: 1<br/>razon_social: PROVEEDOR #1 S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR #1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-05-16 11:49:45<br/>', 'id: 1<br/>razon_social: PROVEEDOR UNO S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR #1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-12-02 14:45:18<br/>', 'PROVEEDORES', '2024-12-02', '14:45:18', '2024-12-02 18:45:18', '2024-12-02 18:45:18'),
+(79, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PROVEEDOR', 'id: 1<br/>razon_social: PROVEEDOR UNO S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR #1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-12-02 14:45:18<br/>', 'id: 1<br/>razon_social: PROVEEDOR UNO S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR #1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-12-02 14:45:18<br/>', 'PROVEEDORES', '2024-12-02', '14:45:32', '2024-12-02 18:45:32', '2024-12-02 18:45:32'),
+(80, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PROVEEDOR', 'id: 1<br/>razon_social: PROVEEDOR UNO S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR #1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-12-02 14:45:18<br/>', 'id: 1<br/>razon_social: PROVEEDOR UNO S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR #1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-12-02 14:45:18<br/>', 'PROVEEDORES', '2024-12-02', '14:45:55', '2024-12-02 18:45:55', '2024-12-02 18:45:55'),
+(81, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PROVEEDOR', 'id: 1<br/>razon_social: PROVEEDOR UNO S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR #1<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-12-02 14:45:18<br/>', 'id: 1<br/>razon_social: PROVEEDOR UNO S.A.<br/>nit: 1111111<br/>dir: LOS OLIVOS<br/>nombre_contacto: JUAN PERES<br/>fono: 77777777<br/>descripcion: DESC. PROVEEDOR UNO<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:45<br/>updated_at: 2024-12-02 14:48:08<br/>', 'PROVEEDORES', '2024-12-02', '14:48:08', '2024-12-02 18:48:08', '2024-12-02 18:48:08'),
+(82, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PROVEEDOR', 'id: 2<br/>razon_social: PROVEEDOR #2 S.R.L.<br/>nit: 123123123123<br/>dir: <br/>nombre_contacto: <br/>fono: <br/>descripcion: <br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:57<br/>updated_at: 2024-05-16 11:49:57<br/>', 'id: 2<br/>razon_social: PROVEEDOR DOS S.R.L.<br/>nit: 123123123123<br/>dir: <br/>nombre_contacto: <br/>fono: <br/>descripcion: <br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:57<br/>updated_at: 2024-12-02 14:48:19<br/>', 'PROVEEDORES', '2024-12-02', '14:48:19', '2024-12-02 18:48:19', '2024-12-02 18:48:19'),
+(83, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PROVEEDOR', 'id: 2<br/>razon_social: PROVEEDOR DOS S.R.L.<br/>nit: 123123123123<br/>dir: <br/>nombre_contacto: <br/>fono: <br/>descripcion: <br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:57<br/>updated_at: 2024-12-02 14:48:19<br/>', 'id: 2<br/>razon_social: PROVEEDOR DOS S.R.L.<br/>nit: 123123123123<br/>dir: LOS PEDREGALES<br/>nombre_contacto: EDUARDO CONDORI<br/>fono: 655656556<br/>descripcion: DESC. PROV. DOS<br/>fecha_registro: 2024-05-16<br/>created_at: 2024-05-16 11:49:57<br/>updated_at: 2024-12-02 14:48:56<br/>', 'PROVEEDORES', '2024-12-02', '14:48:56', '2024-12-02 18:48:56', '2024-12-02 18:48:56'),
+(84, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA UNIDAD', 'id: 1<br/>nombre: UNIDAD LA PAZ<br/>descripcion: <br/>created_at: 2024-12-02 14:56:34<br/>updated_at: 2024-12-02 14:56:34<br/>', NULL, 'UNIDADES', '2024-12-02', '14:56:34', '2024-12-02 18:56:34', '2024-12-02 18:56:34'),
+(85, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA UNIDAD', 'id: 1<br/>nombre: UNIDAD LA PAZ<br/>descripcion: <br/>created_at: 2024-12-02 14:56:34<br/>updated_at: 2024-12-02 14:56:34<br/>', 'id: 1<br/>nombre: UNIDAD LA PAZ<br/>descripcion: DESC UNIDAD  LA PAZ<br/>created_at: 2024-12-02 14:56:34<br/>updated_at: 2024-12-02 14:56:40<br/>', 'UNIDADES', '2024-12-02', '14:56:40', '2024-12-02 18:56:40', '2024-12-02 18:56:40');
+INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `datos_original`, `datos_nuevo`, `modulo`, `fecha`, `hora`, `created_at`, `updated_at`) VALUES
+(86, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA UNIDAD', 'id: 2<br/>nombre: UNIDAD SANTA CRUZ<br/>descripcion: <br/>created_at: 2024-12-02 14:56:46<br/>updated_at: 2024-12-02 14:56:46<br/>', NULL, 'UNIDADES', '2024-12-02', '14:56:46', '2024-12-02 18:56:46', '2024-12-02 18:56:46'),
+(87, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN INGRESO DE PRODUCTO', 'id: 3<br/>proveedor_id: 1<br/>tipo_ingreso_id: 1<br/>precio: 3000<br/>nro_factura: 42232332<br/>descripcion: DESCRIPCION INGRESO<br/>fecha_ingreso: 2024-12-02<br/>fecha_registro: 2024-12-02<br/>created_at: 2024-12-02 15:01:29<br/>updated_at: 2024-12-02 15:01:29<br/>', NULL, 'INGRESO DE PRODUCTOS', '2024-12-02', '15:01:29', '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
+(88, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN INGRESO DE PRODUCTO', 'id: 4<br/>proveedor_id: 1<br/>tipo_ingreso_id: 2<br/>precio: 3000<br/>nro_factura: 300000<br/>descripcion: <br/>fecha_ingreso: 2024-12-02<br/>fecha_registro: 2024-12-02<br/>created_at: 2024-12-02 15:04:40<br/>updated_at: 2024-12-02 15:04:40<br/>', NULL, 'INGRESO DE PRODUCTOS', '2024-12-02', '15:04:40', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(89, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SALIDA DE PRODUCTO', 'id: 8<br/>tipo_salida_id: 2<br/>unidad_solicitante: 2<br/>descripcion: descripcion salida<br/>fecha_salida: 2024-12-02<br/>fecha_registro: 2024-12-02<br/>created_at: 2024-12-02 15:13:37<br/>updated_at: 2024-12-02 15:13:37<br/>', NULL, 'SALIDA DE PRODUCTOS', '2024-12-02', '15:13:37', '2024-12-02 19:13:37', '2024-12-02 19:13:37'),
+(90, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>codigo: P.2<br/>nro: 2<br/>nombre: PRODUCTO #2<br/>descripcion: DESCRIPCION<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 3<br/>stock_actual: 227<br/>precio: 40.00<br/>imagen: <br/>fecha_registro: 2024-05-17<br/>status: 1<br/>created_at: 2024-05-17 12:51:36<br/>updated_at: 2024-12-02 15:04:40<br/>', 'id: 2<br/>codigo: P.2<br/>nro: 2<br/>nombre: PRODUCTO DOS<br/>descripcion: DESCRIPCION<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 3<br/>stock_actual: 227<br/>precio: 40.00<br/>imagen: <br/>fecha_registro: 2024-05-17<br/>status: 1<br/>created_at: 2024-05-17 12:51:36<br/>updated_at: 2024-12-02 15:13:50<br/>', 'PRODUCTOS', '2024-12-02', '15:13:50', '2024-12-02 19:13:50', '2024-12-02 19:13:50');
 
 -- --------------------------------------------------------
 
@@ -170,7 +214,10 @@ CREATE TABLE `ingresos` (
 --
 
 INSERT INTO `ingresos` (`id`, `proveedor_id`, `tipo_ingreso_id`, `precio`, `nro_factura`, `descripcion`, `fecha_ingreso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 2000.00, '1111111', 'INGRESO INICIAL', '2024-05-17', '2024-05-17', '2024-05-17 18:25:29', '2024-05-17 18:25:29');
+(1, 1, 1, 2000.00, '1111111', 'INGRESO INICIAL', '2024-05-17', '2024-05-17', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(2, 2, 1, 3000.00, '121231231', '', '2024-05-24', '2024-05-24', '2024-05-24 14:20:18', '2024-05-24 14:20:18'),
+(3, 1, 1, 3000.00, '42232332', 'DESCRIPCION INGRESO', '2024-12-02', '2024-12-02', '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
+(4, 1, 2, 3000.00, '300000', NULL, '2024-12-02', '2024-12-02', '2024-12-02 19:04:40', '2024-12-02 19:04:40');
 
 -- --------------------------------------------------------
 
@@ -193,7 +240,11 @@ CREATE TABLE `ingreso_detalles` (
 
 INSERT INTO `ingreso_detalles` (`id`, `ingreso_id`, `producto_id`, `cantidad`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 100.00, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
-(2, 1, 2, 150.00, '2024-05-17 18:25:29', '2024-05-17 18:25:29');
+(2, 1, 2, 150.00, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(3, 2, 2, 100.00, '2024-05-24 14:20:18', '2024-05-24 14:20:18'),
+(4, 3, 1, 30.00, '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
+(5, 4, 2, 20.00, '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(6, 4, 1, 20.00, '2024-12-02 19:04:40', '2024-12-02 19:04:40');
 
 -- --------------------------------------------------------
 
@@ -229,7 +280,15 @@ INSERT INTO `kardex_productos` (`id`, `tipo_registro`, `registro_id`, `producto_
 (1, 'INGRESO', 1, 1, 'INGRESO INICIAL', 20.00, 'INGRESO', 100, NULL, 100, 20.00, 2000.00, NULL, 2000.00, '2024-05-17', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
 (2, 'INGRESO', 2, 2, 'INGRESO INICIAL', 40.00, 'INGRESO', 150, NULL, 150, 40.00, 6000.00, NULL, 6000.00, '2024-05-17', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
 (5, 'SALIDA', 4, 1, 'PRUEBA SALIDA 1', 20.00, 'EGRESO', NULL, 5, 95, 20.00, NULL, 100.00, 1900.00, '2024-05-17', '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
-(6, 'SALIDA', 5, 2, 'PRUEBA SALIDA 1', 40.00, 'EGRESO', NULL, 3, 147, 40.00, NULL, 120.00, 5880.00, '2024-05-17', '2024-05-17 19:47:59', '2024-05-17 19:47:59');
+(6, 'SALIDA', 5, 2, 'PRUEBA SALIDA 1', 40.00, 'EGRESO', NULL, 3, 147, 40.00, NULL, 120.00, 5880.00, '2024-05-17', '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(7, 'INGRESO', 3, 2, 'INGRESO DE PRODUCTO', 40.00, 'INGRESO', 100, NULL, 247, 40.00, 4000.00, NULL, 9880.00, '2024-05-24', '2024-05-24 14:20:18', '2024-05-24 14:20:18'),
+(8, 'SALIDA', 6, 1, 'DESCRIPCION SALIDA', 20.00, 'EGRESO', NULL, 50, 45, 20.00, NULL, 1000.00, 900.00, '2024-05-29', '2024-05-29 12:24:18', '2024-05-29 12:24:18'),
+(9, 'SALIDA', 7, 1, 'descripcion', 20.00, 'EGRESO', NULL, 30, 15, 20.00, NULL, 600.00, 300.00, '2024-05-29', '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
+(10, 'SALIDA', 8, 2, 'descripcion', 40.00, 'EGRESO', NULL, 40, 207, 40.00, NULL, 1600.00, 8280.00, '2024-05-29', '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
+(11, 'INGRESO', 4, 1, 'DESCRIPCION INGRESO', 20.00, 'INGRESO', 30, NULL, 45, 20.00, 600.00, NULL, 900.00, '2024-12-02', '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
+(12, 'INGRESO', 5, 2, 'INGRESO DE PRODUCTO', 40.00, 'INGRESO', 20, NULL, 227, 40.00, 800.00, NULL, 9080.00, '2024-12-02', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(13, 'INGRESO', 6, 1, 'INGRESO DE PRODUCTO', 20.00, 'INGRESO', 20, NULL, 65, 20.00, 400.00, NULL, 1300.00, '2024-12-02', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(14, 'SALIDA', 9, 1, 'descripcion salida', 20.00, 'EGRESO', NULL, 7, 58, 20.00, NULL, 140.00, 1160.00, '2024-12-02', '2024-12-02 19:13:37', '2024-12-02 19:13:37');
 
 -- --------------------------------------------------------
 
@@ -264,7 +323,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2024_05_15_172720_create_notificacion_users_table', 2),
 (15, '2024_05_15_173812_create_ingreso_detalles_table', 2),
 (16, '2024_05_15_173817_create_salida_detalles_table', 2),
-(17, '2024_05_15_174805_create_kardex_productos_table', 2);
+(17, '2024_05_15_174805_create_kardex_productos_table', 2),
+(18, '2024_12_02_144927_create_unidads_table', 3);
 
 -- --------------------------------------------------------
 
@@ -292,7 +352,15 @@ INSERT INTO `notificacions` (`id`, `evento`, `modulo`, `registro_id`, `descripci
 (1, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 1, 'INGRESO DEL PRODUCTO PRODUCTO #1', '2024-05-17', '14:25:00', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
 (2, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 2, 'INGRESO DEL PRODUCTO PRODUCTO #2', '2024-05-17', '14:25:00', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
 (5, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 4, 'SALIDA DEL PRODUCTO PRODUCTO #1', '2024-05-17', '15:47:00', '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
-(6, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 5, 'SALIDA DEL PRODUCTO PRODUCTO #2', '2024-05-17', '15:47:00', '2024-05-17 19:47:59', '2024-05-17 19:47:59');
+(6, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 5, 'SALIDA DEL PRODUCTO PRODUCTO #2', '2024-05-17', '15:47:00', '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(7, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 3, 'INGRESO DEL PRODUCTO PRODUCTO #2', '2024-05-24', '10:20:00', '2024-05-24 14:20:18', '2024-05-24 14:20:18'),
+(8, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 6, 'SALIDA DEL PRODUCTO PRODUCTO #1', '2024-05-29', '08:24:00', '2024-05-29 12:24:18', '2024-05-29 12:24:18'),
+(9, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 7, 'SALIDA DEL PRODUCTO PRODUCTO #1', '2024-05-29', '08:37:00', '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
+(10, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 8, 'SALIDA DEL PRODUCTO PRODUCTO #2', '2024-05-29', '08:37:00', '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
+(11, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 4, 'INGRESO DEL PRODUCTO PRODUCTO UNO', '2024-12-02', '15:01:00', '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
+(12, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 5, 'INGRESO DEL PRODUCTO PRODUCTO #2', '2024-12-02', '15:04:00', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(13, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 6, 'INGRESO DEL PRODUCTO PRODUCTO UNO', '2024-12-02', '15:04:00', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(14, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 9, 'SALIDA DEL PRODUCTO PRODUCTO UNO', '2024-12-02', '15:13:00', '2024-12-02 19:13:37', '2024-12-02 19:13:37');
 
 -- --------------------------------------------------------
 
@@ -317,7 +385,15 @@ INSERT INTO `notificacion_users` (`id`, `notificacion_id`, `user_id`, `visto`, `
 (1, 1, 2, 1, '2024-05-17 18:25:29', '2024-05-18 14:56:51'),
 (2, 2, 2, 1, '2024-05-17 18:25:29', '2024-05-18 14:52:48'),
 (5, 5, 2, 1, '2024-05-17 19:47:59', '2024-05-18 14:56:28'),
-(6, 6, 2, 0, '2024-05-17 19:47:59', '2024-05-17 19:47:59');
+(6, 6, 2, 0, '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(7, 7, 2, 0, '2024-05-24 14:20:18', '2024-05-24 14:20:18'),
+(8, 8, 2, 0, '2024-05-29 12:24:18', '2024-05-29 12:24:18'),
+(9, 9, 2, 0, '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
+(10, 10, 2, 0, '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
+(11, 11, 2, 0, '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
+(12, 12, 2, 0, '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(13, 13, 2, 0, '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(14, 14, 2, 0, '2024-12-02 19:13:37', '2024-12-02 19:13:37');
 
 -- --------------------------------------------------------
 
@@ -367,8 +443,8 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `codigo`, `nro`, `nombre`, `descripcion`, `categoria_id`, `tipo_producto_id`, `stock_minimo`, `stock_actual`, `precio`, `imagen`, `fecha_registro`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'P.1', 1, 'PRODUCTO #1', 'DESC. PROD. 1', 1, 1, 20.00, 95.00, 20.00, '1715878316_1.png', '2024-05-16', 1, '2024-05-16 16:51:56', '2024-05-20 16:41:35'),
-(2, 'P.2', 2, 'PRODUCTO #2', 'DESCRIPCION', 2, 2, 3.00, 147.00, 40.00, NULL, '2024-05-17', 1, '2024-05-17 16:51:36', '2024-05-17 19:47:59');
+(1, 'P.1', 1, 'PRODUCTO UNO', 'DESC. PROD. UNO', 1, 1, 4.00, 58.00, 20.00, '1715878316_1.png', '2024-05-16', 1, '2024-05-16 16:51:56', '2024-12-02 19:13:37'),
+(2, 'P.2', 2, 'PRODUCTO DOS', 'DESCRIPCION', 2, 2, 3.00, 227.00, 40.00, NULL, '2024-05-17', 1, '2024-05-17 16:51:36', '2024-12-02 19:13:50');
 
 -- --------------------------------------------------------
 
@@ -394,8 +470,8 @@ CREATE TABLE `proveedors` (
 --
 
 INSERT INTO `proveedors` (`id`, `razon_social`, `nit`, `dir`, `nombre_contacto`, `fono`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'PROVEEDOR #1 S.A.', '1111111', 'LOS OLIVOS', 'JUAN PERES', '77777777', 'DESC. PROVEEDOR #1', '2024-05-16', '2024-05-16 15:49:45', '2024-05-16 15:49:45'),
-(2, 'PROVEEDOR #2 S.R.L.', '123123123123', '', '', '', '', '2024-05-16', '2024-05-16 15:49:57', '2024-05-16 15:49:57');
+(1, 'PROVEEDOR UNO S.A.', '1111111', 'LOS OLIVOS', 'JUAN PERES', '77777777', 'DESC. PROVEEDOR UNO', '2024-05-16', '2024-05-16 15:49:45', '2024-12-02 18:48:08'),
+(2, 'PROVEEDOR DOS S.R.L.', '123123123123', 'LOS PEDREGALES', 'EDUARDO CONDORI', '655656556', 'DESC. PROV. DOS', '2024-05-16', '2024-05-16 15:49:57', '2024-12-02 18:48:56');
 
 -- --------------------------------------------------------
 
@@ -406,7 +482,7 @@ INSERT INTO `proveedors` (`id`, `razon_social`, `nit`, `dir`, `nombre_contacto`,
 CREATE TABLE `salidas` (
   `id` bigint UNSIGNED NOT NULL,
   `tipo_salida_id` bigint UNSIGNED NOT NULL,
-  `unidad_solicitante` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unidad_solicitante` bigint UNSIGNED NOT NULL,
   `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_salida` date NOT NULL,
   `fecha_registro` date DEFAULT NULL,
@@ -419,7 +495,10 @@ CREATE TABLE `salidas` (
 --
 
 INSERT INTO `salidas` (`id`, `tipo_salida_id`, `unidad_solicitante`, `descripcion`, `fecha_salida`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(3, 1, 'LA PAZ', 'PRUEBA SALIDA 1', '2024-05-17', '2024-05-17', '2024-05-17 19:47:59', '2024-05-17 19:47:59');
+(3, 1, 1, 'PRUEBA SALIDA 1', '2024-05-17', '2024-05-17', '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(4, 2, 1, 'DESCRIPCION SALIDA', '2024-05-29', '2024-05-29', '2024-05-29 12:24:18', '2024-05-29 12:24:18'),
+(7, 1, 1, 'descripcion', '2024-05-29', '2024-05-29', '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
+(8, 2, 2, 'descripcion salida', '2024-12-02', '2024-12-02', '2024-12-02 19:13:37', '2024-12-02 19:13:37');
 
 -- --------------------------------------------------------
 
@@ -442,7 +521,11 @@ CREATE TABLE `salida_detalles` (
 
 INSERT INTO `salida_detalles` (`id`, `salida_id`, `producto_id`, `cantidad`, `created_at`, `updated_at`) VALUES
 (4, 3, 1, 5.00, '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
-(5, 3, 2, 3.00, '2024-05-17 19:47:59', '2024-05-17 19:47:59');
+(5, 3, 2, 3.00, '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
+(6, 4, 1, 50.00, '2024-05-29 12:24:18', '2024-05-29 12:24:18'),
+(7, 7, 1, 30.00, '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
+(8, 7, 2, 40.00, '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
+(9, 8, 1, 7.00, '2024-12-02 19:13:37', '2024-12-02 19:13:37');
 
 -- --------------------------------------------------------
 
@@ -464,8 +547,8 @@ CREATE TABLE `tipo_ingresos` (
 --
 
 INSERT INTO `tipo_ingresos` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'TIPO INGRESO #1', 'TIPO DE INGRESO 1', '2024-05-17', '2024-05-17 15:26:57', '2024-05-17 15:27:14'),
-(2, 'TIPO INGRESO #2', '', '2024-05-17', '2024-05-17 15:27:03', '2024-05-17 15:27:03');
+(1, 'TIPO INGRESO UNO', 'TIPO DE INGRESO UNO', '2024-05-17', '2024-05-17 15:26:57', '2024-12-02 18:26:34'),
+(2, 'TIPO INGRESO DOS', '', '2024-05-17', '2024-05-17 15:27:03', '2024-12-02 18:26:38');
 
 -- --------------------------------------------------------
 
@@ -487,8 +570,8 @@ CREATE TABLE `tipo_productos` (
 --
 
 INSERT INTO `tipo_productos` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'TIPO PRODUCTO #1', 'DESC. TIPO 1', '2024-05-16', '2024-05-16 16:00:44', '2024-05-16 16:00:44'),
-(2, 'TIPO PRODUCTO #2', '', '2024-05-16', '2024-05-16 16:00:50', '2024-05-16 16:00:50');
+(1, 'TIPO PRODUCTO UNO', 'DESC. TIPO UNO', '2024-05-16', '2024-05-16 16:00:44', '2024-12-02 18:23:21'),
+(2, 'TIPO PRODUCTO DOS', '', '2024-05-16', '2024-05-16 16:00:50', '2024-12-02 18:23:28');
 
 -- --------------------------------------------------------
 
@@ -510,8 +593,30 @@ CREATE TABLE `tipo_salidas` (
 --
 
 INSERT INTO `tipo_salidas` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'TIPO DE SALIDA #1', 'DESC. TIPO SALIDA 1', '2024-05-17', '2024-05-17 19:07:29', '2024-05-17 19:07:29'),
-(2, 'TIPO DE SALIDA #2', '', '2024-05-17', '2024-05-17 19:07:38', '2024-05-17 19:07:38');
+(1, 'TIPO DE SALIDA UNO', 'DESC. TIPO SALIDA UNO', '2024-05-17', '2024-05-17 19:07:29', '2024-12-02 18:27:11'),
+(2, 'TIPO DE SALIDA DOS', '', '2024-05-17', '2024-05-17 19:07:38', '2024-12-02 18:27:21');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `unidads`
+--
+
+CREATE TABLE `unidads` (
+  `id` bigint UNSIGNED NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(700) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `unidads`
+--
+
+INSERT INTO `unidads` (`id`, `nombre`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'UNIDAD LA PAZ', 'DESC UNIDAD  LA PAZ', '2024-12-02 18:56:34', '2024-12-02 18:56:40'),
+(2, 'UNIDAD SANTA CRUZ', '', '2024-12-02 18:56:46', '2024-12-02 18:56:46');
 
 -- --------------------------------------------------------
 
@@ -545,8 +650,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `usuario`, `password`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `email`, `fono`, `tipo`, `foto`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin', NULL, NULL, '0', '', '', 'admin@gmail.com', '', 'ADMINISTRADOR', NULL, 1, '2024-01-31', NULL, NULL),
-(2, 'JPERES', '$2y$12$LN2T5t7hPBB1hvyDpC5uFeFhWLYXLTs8Ec8mNBB0HSetrhXNrOGtG', 'JUAN', 'PERES', 'MAMANI', '111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '77777777', 'SUPERVISOR DE ALMACEN', '1715274374_JPERES.jpg', 1, '2024-05-09', '2024-05-09 17:06:14', '2024-05-09 17:06:14'),
-(3, 'MMAMANI', '$2y$12$sjG/cz2q0H7k0nn1.Ya6GODlBnj6DvplYcTej8bU3RBGWt9dCJ/Pm', 'MARCOS', 'MAMANI', 'MAMANI', '2222', 'LP', 'LOS OLIVOS', '', '7777777', 'ALMACENERO', NULL, 1, '2024-05-20', '2024-05-20 16:09:22', '2024-05-20 16:09:22');
+(2, 'JPERES', '$2y$12$S5xCEOkchMcOqZESxFF.qOGydDkt8nvr3VcB0O5yqnQyqa/3JqptS', 'JUAN', 'PERES', 'MAMANI', '111', 'LP', 'LOS OLIVOS NRO. 2', 'JUAN@GMAIL.COM', '77777777', 'SUPERVISOR DE ALMACEN', '1715274374_JPERES.jpg', 1, '2024-05-09', '2024-05-09 17:06:14', '2024-12-02 18:43:40'),
+(3, 'MMAMANI', '$2y$12$sjG/cz2q0H7k0nn1.Ya6GODlBnj6DvplYcTej8bU3RBGWt9dCJ/Pm', 'MARCOS', 'MAMANI', '', '2222', 'LP', 'LOS OLIVOS', '', '7777777', 'ALMACENERO', NULL, 1, '2024-05-20', '2024-05-20 16:09:22', '2024-12-02 18:21:09');
 
 --
 -- Índices para tablas volcadas
@@ -641,7 +746,8 @@ ALTER TABLE `proveedors`
 --
 ALTER TABLE `salidas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `salidas_tipo_salida_id_foreign` (`tipo_salida_id`);
+  ADD KEY `salidas_tipo_salida_id_foreign` (`tipo_salida_id`),
+  ADD KEY `salidas_unidad_solicitante_foreign` (`unidad_solicitante`);
 
 --
 -- Indices de la tabla `salida_detalles`
@@ -667,6 +773,12 @@ ALTER TABLE `tipo_productos`
 -- Indices de la tabla `tipo_salidas`
 --
 ALTER TABLE `tipo_salidas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `unidads`
+--
+ALTER TABLE `unidads`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -696,43 +808,43 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT de la tabla `ingresos`
 --
 ALTER TABLE `ingresos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso_detalles`
 --
 ALTER TABLE `ingreso_detalles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `kardex_productos`
 --
 ALTER TABLE `kardex_productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `notificacions`
 --
 ALTER TABLE `notificacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `notificacion_users`
 --
 ALTER TABLE `notificacion_users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -756,13 +868,13 @@ ALTER TABLE `proveedors`
 -- AUTO_INCREMENT de la tabla `salidas`
 --
 ALTER TABLE `salidas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `salida_detalles`
 --
 ALTER TABLE `salida_detalles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_ingresos`
@@ -783,10 +895,16 @@ ALTER TABLE `tipo_salidas`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `unidads`
+--
+ALTER TABLE `unidads`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -830,7 +948,8 @@ ALTER TABLE `productos`
 -- Filtros para la tabla `salidas`
 --
 ALTER TABLE `salidas`
-  ADD CONSTRAINT `salidas_tipo_salida_id_foreign` FOREIGN KEY (`tipo_salida_id`) REFERENCES `tipo_salidas` (`id`);
+  ADD CONSTRAINT `salidas_tipo_salida_id_foreign` FOREIGN KEY (`tipo_salida_id`) REFERENCES `tipo_salidas` (`id`),
+  ADD CONSTRAINT `salidas_unidad_solicitante_foreign` FOREIGN KEY (`unidad_solicitante`) REFERENCES `unidads` (`id`);
 
 --
 -- Filtros para la tabla `salida_detalles`

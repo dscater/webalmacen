@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\HistorialAccion;
-use App\Models\Obra;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,19 +15,20 @@ use Illuminate\Validation\ValidationException;
 class UsuarioController extends Controller
 {
     public $validacion = [
-        "nombre" => "required|min:1",
-        "paterno" => "required|min:1",
-        "ci" => "required|min:1",
+        'nombre' => 'required|min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu',
+        'paterno' => 'required|min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu',
+        "ci" => "required|min:1|numeric",
         "ci_exp" => "required",
-        "dir" => "required|min:1",
-        "fono" => "required|min:1",
+        "fono" => "required|min:1|numeric",
         "tipo" => "required",
     ];
 
     public $mensajes = [
         "nombre.required" => "Este campo es obligatorio",
         "nombre.min" => "Debes ingresar al menos :min caracteres",
+        'nombre.regex' => 'Debes ingresar solo texto',
         "paterno.required" => "Este campo es obligatorio",
+        'paterno.regex' => 'Debes ingresar solo texto',
         "paterno.min" => "Debes ingresar al menos :min caracteres",
         "ci.required" => "Este campo es obligatorio",
         "ci.unique" => "Este C.I. ya fue registrado",
@@ -96,6 +96,18 @@ class UsuarioController extends Controller
         if ($request->hasFile('foto')) {
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:2048';
         }
+
+        if ($request->materno) {
+            $this->validacion['materno'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
+
+        if ($request->dir) {
+            $this->validacion['dir'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
+
+        if ($request->email) {
+            $this->validacion['email'] = 'email';
+        }
         $request->validate($this->validacion, $this->mensajes);
 
         $cont = 0;
@@ -145,15 +157,23 @@ class UsuarioController extends Controller
         }
     }
 
-    public function show(User $user)
-    {
-    }
+    public function show(User $user) {}
 
     public function update(User $user, Request $request)
     {
         $this->validacion['ci'] = 'required|min:4|numeric|unique:users,ci,' . $user->id;
         if ($request->hasFile('foto')) {
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:2048';
+        }
+        if ($request->materno) {
+            $this->validacion['materno'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
+        if ($request->email) {
+            $this->validacion['email'] = 'email';
+        }
+
+        if ($request->dir) {
+            $this->validacion['dir'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
         }
         $request->validate($this->validacion, $this->mensajes);
         DB::beginTransaction();
@@ -199,7 +219,7 @@ class UsuarioController extends Controller
     public function actualizaPassword(User $user, Request $request)
     {
         $request->validate([
-            "password" => "required"
+            "password" => "required|confirmed"
         ]);
         DB::beginTransaction();
         try {
@@ -235,19 +255,6 @@ class UsuarioController extends Controller
     {
         DB::beginTransaction();
         try {
-            $usos = Obra::where("gerente_regional_id", $user->id)->get();
-            if (count($usos) > 0) {
-                throw ValidationException::withMessages([
-                    'error' =>  "No es posible eliminar este registro porque esta siendo utilizado por otros registros",
-                ]);
-            }
-            $usos = Obra::where("encargado_obra_id", $user->id)->get();
-            if (count($usos) > 0) {
-                throw ValidationException::withMessages([
-                    'error' =>  "No es posible eliminar este registro porque esta siendo utilizado por otros registros",
-                ]);
-            }
-
             $antiguo = $user->foto;
             if ($antiguo != 'default.png') {
                 \File::delete(public_path() . '/imgs/users/' . $antiguo);

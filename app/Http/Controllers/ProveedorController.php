@@ -14,12 +14,18 @@ use Inertia\Inertia;
 class ProveedorController extends Controller
 {
     public $validacion = [
-        "razon_social" => "required|min:2",
+        'razon_social' => 'required|min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu',
     ];
 
     public $mensajes = [
         "razon_social.required" => "Este campo es obligatorio",
         "razon_social.min" => "Debes ingresar al menos :min caracteres",
+        'razon_social.regex' => 'Debes ingresar solo texto',
+        'nit.numeric' => 'Debes ingresar un valor númerico',
+        'dir.regex' => 'Debes ingresar solo texto',
+        'nombre_contacto.regex' => 'Debes ingresar solo texto',
+        'fono.numeric' => 'Debes ingresar un valor númerico',
+        'descripcion.regex' => 'Debes ingresar solo texto',
     ];
 
     public function index()
@@ -61,6 +67,22 @@ class ProveedorController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->nit) {
+            $this->validacion["nit"] = "numeric";
+        }
+        if ($request->dir) {
+            $this->validacion["dir"] = "min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu";
+        }
+        if ($request->nombre_contacto) {
+            $this->validacion["nombre_contacto"] = "min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu";
+        }
+        if ($request->fono) {
+            $this->validacion["fono"] = "numeric";
+        }
+        if ($request->descripcion) {
+            $this->validacion["descripcion"] = "min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu";
+        }
+
         $request->validate($this->validacion, $this->mensajes);
         $request['fecha_registro'] = date('Y-m-d');
         DB::beginTransaction();
@@ -88,12 +110,25 @@ class ProveedorController extends Controller
         }
     }
 
-    public function show(Proveedor $proveedor)
-    {
-    }
+    public function show(Proveedor $proveedor) {}
 
     public function update(Proveedor $proveedor, Request $request)
     {
+        if ($request->nit) {
+            $this->validacion["nit"] = "numeric";
+        }
+        if ($request->dir) {
+            $this->validacion["dir"] = "min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu";
+        }
+        if ($request->nombre_contacto) {
+            $this->validacion["nombre_contacto"] = "min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu";
+        }
+        if ($request->fono) {
+            $this->validacion["fono"] = "numeric";
+        }
+        if ($request->descripcion) {
+            $this->validacion["descripcion"] = "min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu";
+        }
         $request->validate($this->validacion, $this->mensajes);
         DB::beginTransaction();
         try {

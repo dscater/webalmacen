@@ -189,7 +189,7 @@ const verUbicación = async (item) => {};
                                     <tr>
                                         <td>{{ item.id }}</td>
                                         <td>{{ item.tipo_salida.nombre }}</td>
-                                        <td>{{ item.unidad_solicitante }}</td>
+                                        <td>{{ item.unidad.nombre }}</td>
                                         <td>{{ item.descripcion }}</td>
                                         <td>{{ item.fecha_salida_t }}</td>
                                         <td>{{ item.fecha_registro_t }}</td>
@@ -329,7 +329,7 @@ const verUbicación = async (item) => {};
                                                     data-label="Unidad Solicitante:"
                                                 >
                                                     {{
-                                                        item.unidad_solicitante
+                                                        item.unidad.nombre
                                                     }}
                                                 </li>
                                                 <li

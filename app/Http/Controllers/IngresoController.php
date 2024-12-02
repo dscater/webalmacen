@@ -17,7 +17,7 @@ class IngresoController extends Controller
     public $validacion = [
         "proveedor_id" => "required",
         "tipo_ingreso_id" => "required",
-        "precio" => "required",
+        "precio" => "required|numeric",
         "fecha_ingreso" => "required",
     ];
 
@@ -26,6 +26,8 @@ class IngresoController extends Controller
         "tipo_ingreso_id.required" => "Este campo es obligatorio",
         "precio.required" => "Este campo es obligatorio",
         "fecha_ingreso.required" => "Este campo es obligatorio",
+        'descripcion.regex' => 'Debes ingresar solo texto',
+        "precio.numeric" => "Debes ingresar un valor númerico",
     ];
 
     public function index()
@@ -69,6 +71,9 @@ class IngresoController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->descripcion) {
+            $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/u';
+        }
         if (!isset($request->ingreso_detalles) || count($request->ingreso_detalles) <= 0) {
             throw ValidationException::withMessages([
                 'error' =>  "Debes ingresar al menos un producto",
@@ -80,7 +85,16 @@ class IngresoController extends Controller
         DB::beginTransaction();
         try {
             // crear el Ingreso
-            $nuevo_ingreso = Ingreso::create(array_map('mb_strtoupper', $request->except("ingreso_detalles", "eliminados")));
+            $data_ingreso = [
+                "proveedor_id" => $request["proveedor_id"] ? $request["proveedor_id"] : NULL,
+                "tipo_ingreso_id" => $request["tipo_ingreso_id"] ? $request["tipo_ingreso_id"] : NULL,
+                "precio" => $request["precio"] ? $request["precio"] : NULL,
+                "nro_factura" => $request["nro_factura"] ? $request["nro_factura"] : NULL,
+                "descripcion" => $request["descripcion"] ? mb_strtoupper($request["descripcion"]) : NULL,
+                "fecha_ingreso" => $request["fecha_ingreso"] ? $request["fecha_ingreso"] : NULL,
+                "fecha_registro" => date("Y-m-d"),
+            ];
+            $nuevo_ingreso = Ingreso::create($data_ingreso);
 
             // registrar kardex
             $ingreso_detalles = $request->ingreso_detalles;
@@ -142,6 +156,9 @@ class IngresoController extends Controller
 
     public function update(Ingreso $ingreso, Request $request)
     {
+        if ($request->descripcion) {
+            $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
         $request->validate($this->validacion, $this->mensajes);
         DB::beginTransaction();
         try {

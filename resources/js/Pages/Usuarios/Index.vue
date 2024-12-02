@@ -316,7 +316,7 @@ const eliminarUsuario = (item) => {
                                             >
                                                 {{ item.fono }}
                                             </li>
-                                            <li
+                                            <!-- <li
                                                 class="flex-item"
                                                 data-label="Foto"
                                             >
@@ -333,7 +333,7 @@ const eliminarUsuario = (item) => {
                                                         item.iniciales_nombre
                                                     }}</span>
                                                 </v-avatar>
-                                            </li>
+                                            </li> -->
                                             <li
                                                 class="flex-item"
                                                 data-label="Tipo"

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\HistorialAccion;
-use App\Models\Producto;
-use App\Models\TipoProducto;
+use App\Models\Salida;
+use App\Models\Unidad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
-class TipoProductoController extends Controller
+class UnidadController extends Controller
 {
     public $validacion = [
         'nombre' => 'required|min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu',
@@ -19,42 +19,42 @@ class TipoProductoController extends Controller
 
     public $mensajes = [
         "nombre.required" => "Este campo es obligatorio",
-        "nombre.min" => "Debes ingresar al menos :min caracteres",
         'nombre.regex' => 'Debes ingresar solo texto',
+        "nombre.min" => "Debes ingresar al menos :min caracteres",
         'descripcion.regex' => 'Debes ingresar solo texto',
     ];
 
     public function index()
     {
-        return Inertia::render("TipoProductos/Index");
+        return Inertia::render("Unidads/Index");
     }
 
     public function listado(Request $request)
     {
-        $tipo_productos = TipoProducto::select("tipo_productos.*");
+        $unidads = Unidad::select("unidads.*");
 
         if ($request->order && $request->order == "desc") {
-            $tipo_productos->orderBy("tipo_productos.id", $request->order);
+            $unidads->orderBy("unidads.id", $request->order);
         }
 
-        $tipo_productos = $tipo_productos->get();
+        $unidads = $unidads->get();
 
         return response()->JSON([
-            "tipo_productos" => $tipo_productos
+            "unidads" => $unidads
         ]);
     }
 
     public function paginado(Request $request)
     {
         $search = $request->search;
-        $tipo_productos = TipoProducto::select("tipo_productos.*");
+        $unidads = Unidad::select("unidads.*");
         if (trim($search) != "") {
-            $tipo_productos->where("nombre", "LIKE", "%$search%");
+            $unidads->where("nombre", "LIKE", "%$search%");
         }
 
-        $tipo_productos = $tipo_productos->paginate($request->itemsPerPage);
+        $unidads = $unidads->paginate($request->itemsPerPage);
         return response()->JSON([
-            "tipo_productos" => $tipo_productos
+            "unidads" => $unidads
         ]);
     }
 
@@ -67,21 +67,21 @@ class TipoProductoController extends Controller
         $request['fecha_registro'] = date('Y-m-d');
         DB::beginTransaction();
         try {
-            // crear el TipoProducto
-            $nuevo_tipo_producto = TipoProducto::create(array_map('mb_strtoupper', $request->all()));
-            $datos_original = HistorialAccion::getDetalleRegistro($nuevo_tipo_producto, "tipo_productos");
+            // crear el Unidad
+            $nuevo_unidad = Unidad::create(array_map('mb_strtoupper', $request->all()));
+            $datos_original = HistorialAccion::getDetalleRegistro($nuevo_unidad, "unidads");
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' REGISTRO UN TIPO DE PRODUCTO',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' REGISTRO UNA UNIDAD',
                 'datos_original' => $datos_original,
-                'modulo' => 'TIPO DE PRODUCTOS',
+                'modulo' => 'UNIDADES',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
 
             DB::commit();
-            return redirect()->route("tipo_productos.index")->with("bien", "Registro realizado");
+            return redirect()->route("unidads.index")->with("bien", "Registro realizado");
         } catch (\Exception $e) {
             DB::rollBack();
             throw ValidationException::withMessages([
@@ -90,9 +90,9 @@ class TipoProductoController extends Controller
         }
     }
 
-    public function show(TipoProducto $tipo_producto) {}
+    public function show(Unidad $unidad) {}
 
-    public function update(TipoProducto $tipo_producto, Request $request)
+    public function update(Unidad $unidad, Request $request)
     {
         if ($request->descripcion) {
             $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
@@ -100,23 +100,23 @@ class TipoProductoController extends Controller
         $request->validate($this->validacion, $this->mensajes);
         DB::beginTransaction();
         try {
-            $datos_original = HistorialAccion::getDetalleRegistro($tipo_producto, "tipo_productos");
-            $tipo_producto->update(array_map('mb_strtoupper', $request->all()));
+            $datos_original = HistorialAccion::getDetalleRegistro($unidad, "unidads");
+            $unidad->update(array_map('mb_strtoupper', $request->all()));
 
-            $datos_nuevo = HistorialAccion::getDetalleRegistro($tipo_producto, "tipo_productos");
+            $datos_nuevo = HistorialAccion::getDetalleRegistro($unidad, "unidads");
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' MODIFICÓ UN TIPO DE PRODUCTO',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' MODIFICÓ UNA UNIDAD',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
-                'modulo' => 'TIPO DE PRODUCTOS',
+                'modulo' => 'UNIDADES',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
 
             DB::commit();
-            return redirect()->route("tipo_productos.index")->with("bien", "Registro actualizado");
+            return redirect()->route("unidads.index")->with("bien", "Registro actualizado");
         } catch (\Exception $e) {
             DB::rollBack();
             throw ValidationException::withMessages([
@@ -124,25 +124,25 @@ class TipoProductoController extends Controller
             ]);
         }
     }
-    public function destroy(TipoProducto $tipo_producto)
+    public function destroy(Unidad $unidad)
     {
         DB::beginTransaction();
         try {
-            $usos = Producto::where("tipo_producto_id", $tipo_producto->id)->get();
+            $usos = Salida::where("unidad_id", $unidad->id)->get();
             if (count($usos) > 0) {
                 throw ValidationException::withMessages([
                     'error' =>  "No es posible eliminar este registro porque esta siendo utilizado por otros registros",
                 ]);
             }
 
-            $datos_original = HistorialAccion::getDetalleRegistro($tipo_producto, "tipo_productos");
-            $tipo_producto->delete();
+            $datos_original = HistorialAccion::getDetalleRegistro($unidad, "unidads");
+            $unidad->delete();
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'ELIMINACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' ELIMINÓ UN TIPO DE PRODUCTO',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->user . ' ELIMINÓ UNA UNIDAD',
                 'datos_original' => $datos_original,
-                'modulo' => 'TIPO DE PRODUCTOS',
+                'modulo' => 'UNIDADES',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);

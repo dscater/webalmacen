@@ -15,6 +15,7 @@ const user = ref(auth.user);
 const { getTipoSalidas } = useTipoSalidas();
 const { getProductos } = useProductos();
 
+const listUnidads = ref([]);
 const listTipoSalidas = ref([]);
 const listProductos = ref([]);
 const producto_id = ref(null);
@@ -66,6 +67,12 @@ const cargarListas = async () => {
     listProductos.value = await getProductos();
 };
 
+const getUnidads = () => {
+    axios.get(route("unidads.listado")).then((response) => {
+        listUnidads.value = response.data.unidads;
+    });
+};
+
 const agregarSalidaDetalle = () => {
     if (producto_id.value != "" && cantidad.value != "" && cantidad.value > 0) {
         form.salida_detalles.push({
@@ -106,6 +113,7 @@ onMounted(() => {
     } else {
     }
     cargarListas();
+    getUnidads();
 });
 </script>
 
@@ -194,7 +202,7 @@ onMounted(() => {
                                     ></v-autocomplete>
                                 </v-col>
                                 <v-col cols="12" sm="12" md="12" xl="6">
-                                    <v-text-field
+                                    <v-autocomplete
                                         :hide-details="
                                             form.errors?.unidad_solicitante
                                                 ? false
@@ -207,17 +215,21 @@ onMounted(() => {
                                         "
                                         :error-messages="
                                             form.errors?.unidad_solicitante
-                                                ? form.errors
-                                                      ?.unidad_solicitante
+                                                ? form.errors?.unidad_solicitante
                                                 : ''
                                         "
                                         density="compact"
                                         variant="underlined"
                                         color="primary"
-                                        label="Unidad Solicitante*"
-                                        required
+                                        no-data-text="Sin registros"
+                                        clearable
+                                        :items="listUnidads"
+                                        item-value="id"
+                                        item-title="nombre"
+                                        label="Seleccionar Unidad Solicitante*"
                                         v-model="form.unidad_solicitante"
-                                    ></v-text-field>
+                                        required
+                                    ></v-autocomplete>
                                 </v-col>
                                 <v-col cols="12" sm="12" md="12" xl="6">
                                     <v-text-field

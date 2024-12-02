@@ -1,6 +1,6 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
-import { useUsuarios } from "@/composables/usuarios/useUsuarios";
+import { useUnidads } from "@/composables/unidads/useUnidads";
 import { watch, ref, computed, defineEmits } from "vue";
 const props = defineProps({
     open_dialog: {
@@ -13,17 +13,17 @@ const props = defineProps({
     },
 });
 
-const { oUsuario, limpiarUsuario } = useUsuarios();
+const { oUnidad, limpiarUnidad } = useUnidads();
 const accion = ref(props.accion_dialog);
 const dialog = ref(props.open_dialog);
-let form = useForm({
-    password: "",
-    password_confirmation: "",
-});
+let form = useForm(oUnidad.value);
 watch(
     () => props.open_dialog,
     (newValue) => {
         dialog.value = newValue;
+        if (dialog.value) {
+            form = useForm(oUnidad.value);
+        }
     }
 );
 watch(
@@ -36,14 +36,18 @@ watch(
 const { flash } = usePage().props;
 
 const tituloDialog = computed(() => {
-    return accion.value == 0 ? `Agregar Usuario` : `Actualizar Contraseña`;
+    return accion.value == 0 ? `Agregar registro` : `Editar registro`;
 });
 
 const enviarFormulario = () => {
-    let url = route("usuarios.password", oUsuario.value.id);
+    let url =
+        form["_method"] == "POST"
+            ? route("unidads.store")
+            : route("unidads.update", form.id);
 
-    form.put(url, {
+    form.post(url, {
         preserveScroll: true,
+        forceFormData: true,
         onSuccess: () => {
             Swal.fire({
                 icon: "success",
@@ -52,9 +56,7 @@ const enviarFormulario = () => {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            form.password = "";
-            form.password_confirmation = "";
-            limpiarUsuario();
+            limpiarUnidad();
             emits("envio-formulario");
         },
         onError: (err) => {
@@ -100,7 +102,7 @@ const cerrarDialog = () => {
                     ></v-icon>
 
                     <v-icon
-                        :icon="accion == 0 ? 'mdi-plus' : 'mdi-key-variant'"
+                        :icon="accion == 0 ? 'mdi-plus' : 'mdi-pencil'"
                     ></v-icon>
                     <span class="text-h5" v-html="tituloDialog"></span>
                 </v-card-title>
@@ -108,66 +110,50 @@ const cerrarDialog = () => {
                     <v-container>
                         <form>
                             <v-row>
-                                <v-col cols="12" class="px-4 text-center">
-                                    <span class="text-body-2"
-                                        >{{ oUsuario.nombre }}
-                                        {{ oUsuario.paterno }}
-                                        {{ oUsuario.materno }}</span
-                                    >
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col cols="12">
+                                <v-col cols="12" sm="6" md="6">
                                     <v-text-field
-                                        :class="
-                                            form.errors?.password ? 'mb-3' : ''
+                                        :hide-details="
+                                            form.errors?.nombre ? false : true
                                         "
                                         :error="
-                                            form.errors?.password ? true : false
+                                            form.errors?.nombre ? true : false
                                         "
                                         :error-messages="
-                                            form.errors?.password
-                                                ? form.errors?.password
+                                            form.errors?.nombre
+                                                ? form.errors?.nombre
                                                 : ''
                                         "
+                                        variant="underlined"
+                                        color="primary"
+                                        label="Nombre de Unidad*"
+                                        required
                                         density="compact"
-                                        placeholder="Ingresa la nueva contraseña"
-                                        prepend-inner-icon="mdi-lock-outline"
-                                        variant="outlined"
-                                        color="grey"
-                                        label="Ingresa la nueva contraseña"
-                                        autocomplete="false"
-                                        v-model="form.password"
-                                        type="password"
+                                        v-model="form.nombre"
                                     ></v-text-field>
                                 </v-col>
-                                <v-col cols="12">
+                                <v-col cols="12" sm="6" md="6">
                                     <v-text-field
-                                        :class="
-                                            form.errors?.password_confirmation
-                                                ? 'mb-3'
-                                                : ''
+                                        :hide-details="
+                                            form.errors?.descripcion
+                                                ? false
+                                                : true
                                         "
                                         :error="
-                                            form.errors?.password_confirmation
+                                            form.errors?.descripcion
                                                 ? true
                                                 : false
                                         "
                                         :error-messages="
-                                            form.errors?.password_confirmation
-                                                ? form.errors
-                                                      ?.password_confirmation
+                                            form.errors?.descripcion
+                                                ? form.errors?.descripcion
                                                 : ''
                                         "
                                         density="compact"
-                                        placeholder="Repetir la contraseña"
-                                        prepend-inner-icon="mdi-lock-outline"
-                                        variant="outlined"
-                                        color="grey"
-                                        label="Ingresa la nueva contraseña"
-                                        autocomplete="false"
-                                        v-model="form.password_confirmation"
-                                        type="password"
+                                        variant="underlined"
+                                        color="primary"
+                                        label="Descripción"
+                                        v-model="form.descripcion"
+                                        required
                                     ></v-text-field>
                                 </v-col>
                             </v-row>

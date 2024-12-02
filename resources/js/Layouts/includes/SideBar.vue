@@ -332,6 +332,26 @@ const scrollActive = () => {
             </v-list-item>
             <v-list-item
                 :class="[
+                    route_current == 'unidads.index' ? 'active' : '',
+                    drawer ? 'px-3' : '',
+                ]"
+                class="mx-3"
+                v-if="oUser.permisos.includes('unidads.index')"
+                prepend-icon="mdi-view-list"
+                @click="cambiarUrl(route('unidads.index'))"
+                link
+            >
+                <v-list-item-title>Unidades</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Unidades</v-tooltip
+                >
+            </v-list-item>
+            <v-list-item
+                :class="[
                     route_current == 'notificacions.index' ? 'active' : '',
                     drawer ? 'px-3' : '',
                 ]"

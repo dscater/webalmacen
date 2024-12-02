@@ -43,4 +43,9 @@ class Salida extends Model
     {
         return $this->hasMany(SalidaDetalle::class, 'salida_id');
     }
+
+    public function unidad()
+    {
+        return $this->belongsTo(Unidad::class, 'unidad_solicitante');
+    }
 }

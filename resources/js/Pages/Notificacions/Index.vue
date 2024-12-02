@@ -41,6 +41,11 @@ const listNotificacions = ref([]);
 const itemsPerPage = ref(5);
 const headers = ref([
     {
+        title: "ID",
+        align: "start",
+        sortable: false,
+    },
+    {
         title: "Evento",
         align: "start",
         sortable: false,
@@ -160,6 +165,9 @@ const verNotificacion = (item) => {
                             <template v-slot:item="{ item }">
                                 <tr v-if="!mobile">
                                     <td>
+                                        {{ item.id }}
+                                    </td>
+                                    <td>
                                         {{ item.evento }}
                                     </td>
                                     <td>
@@ -217,6 +225,12 @@ const verNotificacion = (item) => {
                                 <tr v-else>
                                     <td>
                                         <ul class="flex-content">
+                                            <li
+                                                class="flex-item"
+                                                data-label="Id:"
+                                            >
+                                                {{ item.id }}
+                                            </li>
                                             <li
                                                 class="flex-item"
                                                 data-label="Evento:"

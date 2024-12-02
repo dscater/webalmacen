@@ -25,6 +25,7 @@ class SalidaController extends Controller
         "tipo_salida_id.required" => "Este campo es obligatorio",
         "unidad_solicitante.required" => "Este campo es obligatorio",
         "fecha_salida.required" => "Este campo es obligatorio",
+        'descripcion.regex' => 'Debes ingresar solo texto',
     ];
 
     public function index()
@@ -50,7 +51,7 @@ class SalidaController extends Controller
     public function paginado(Request $request)
     {
         $search = $request->search;
-        $salidas = Salida::with(["proveedor", "tipo_salida", "salida_detalles.producto"])->select("salidas.*");
+        $salidas = Salida::with(["proveedor", "tipo_salida", "salida_detalles.producto", "unidad"])->select("salidas.*");
         if (trim($search) != "") {
             $salidas->where("nombre", "LIKE", "%$search%");
         }
@@ -68,6 +69,9 @@ class SalidaController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->descripcion) {
+            $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
         if (!isset($request->salida_detalles) || count($request->salida_detalles) <= 0) {
             throw ValidationException::withMessages([
                 'error' =>  "Debes ingresar al menos un producto",
@@ -155,6 +159,9 @@ class SalidaController extends Controller
 
     public function update(Salida $salida, Request $request)
     {
+        if ($request->descripcion) {
+            $this->validacion['descripcion'] = 'min:2|regex:/^[\pL\s\.\'\"\,áéíóúÁÉÍÓÚñÑ]+$/uu';
+        }
         $request->validate($this->validacion, $this->mensajes);
         DB::beginTransaction();
         try {

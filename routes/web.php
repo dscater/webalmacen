@@ -19,6 +19,7 @@ use App\Http\Controllers\SalidaController;
 use App\Http\Controllers\TipoIngresoController;
 use App\Http\Controllers\TipoProductoController;
 use App\Http\Controllers\TipoSalidaController;
+use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Foundation\Application;
@@ -144,6 +145,13 @@ Route::middleware('auth')->group(function () {
     Route::get("/salidas/listado", [SalidaController::class, 'listado'])->name("salidas.listado");
     Route::resource("salidas", SalidaController::class)->only(
         ["index", "create", "store", "edit", "update", "show", "destroy"]
+    );
+
+    // UNIDADS
+    Route::get("/unidads/paginado", [UnidadController::class, 'paginado'])->name("unidads.paginado");
+    Route::get("/unidads/listado", [UnidadController::class, 'listado'])->name("unidads.listado");
+    Route::resource("unidads", UnidadController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
     );
 
     // NOTIFICACIONES
