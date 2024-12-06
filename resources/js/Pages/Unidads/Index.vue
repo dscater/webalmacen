@@ -195,10 +195,6 @@ const eliminarUnidad = (item) => {
                                 { value: 25, title: '25' },
                                 { value: 50, title: '50' },
                                 { value: 100, title: '100' },
-                                {
-                                    value: -1,
-                                    title: 'Todos',
-                                },
                             ]"
                         >
                             <template v-slot:item="{ item }">
