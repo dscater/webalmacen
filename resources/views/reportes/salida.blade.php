@@ -181,7 +181,7 @@
         <tbody>
             <tr>
                 <td class="bold" width="16%">Unidad Solicitante:</td>
-                <td>{{ $salida->unidad_solicitante }}</td>
+                <td>{{ $salida->unidad->nombre }}</td>
                 <td class="bold" width="14%">Tipo de Salida:</td>
                 <td>{{ $salida->tipo_salida->nombre }}</td>
             </tr>

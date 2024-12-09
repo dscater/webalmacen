@@ -167,13 +167,25 @@ const verNotificacion = (item) => {
                                         {{ item.evento }}
                                     </td>
                                     <td>
-                                        <span v-if="item.ingreso_detalle">
+                                        <span
+                                            v-if="
+                                                item.ingreso_detalle &&
+                                                item.evento ==
+                                                    'INGRESO DE PRODUCTO'
+                                            "
+                                        >
                                             {{
                                                 item.ingreso_detalle.producto
                                                     .nombre
                                             }}
                                         </span>
-                                        <span v-if="item.salida_detalle">
+                                        <span
+                                            v-if="
+                                                item.salida_detalle &&
+                                                item.evento ==
+                                                    'SALIDA DE PRODUCTO'
+                                            "
+                                        >
                                             {{
                                                 item.salida_detalle.producto
                                                     .nombre
@@ -181,10 +193,22 @@ const verNotificacion = (item) => {
                                         </span>
                                     </td>
                                     <td>
-                                        <span v-if="item.ingreso_detalle">
+                                        <span
+                                            v-if="
+                                                item.ingreso_detalle &&
+                                                item.evento ==
+                                                    'INGRESO DE PRODUCTO'
+                                            "
+                                        >
                                             {{ item.ingreso_detalle.cantidad }}
                                         </span>
-                                        <span v-if="item.salida_detalle">
+                                        <span
+                                            v-if="
+                                                item.salida_detalle &&
+                                                item.evento ==
+                                                    'SALIDA DE PRODUCTO'
+                                            "
+                                        >
                                             {{ item.salida_detalle.cantidad }}
                                         </span>
                                     </td>
@@ -192,13 +216,25 @@ const verNotificacion = (item) => {
                                         {{ item.descripcion }}
                                     </td>
                                     <td>
-                                        <span v-if="item.ingreso_detalle">
+                                        <span
+                                            v-if="
+                                                item.ingreso_detalle &&
+                                                item.evento ==
+                                                    'INGRESO DE PRODUCTO'
+                                            "
+                                        >
                                             {{
                                                 item.ingreso_detalle.ingreso
                                                     .tipo_ingreso.nombre
                                             }}
                                         </span>
-                                        <span v-if="item.salida_detalle">
+                                        <span
+                                            v-if="
+                                                item.salida_detalle &&
+                                                item.evento ==
+                                                    'SALIDA DE PRODUCTO'
+                                            "
+                                        >
                                             {{
                                                 item.salida_detalle.salida
                                                     .tipo_salida.nombre
@@ -238,7 +274,11 @@ const verNotificacion = (item) => {
                                                 data-label="Producto:"
                                             >
                                                 <span
-                                                    v-if="item.ingreso_detalle"
+                                                    v-if="
+                                                        item.ingreso_detalle &&
+                                                        item.evento ==
+                                                            'INGRESO DE PRODUCTO'
+                                                    "
                                                 >
                                                     {{
                                                         item.ingreso_detalle
@@ -246,7 +286,11 @@ const verNotificacion = (item) => {
                                                     }}
                                                 </span>
                                                 <span
-                                                    v-if="item.salida_detalle"
+                                                    v-if="
+                                                        item.salida_detalle &&
+                                                        item.evento ==
+                                                            'SALIDA DE PRODUCTO'
+                                                    "
                                                 >
                                                     {{
                                                         item.salida_detalle
@@ -259,7 +303,11 @@ const verNotificacion = (item) => {
                                                 data-label="Cantidad:"
                                             >
                                                 <span
-                                                    v-if="item.ingreso_detalle"
+                                                    v-if="
+                                                        item.ingreso_detalle &&
+                                                        item.evento ==
+                                                            'INGRESO DE PRODUCTO'
+                                                    "
                                                 >
                                                     {{
                                                         item.ingreso_detalle
@@ -267,7 +315,11 @@ const verNotificacion = (item) => {
                                                     }}
                                                 </span>
                                                 <span
-                                                    v-if="item.salida_detalle"
+                                                    v-if="
+                                                        item.salida_detalle &&
+                                                        item.evento ==
+                                                            'SALIDA DE PRODUCTO'
+                                                    "
                                                 >
                                                     {{
                                                         item.salida_detalle
@@ -286,7 +338,11 @@ const verNotificacion = (item) => {
                                                 data-label="Tipo Ingreso/Salida:"
                                             >
                                                 <span
-                                                    v-if="item.ingreso_detalle"
+                                                    v-if="
+                                                        item.ingreso_detalle &&
+                                                        item.evento ==
+                                                            'INGRESO DE PRODUCTO'
+                                                    "
                                                 >
                                                     {{
                                                         item.ingreso_detalle
@@ -295,7 +351,11 @@ const verNotificacion = (item) => {
                                                     }}
                                                 </span>
                                                 <span
-                                                    v-if="item.salida_detalle"
+                                                    v-if="
+                                                        item.salida_detalle &&
+                                                        item.evento ==
+                                                            'SALIDA DE PRODUCTO'
+                                                    "
                                                 >
                                                     {{
                                                         item.salida_detalle

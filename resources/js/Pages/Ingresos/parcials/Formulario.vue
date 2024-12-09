@@ -22,6 +22,7 @@ const listTipoIngresos = ref([]);
 const listProductos = ref([]);
 const producto_id = ref(null);
 const cantidad = ref(0);
+const precio = ref(0);
 const tituloDialog = computed(() => {
     return oIngreso.id == 0 ? `Registrar Ingreso` : `Editar Ingreso`;
 });
@@ -71,26 +72,37 @@ const cargarListas = async () => {
 };
 
 const agregarIngresoDetalle = () => {
-    if (producto_id.value != "" && cantidad.value != "" && cantidad.value > 0) {
+    if (
+        producto_id.value != "" &&
+        cantidad.value != "" &&
+        cantidad.value > 0 &&
+        precio.value > 0
+    ) {
+        const total = parseFloat(cantidad.value) * parseFloat(precio.value);
+
         form.ingreso_detalles.push({
             id: 0,
             ingreso_id: 0,
             producto_id: producto_id.value,
             producto: getProducto(producto_id.value),
             cantidad: cantidad.value,
+            precio: precio.value,
+            total: total,
         });
 
         producto_id.value = null;
         cantidad.value = 0;
+        precio.value = 0;
     } else {
         Swal.fire({
             icon: "error",
             title: "Error",
-            text: `Debes seleccionar el producto e indicar una cantidad`,
+            text: `Debes seleccionar el producto, la cantidad y el precio`,
             confirmButtonColor: "#3085d6",
             confirmButtonText: `Aceptar`,
         });
     }
+    calculaTotal();
 };
 
 const quitarIngresoDetalle = (index, id) => {
@@ -98,11 +110,20 @@ const quitarIngresoDetalle = (index, id) => {
         form.eliminados.push(id);
     }
     form.ingreso_detalles.splice(index, 1);
+    calculaTotal();
 };
 
 const getProducto = (id) => {
     let producto = listProductos.value.filter((elem) => elem.id == id)[0];
     return producto;
+};
+
+const calculaTotal = () => {
+    const total = form.ingreso_detalles.reduce(
+        (sum, item) => sum + item.total,
+        0
+    );
+    form.precio = total;
 };
 
 onMounted(() => {
@@ -243,12 +264,13 @@ onMounted(() => {
                                         density="compact"
                                         variant="underlined"
                                         color="primary"
-                                        label="Precio*"
+                                        label="Precio (automatico)*"
                                         type="number"
                                         step="0.01"
                                         min="0"
                                         required
                                         v-model="form.precio"
+                                        readonly
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="12" md="12" xl="6">
@@ -340,7 +362,7 @@ onMounted(() => {
                 </v-card-title>
                 <v-card-text>
                     <v-row class="py-3">
-                        <v-col cols="12" md="6">
+                        <v-col cols="12">
                             <v-autocomplete
                                 :hide-details="true"
                                 density="compact"
@@ -370,6 +392,20 @@ onMounted(() => {
                                 v-model="cantidad"
                             ></v-text-field>
                         </v-col>
+                        <v-col cols="12" md="6">
+                            <v-text-field
+                                :hide-details="true"
+                                density="compact"
+                                variant="underlined"
+                                color="primary"
+                                label="Precio unitario"
+                                type="number"
+                                step="0.01"
+                                min="0"
+                                required
+                                v-model="precio"
+                            ></v-text-field>
+                        </v-col>
                         <v-col cols="12">
                             <v-btn
                                 prepend-icon="mdi-plus"
@@ -396,6 +432,8 @@ onMounted(() => {
                                         <th>N°</th>
                                         <th>Producto</th>
                                         <th class="text-center">Cantidad</th>
+                                        <th class="text-center">P/U</th>
+                                        <th class="text-center">Total</th>
                                         <th class="text-right">Acción</th>
                                     </tr>
                                 </thead>
@@ -411,6 +449,12 @@ onMounted(() => {
                                         </td>
                                         <td class="text-center">
                                             {{ item.cantidad }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ item.precio }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ item.total }}
                                         </td>
                                         <td class="text-right">
                                             <v-btn

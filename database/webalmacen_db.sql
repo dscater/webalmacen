@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 02-12-2024 a las 19:14:21
+-- Tiempo de generación: 09-12-2024 a las 13:53:26
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -188,7 +188,11 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (87, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN INGRESO DE PRODUCTO', 'id: 3<br/>proveedor_id: 1<br/>tipo_ingreso_id: 1<br/>precio: 3000<br/>nro_factura: 42232332<br/>descripcion: DESCRIPCION INGRESO<br/>fecha_ingreso: 2024-12-02<br/>fecha_registro: 2024-12-02<br/>created_at: 2024-12-02 15:01:29<br/>updated_at: 2024-12-02 15:01:29<br/>', NULL, 'INGRESO DE PRODUCTOS', '2024-12-02', '15:01:29', '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
 (88, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN INGRESO DE PRODUCTO', 'id: 4<br/>proveedor_id: 1<br/>tipo_ingreso_id: 2<br/>precio: 3000<br/>nro_factura: 300000<br/>descripcion: <br/>fecha_ingreso: 2024-12-02<br/>fecha_registro: 2024-12-02<br/>created_at: 2024-12-02 15:04:40<br/>updated_at: 2024-12-02 15:04:40<br/>', NULL, 'INGRESO DE PRODUCTOS', '2024-12-02', '15:04:40', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
 (89, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SALIDA DE PRODUCTO', 'id: 8<br/>tipo_salida_id: 2<br/>unidad_solicitante: 2<br/>descripcion: descripcion salida<br/>fecha_salida: 2024-12-02<br/>fecha_registro: 2024-12-02<br/>created_at: 2024-12-02 15:13:37<br/>updated_at: 2024-12-02 15:13:37<br/>', NULL, 'SALIDA DE PRODUCTOS', '2024-12-02', '15:13:37', '2024-12-02 19:13:37', '2024-12-02 19:13:37'),
-(90, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>codigo: P.2<br/>nro: 2<br/>nombre: PRODUCTO #2<br/>descripcion: DESCRIPCION<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 3<br/>stock_actual: 227<br/>precio: 40.00<br/>imagen: <br/>fecha_registro: 2024-05-17<br/>status: 1<br/>created_at: 2024-05-17 12:51:36<br/>updated_at: 2024-12-02 15:04:40<br/>', 'id: 2<br/>codigo: P.2<br/>nro: 2<br/>nombre: PRODUCTO DOS<br/>descripcion: DESCRIPCION<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 3<br/>stock_actual: 227<br/>precio: 40.00<br/>imagen: <br/>fecha_registro: 2024-05-17<br/>status: 1<br/>created_at: 2024-05-17 12:51:36<br/>updated_at: 2024-12-02 15:13:50<br/>', 'PRODUCTOS', '2024-12-02', '15:13:50', '2024-12-02 19:13:50', '2024-12-02 19:13:50');
+(90, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRODUCTO', 'id: 2<br/>codigo: P.2<br/>nro: 2<br/>nombre: PRODUCTO #2<br/>descripcion: DESCRIPCION<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 3<br/>stock_actual: 227<br/>precio: 40.00<br/>imagen: <br/>fecha_registro: 2024-05-17<br/>status: 1<br/>created_at: 2024-05-17 12:51:36<br/>updated_at: 2024-12-02 15:04:40<br/>', 'id: 2<br/>codigo: P.2<br/>nro: 2<br/>nombre: PRODUCTO DOS<br/>descripcion: DESCRIPCION<br/>categoria_id: 2<br/>tipo_producto_id: 2<br/>stock_minimo: 3<br/>stock_actual: 227<br/>precio: 40.00<br/>imagen: <br/>fecha_registro: 2024-05-17<br/>status: 1<br/>created_at: 2024-05-17 12:51:36<br/>updated_at: 2024-12-02 15:13:50<br/>', 'PRODUCTOS', '2024-12-02', '15:13:50', '2024-12-02 19:13:50', '2024-12-02 19:13:50'),
+(91, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA UNIDAD', 'id: 3<br/>nombre: ASD<br/>descripcion: ASD<br/>created_at: 2024-12-09 09:08:12<br/>updated_at: 2024-12-09 09:08:12<br/>', NULL, 'UNIDADES', '2024-12-09', '09:08:12', '2024-12-09 13:08:12', '2024-12-09 13:08:12'),
+(92, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA UNIDAD', 'id: 3<br/>nombre: ASD<br/>descripcion: ASD<br/>created_at: 2024-12-09 09:08:12<br/>updated_at: 2024-12-09 09:08:12<br/>', NULL, 'UNIDADES', '2024-12-09', '09:08:15', '2024-12-09 13:08:15', '2024-12-09 13:08:15'),
+(93, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN INGRESO DE PRODUCTO', 'id: 5<br/>proveedor_id: 2<br/>tipo_ingreso_id: 2<br/>precio: 582.5<br/>nro_factura: 119222<br/>descripcion: <br/>fecha_ingreso: 2024-12-09<br/>fecha_registro: 2024-12-09<br/>created_at: 2024-12-09 09:28:56<br/>updated_at: 2024-12-09 09:28:56<br/>', NULL, 'INGRESO DE PRODUCTOS', '2024-12-09', '09:28:56', '2024-12-09 13:28:56', '2024-12-09 13:28:56'),
+(94, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA SALIDA DE PRODUCTO', 'id: 9<br/>tipo_salida_id: 1<br/>unidad_solicitante: 2<br/>descripcion: desc salida<br/>fecha_salida: 2024-12-10<br/>fecha_registro: 2024-12-09<br/>created_at: 2024-12-09 09:33:07<br/>updated_at: 2024-12-09 09:33:07<br/>', NULL, 'SALIDA DE PRODUCTOS', '2024-12-09', '09:33:07', '2024-12-09 13:33:07', '2024-12-09 13:33:07');
 
 -- --------------------------------------------------------
 
@@ -214,10 +218,11 @@ CREATE TABLE `ingresos` (
 --
 
 INSERT INTO `ingresos` (`id`, `proveedor_id`, `tipo_ingreso_id`, `precio`, `nro_factura`, `descripcion`, `fecha_ingreso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 2000.00, '1111111', 'INGRESO INICIAL', '2024-05-17', '2024-05-17', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
-(2, 2, 1, 3000.00, '121231231', '', '2024-05-24', '2024-05-24', '2024-05-24 14:20:18', '2024-05-24 14:20:18'),
-(3, 1, 1, 3000.00, '42232332', 'DESCRIPCION INGRESO', '2024-12-02', '2024-12-02', '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
-(4, 1, 2, 3000.00, '300000', NULL, '2024-12-02', '2024-12-02', '2024-12-02 19:04:40', '2024-12-02 19:04:40');
+(1, 1, 1, 5000.00, '1111111', 'INGRESO INICIAL', '2024-05-17', '2024-05-17', '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(2, 2, 1, 2000.00, '121231231', '', '2024-05-24', '2024-05-24', '2024-05-24 14:20:18', '2024-05-24 14:20:18'),
+(3, 1, 1, 600.00, '42232332', 'DESCRIPCION INGRESO', '2024-12-02', '2024-12-02', '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
+(4, 1, 2, 800.00, '300000', NULL, '2024-12-02', '2024-12-02', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(5, 2, 2, 582.50, '119222', NULL, '2024-12-09', '2024-12-09', '2024-12-09 13:28:56', '2024-12-09 13:28:56');
 
 -- --------------------------------------------------------
 
@@ -230,6 +235,8 @@ CREATE TABLE `ingreso_detalles` (
   `ingreso_id` bigint UNSIGNED NOT NULL,
   `producto_id` bigint UNSIGNED NOT NULL,
   `cantidad` double(8,2) NOT NULL,
+  `precio` decimal(24,2) NOT NULL,
+  `total` decimal(24,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -238,13 +245,15 @@ CREATE TABLE `ingreso_detalles` (
 -- Volcado de datos para la tabla `ingreso_detalles`
 --
 
-INSERT INTO `ingreso_detalles` (`id`, `ingreso_id`, `producto_id`, `cantidad`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 100.00, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
-(2, 1, 2, 150.00, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
-(3, 2, 2, 100.00, '2024-05-24 14:20:18', '2024-05-24 14:20:18'),
-(4, 3, 1, 30.00, '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
-(5, 4, 2, 20.00, '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
-(6, 4, 1, 20.00, '2024-12-02 19:04:40', '2024-12-02 19:04:40');
+INSERT INTO `ingreso_detalles` (`id`, `ingreso_id`, `producto_id`, `cantidad`, `precio`, `total`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 100.00, 20.00, 2000.00, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(2, 1, 2, 150.00, 20.00, 3000.00, '2024-05-17 18:25:29', '2024-05-17 18:25:29'),
+(3, 2, 2, 100.00, 20.00, 2000.00, '2024-05-24 14:20:18', '2024-05-24 14:20:18'),
+(4, 3, 1, 30.00, 20.00, 600.00, '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
+(5, 4, 2, 20.00, 20.00, 400.00, '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(6, 4, 1, 20.00, 20.00, 400.00, '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
+(7, 5, 1, 20.00, 16.00, 320.00, '2024-12-09 13:28:56', '2024-12-09 13:28:56'),
+(8, 5, 2, 15.00, 17.50, 262.50, '2024-12-09 13:28:56', '2024-12-09 13:28:56');
 
 -- --------------------------------------------------------
 
@@ -288,7 +297,11 @@ INSERT INTO `kardex_productos` (`id`, `tipo_registro`, `registro_id`, `producto_
 (11, 'INGRESO', 4, 1, 'DESCRIPCION INGRESO', 20.00, 'INGRESO', 30, NULL, 45, 20.00, 600.00, NULL, 900.00, '2024-12-02', '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
 (12, 'INGRESO', 5, 2, 'INGRESO DE PRODUCTO', 40.00, 'INGRESO', 20, NULL, 227, 40.00, 800.00, NULL, 9080.00, '2024-12-02', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
 (13, 'INGRESO', 6, 1, 'INGRESO DE PRODUCTO', 20.00, 'INGRESO', 20, NULL, 65, 20.00, 400.00, NULL, 1300.00, '2024-12-02', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
-(14, 'SALIDA', 9, 1, 'descripcion salida', 20.00, 'EGRESO', NULL, 7, 58, 20.00, NULL, 140.00, 1160.00, '2024-12-02', '2024-12-02 19:13:37', '2024-12-02 19:13:37');
+(14, 'SALIDA', 9, 1, 'descripcion salida', 20.00, 'EGRESO', NULL, 7, 58, 20.00, NULL, 140.00, 1160.00, '2024-12-02', '2024-12-02 19:13:37', '2024-12-02 19:13:37'),
+(15, 'INGRESO', 7, 1, 'INGRESO DE PRODUCTO', 20.00, 'INGRESO', 20, NULL, 78, 20.00, 400.00, NULL, 1560.00, '2024-12-09', '2024-12-09 13:28:56', '2024-12-09 13:28:56'),
+(16, 'INGRESO', 8, 2, 'INGRESO DE PRODUCTO', 40.00, 'INGRESO', 15, NULL, 242, 40.00, 600.00, NULL, 9680.00, '2024-12-09', '2024-12-09 13:28:56', '2024-12-09 13:28:56'),
+(17, 'SALIDA', 10, 1, 'desc salida', 20.00, 'EGRESO', NULL, 5, 73, 20.00, NULL, 100.00, 1460.00, '2024-12-09', '2024-12-09 13:33:07', '2024-12-09 13:33:07'),
+(18, 'SALIDA', 11, 2, 'desc salida', 40.00, 'EGRESO', NULL, 5, 237, 40.00, NULL, 200.00, 9480.00, '2024-12-09', '2024-12-09 13:33:07', '2024-12-09 13:33:07');
 
 -- --------------------------------------------------------
 
@@ -360,7 +373,11 @@ INSERT INTO `notificacions` (`id`, `evento`, `modulo`, `registro_id`, `descripci
 (11, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 4, 'INGRESO DEL PRODUCTO PRODUCTO UNO', '2024-12-02', '15:01:00', '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
 (12, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 5, 'INGRESO DEL PRODUCTO PRODUCTO #2', '2024-12-02', '15:04:00', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
 (13, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 6, 'INGRESO DEL PRODUCTO PRODUCTO UNO', '2024-12-02', '15:04:00', '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
-(14, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 9, 'SALIDA DEL PRODUCTO PRODUCTO UNO', '2024-12-02', '15:13:00', '2024-12-02 19:13:37', '2024-12-02 19:13:37');
+(14, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 9, 'SALIDA DEL PRODUCTO PRODUCTO UNO', '2024-12-02', '15:13:00', '2024-12-02 19:13:37', '2024-12-02 19:13:37'),
+(15, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 7, 'INGRESO DEL PRODUCTO PRODUCTO UNO', '2024-12-09', '09:28:00', '2024-12-09 13:28:56', '2024-12-09 13:28:56'),
+(16, 'INGRESO DE PRODUCTO', 'INGRESO DETALLE', 8, 'INGRESO DEL PRODUCTO PRODUCTO DOS', '2024-12-09', '09:28:00', '2024-12-09 13:28:56', '2024-12-09 13:28:56'),
+(17, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 10, 'SALIDA DEL PRODUCTO PRODUCTO UNO', '2024-12-09', '09:33:00', '2024-12-09 13:33:07', '2024-12-09 13:33:07'),
+(18, 'SALIDA DE PRODUCTO', 'SALIDA DETALLE', 11, 'SALIDA DEL PRODUCTO PRODUCTO DOS', '2024-12-09', '09:33:00', '2024-12-09 13:33:07', '2024-12-09 13:33:07');
 
 -- --------------------------------------------------------
 
@@ -393,7 +410,11 @@ INSERT INTO `notificacion_users` (`id`, `notificacion_id`, `user_id`, `visto`, `
 (11, 11, 2, 0, '2024-12-02 19:01:29', '2024-12-02 19:01:29'),
 (12, 12, 2, 0, '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
 (13, 13, 2, 0, '2024-12-02 19:04:40', '2024-12-02 19:04:40'),
-(14, 14, 2, 0, '2024-12-02 19:13:37', '2024-12-02 19:13:37');
+(14, 14, 2, 0, '2024-12-02 19:13:37', '2024-12-02 19:13:37'),
+(15, 15, 2, 0, '2024-12-09 13:28:56', '2024-12-09 13:28:56'),
+(16, 16, 2, 0, '2024-12-09 13:28:56', '2024-12-09 13:28:56'),
+(17, 17, 2, 0, '2024-12-09 13:33:07', '2024-12-09 13:33:07'),
+(18, 18, 2, 0, '2024-12-09 13:33:07', '2024-12-09 13:33:07');
 
 -- --------------------------------------------------------
 
@@ -443,8 +464,8 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `codigo`, `nro`, `nombre`, `descripcion`, `categoria_id`, `tipo_producto_id`, `stock_minimo`, `stock_actual`, `precio`, `imagen`, `fecha_registro`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'P.1', 1, 'PRODUCTO UNO', 'DESC. PROD. UNO', 1, 1, 4.00, 58.00, 20.00, '1715878316_1.png', '2024-05-16', 1, '2024-05-16 16:51:56', '2024-12-02 19:13:37'),
-(2, 'P.2', 2, 'PRODUCTO DOS', 'DESCRIPCION', 2, 2, 3.00, 227.00, 40.00, NULL, '2024-05-17', 1, '2024-05-17 16:51:36', '2024-12-02 19:13:50');
+(1, 'P.1', 1, 'PRODUCTO UNO', 'DESC. PROD. UNO', 1, 1, 4.00, 73.00, 20.00, '1715878316_1.png', '2024-05-16', 1, '2024-05-16 16:51:56', '2024-12-09 13:33:07'),
+(2, 'P.2', 2, 'PRODUCTO DOS', 'DESCRIPCION', 2, 2, 3.00, 237.00, 40.00, NULL, '2024-05-17', 1, '2024-05-17 16:51:36', '2024-12-09 13:33:07');
 
 -- --------------------------------------------------------
 
@@ -498,7 +519,8 @@ INSERT INTO `salidas` (`id`, `tipo_salida_id`, `unidad_solicitante`, `descripcio
 (3, 1, 1, 'PRUEBA SALIDA 1', '2024-05-17', '2024-05-17', '2024-05-17 19:47:59', '2024-05-17 19:47:59'),
 (4, 2, 1, 'DESCRIPCION SALIDA', '2024-05-29', '2024-05-29', '2024-05-29 12:24:18', '2024-05-29 12:24:18'),
 (7, 1, 1, 'descripcion', '2024-05-29', '2024-05-29', '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
-(8, 2, 2, 'descripcion salida', '2024-12-02', '2024-12-02', '2024-12-02 19:13:37', '2024-12-02 19:13:37');
+(8, 2, 2, 'descripcion salida', '2024-12-02', '2024-12-02', '2024-12-02 19:13:37', '2024-12-02 19:13:37'),
+(9, 1, 2, 'desc salida', '2024-12-10', '2024-12-09', '2024-12-09 13:33:07', '2024-12-09 13:33:07');
 
 -- --------------------------------------------------------
 
@@ -525,7 +547,9 @@ INSERT INTO `salida_detalles` (`id`, `salida_id`, `producto_id`, `cantidad`, `cr
 (6, 4, 1, 50.00, '2024-05-29 12:24:18', '2024-05-29 12:24:18'),
 (7, 7, 1, 30.00, '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
 (8, 7, 2, 40.00, '2024-05-29 12:37:34', '2024-05-29 12:37:34'),
-(9, 8, 1, 7.00, '2024-12-02 19:13:37', '2024-12-02 19:13:37');
+(9, 8, 1, 7.00, '2024-12-02 19:13:37', '2024-12-02 19:13:37'),
+(10, 9, 1, 5.00, '2024-12-09 13:33:07', '2024-12-09 13:33:07'),
+(11, 9, 2, 5.00, '2024-12-09 13:33:07', '2024-12-09 13:33:07');
 
 -- --------------------------------------------------------
 
@@ -808,25 +832,25 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT de la tabla `ingresos`
 --
 ALTER TABLE `ingresos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso_detalles`
 --
 ALTER TABLE `ingreso_detalles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `kardex_productos`
 --
 ALTER TABLE `kardex_productos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -838,13 +862,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `notificacions`
 --
 ALTER TABLE `notificacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `notificacion_users`
 --
 ALTER TABLE `notificacion_users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -868,13 +892,13 @@ ALTER TABLE `proveedors`
 -- AUTO_INCREMENT de la tabla `salidas`
 --
 ALTER TABLE `salidas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `salida_detalles`
 --
 ALTER TABLE `salida_detalles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_ingresos`
@@ -898,7 +922,7 @@ ALTER TABLE `tipo_salidas`
 -- AUTO_INCREMENT de la tabla `unidads`
 --
 ALTER TABLE `unidads`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

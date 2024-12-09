@@ -56,7 +56,7 @@ class SalidaController extends Controller
             $salidas->where("nombre", "LIKE", "%$search%");
         }
 
-        $salidas = $salidas->paginate($request->itemsPerPage);
+        $salidas = $salidas->orderBy("fecha_salida", "desc")->orderBy("id", "desc")->paginate($request->itemsPerPage);
         return response()->JSON([
             "salidas" => $salidas
         ]);

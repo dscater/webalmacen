@@ -128,13 +128,6 @@ class UnidadController extends Controller
     {
         DB::beginTransaction();
         try {
-            $usos = Salida::where("unidad_id", $unidad->id)->get();
-            if (count($usos) > 0) {
-                throw ValidationException::withMessages([
-                    'error' =>  "No es posible eliminar este registro porque esta siendo utilizado por otros registros",
-                ]);
-            }
-
             $datos_original = HistorialAccion::getDetalleRegistro($unidad, "unidads");
             $unidad->delete();
             HistorialAccion::create([

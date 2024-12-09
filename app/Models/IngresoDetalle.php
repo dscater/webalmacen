@@ -13,6 +13,8 @@ class IngresoDetalle extends Model
         "ingreso_id",
         "producto_id",
         "cantidad",
+        "precio",
+        "total"
     ];
 
     public function ingreso()

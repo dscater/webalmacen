@@ -79,13 +79,17 @@ onMounted(() => {
                                 >Producto:</v-col
                             >
                             <v-col cols="9" class="text-uppercase">
-                                <span v-if="props.notificacion.ingreso_detalle">
+                                <span v-if="props.notificacion.ingreso_detalle &&
+                                                props.notificacion.evento ==
+                                                    'INGRESO DE PRODUCTO'">
                                     {{
                                         props.notificacion.ingreso_detalle
                                             .producto.nombre
                                     }}
                                 </span>
-                                <span v-if="props.notificacion.salida_detalle">
+                                <span v-if="props.notificacion.salida_detalle &&
+                                                props.notificacion.evento ==
+                                                    'SALIDA DE PRODUCTO'">
                                     {{
                                         props.notificacion.salida_detalle
                                             .producto.nombre

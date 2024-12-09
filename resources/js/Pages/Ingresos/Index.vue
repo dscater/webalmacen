@@ -47,7 +47,7 @@ const headers = ref([
         sortable: false,
     },
     { title: "Tipo de Ingreso", align: "start", sortable: false },
-    { title: "Precio", align: "start", sortable: false },
+    { title: "Total", align: "start", sortable: false },
     { title: "Nro. Factura", align: "start", sortable: false },
     { title: "Descripción", align: "start", sortable: false },
     { title: "Fecha de Ingreso", align: "start", sortable: false },
@@ -278,6 +278,16 @@ const verUbicación = async (item) => {};
                                                                 >
                                                                     Cantidad
                                                                 </th>
+                                                                <th
+                                                                    class="text-center"
+                                                                >
+                                                                    P/U
+                                                                </th>
+                                                                <th
+                                                                    class="text-center"
+                                                                >
+                                                                    Total
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -302,6 +312,16 @@ const verUbicación = async (item) => {};
                                                                 <td>
                                                                     {{
                                                                         item.cantidad
+                                                                    }}
+                                                                </td>
+                                                                <td>
+                                                                    {{
+                                                                        item.precio
+                                                                    }}
+                                                                </td>
+                                                                <td>
+                                                                    {{
+                                                                        item.total
                                                                     }}
                                                                 </td>
                                                             </tr>
@@ -341,7 +361,7 @@ const verUbicación = async (item) => {};
                                                 </li>
                                                 <li
                                                     class="flex-item"
-                                                    data-label="Precio:"
+                                                    data-label="Total:"
                                                 >
                                                     {{ item.precio }}
                                                 </li>
@@ -418,6 +438,18 @@ const verUbicación = async (item) => {};
                                                                         Cantidad:
                                                                         {{
                                                                             item.cantidad
+                                                                        }}
+                                                                    </td>
+                                                                    <td>
+                                                                        Precio:
+                                                                        {{
+                                                                            item.precio
+                                                                        }}
+                                                                    </td>
+                                                                    <td>
+                                                                        Total:
+                                                                        {{
+                                                                            item.total
                                                                         }}
                                                                     </td>
                                                                 </tr>

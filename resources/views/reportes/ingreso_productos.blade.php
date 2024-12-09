@@ -138,7 +138,17 @@
             color: white;
         }
 
-        .txt_rojo {}
+        .bold {
+            font-weight: bold;
+        }
+
+        .derecha {
+            text-align: right;
+        }
+
+        .text-md {
+            font-size: 9pt;
+        }
 
         .img_celda img {
             width: 45px;
@@ -164,37 +174,45 @@
                 <th width="3%">N°</th>
                 <th>PROVEEDOR</th>
                 <th>TIPO DE INGRESO</th>
-                <th>PRECIO</th>
                 <th>NRO. FACTURA</th>
                 <th>DESCRIPCIÓN</th>
-                <th>PRODUCTO - CANTIDAD</th>
-                <th>FECHA DE INGRESO</th>
-                <th width="9%">FECHA DE REGISTRO</th>
+                <th>PRODUCTO - CANTIDAD - P/U</th>
+                <th width="5%">FECHA DE INGRESO</th>
+                <th width="5%">FECHA DE REGISTRO</th>
+                <th width="8%">TOTAL</th>
             </tr>
         </thead>
         <tbody>
             @php
                 $cont = 1;
+                $total = 0;
             @endphp
             @foreach ($ingreso_productos as $ingreso)
                 <tr>
                     <td class="centreado">{{ $cont++ }}</td>
                     <td class="">{{ $ingreso->proveedor->razon_social }}</td>
                     <td class="">{{ $ingreso->tipo_ingreso->nombre }}</td>
-                    <td class="">{{ $ingreso->precio }}</td>
                     <td class="">{{ $ingreso->nro_factura }}</td>
                     <td class="">{{ $ingreso->descripcion }}</td>
                     <td class="">
-                        <ul>
+                        <ul style="padding-left: 10px">
                             @foreach ($ingreso->ingreso_detalles as $id)
-                                <li>{{ $id->producto->nombre }} - {{ $id->cantidad }}</li>
+                                <li>{{ $id->producto->nombre }} - {{ $id->cantidad }} - {{ $id->precio }}</li>
                             @endforeach
                         </ul>
                     </td>
                     <td class="">{{ $ingreso->fecha_ingreso_t }}</td>
                     <td class="centreado">{{ $ingreso->fecha_registro_t }}</td>
+                    <td class="centreado">{{ $ingreso->precio }}</td>
                 </tr>
+                @php
+                    $total += (float) $ingreso->precio;
+                @endphp
             @endforeach
+            <tr>
+                <td class="text-md derecha bold" colspan="8">TOTAL</td>
+                <td class="text-md bold centreado">{{ number_format($total, 2, '.', '') }}</td>
+            </tr>
         </tbody>
     </table>
 </body>

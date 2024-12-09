@@ -67,7 +67,7 @@ onMounted(() => {
                             {{ oIngreso.tipo_ingreso.nombre }}
                         </p>
                         <p class="mb-2">
-                            <strong>Precio: </strong> {{ oIngreso.precio }}
+                            <strong>Total: </strong> {{ oIngreso.precio }}
                         </p>
                         <p class="mb-2">
                             <strong>Nro. de Factura: </strong>
@@ -81,9 +81,53 @@ onMounted(() => {
                             <strong>Fecha de Ingreso: </strong>
                             {{ oIngreso.fecha_ingreso_t }}
                         </p>
+
+                        <v-row>
+                            <v-col cols="12">
+                                <v-table class="border">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">N°</th>
+                                            <th class="text-center">
+                                                Producto
+                                            </th>
+                                            <th class="text-center">
+                                                Cantidad
+                                            </th>
+                                            <th class="text-center">P/U</th>
+                                            <th class="text-center">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            v-for="(
+                                                item, index
+                                            ) in props.ingreso.ingreso_detalles"
+                                        >
+                                            <td>
+                                                {{ index + 1 }}
+                                            </td>
+                                            <td>
+                                                {{ item.producto.nombre }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ item.cantidad }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ item.precio }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ item.total }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </v-table>
+                            </v-col>
+                        </v-row>
+
                         <v-btn
                             prepend-icon="mdi-arrow-left"
-                            class="mr-2"
+                            class="mr-2 mt-3"
                             @click="cambiarUrl(route('ingresos.index'))"
                         >
                             Volver</v-btn

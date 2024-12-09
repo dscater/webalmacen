@@ -16,6 +16,7 @@ class IngresoController extends Controller
 {
     public $validacion = [
         "proveedor_id" => "required",
+        "nro_factura" => "required",
         "tipo_ingreso_id" => "required",
         "precio" => "required|numeric",
         "fecha_ingreso" => "required",
@@ -24,6 +25,7 @@ class IngresoController extends Controller
     public $mensajes = [
         "proveedor_id.required" => "Este campo es obligatorio",
         "tipo_ingreso_id.required" => "Este campo es obligatorio",
+        "nro_factura.required" => "Este campo es obligatorio",
         "precio.required" => "Este campo es obligatorio",
         "fecha_ingreso.required" => "Este campo es obligatorio",
         'descripcion.regex' => 'Debes ingresar solo texto',
@@ -58,7 +60,7 @@ class IngresoController extends Controller
             $ingresos->where("nombre", "LIKE", "%$search%");
         }
 
-        $ingresos = $ingresos->paginate($request->itemsPerPage);
+        $ingresos = $ingresos->orderBy("fecha_ingreso", "desc")->orderBy("id", "desc")->paginate($request->itemsPerPage);
         return response()->JSON([
             "ingresos" => $ingresos
         ]);
@@ -98,13 +100,19 @@ class IngresoController extends Controller
 
             // registrar kardex
             $ingreso_detalles = $request->ingreso_detalles;
+            $total = 0;
             foreach ($ingreso_detalles as $item) {
                 $ingreso_detalle = $nuevo_ingreso->ingreso_detalles()->create([
                     "producto_id" => $item["producto_id"],
                     "cantidad" => $item["cantidad"],
+                    "precio" => $item["precio"],
+                    "total" => $item["total"],
                 ]);
+                $total += (float)$item["total"];
                 KardexProducto::registroIngreso("INGRESO", $ingreso_detalle->id, $ingreso_detalle->producto, $ingreso_detalle->cantidad, $ingreso_detalle->producto->precio, $nuevo_ingreso->descripcion);
             }
+            $nuevo_ingreso->precio  = $total;
+            $nuevo_ingreso->save();
 
             $datos_original = HistorialAccion::getDetalleRegistro($nuevo_ingreso, "ingresos");
             HistorialAccion::create([

@@ -162,6 +162,10 @@
             text-align: center;
             border-top: dotted 1px black;
         }
+
+        .derecha {
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -191,10 +195,6 @@
                 <td class="bold">Fecha de Ingreso:</td>
                 <td>{{ $ingreso->fecha_ingreso_t }}</td>
             </tr>
-            <tr>
-                <td class="bold">Precio:</td>
-                <td colspan="3">Bs. {{ $ingreso->precio }}</td>
-            </tr>
         </tbody>
     </table>
 
@@ -204,6 +204,8 @@
                 <th width="3%">N°</th>
                 <th>PRODUCTOS</th>
                 <th width="15%">CANTIDAD</th>
+                <th width="15%">PRECIO</th>
+                <th width="15%">TOTAL</th>
             </tr>
         </thead>
         <tbody>
@@ -216,8 +218,14 @@
                     <td>{{ $cont++ }}</td>
                     <td>{{ $item->producto->nombre }}</td>
                     <td class="centreado">{{ $item->cantidad }}</td>
+                    <td class="centreado">{{ $item->precio }}</td>
+                    <td class="centreado">{{ $item->total }}</td>
                 </tr>
             @endforeach
+            <tr>
+                <td colspan="4" class="derecha bold">TOTAL</td>
+                <td class="centreado bold">{{ $ingreso->precio }}</td>
+            </tr>
         </tbody>
     </table>
     <p class="texto_info"><strong>Descripción: </strong> {{ $ingreso->descripcion }}</p>
